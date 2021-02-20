@@ -1,11 +1,16 @@
 #ifndef LIST_HPP
 # define LIST_HPP
 
-#include <algorithm>
 #include <limits>
 #include <cstddef>
+#include "../iterator_traits.hpp"
 
 namespace ft {
+
+template <typename T>
+class List;
+template <class T>
+bool operator<  (const List<T>& lhs, const List<T>& rhs);
 
 template <typename T>
 struct List_Node {
@@ -19,26 +24,25 @@ template <typename T>
 class List {
 public:
 
-    typedef T                       value_type;
-    typedef struct List_Node<T>     node;
-    typedef struct List_Node<T>*    node_pointer;
-    typedef value_type*             pointer;
-    typedef const value_type*       const_pointer;
-    typedef value_type&             reference;
-    typedef const value_type&       const_reference;
-    typedef size_t                  size_type;
-    typedef ptrdiff_t               difference_type;
-
-    struct const_iterator {
-        public:
-
-            typedef std::bidirectional_iterator_tag iterator_catagory;
-            typedef std::ptrdiff_t                  difference_type;
-            typedef List::value_type                value_type;
-            typedef const T*             pointer;
-            typedef const T&           reference;
+    typedef T                               value_type;
+    typedef struct List_Node<value_type>             node;
+    typedef struct List_Node<value_type>*            node_pointer;
+    typedef value_type*                     pointer;
+    typedef const value_type*               const_pointer;
+    typedef value_type&                     reference;
+    typedef const value_type&               const_reference;
+    typedef size_t                          size_type;
+    typedef ptrdiff_t                       difference_type;
     
+    struct const_iterator : public iterator_traits<T> {
+        public:    
+            const_iterator() : _ptr(NULL) {};
             const_iterator(node_pointer ptr) : _ptr(ptr) {};
+            const_iterator &operator=(const_iterator const &other) {
+                _ptr = other._ptr;
+                return (*this);
+            }
+
 
             reference   operator*() { return _ptr->content; };
             pointer     operator->() { return &_ptr->content; };
@@ -59,16 +63,15 @@ public:
         protected:
             node_pointer _ptr;
     };
-    struct iterator {
+    struct iterator : public iterator_traits<T> {
         public:
-
-            typedef std::bidirectional_iterator_tag iterator_catagory;
-            typedef std::ptrdiff_t                  difference_type;
-            typedef List::value_type                value_type;
-            typedef List::pointer                   pointer;
-            typedef List::reference                 reference;
-    
+            iterator() : _ptr(NULL) {};
             iterator(node_pointer ptr) : _ptr(ptr) {};
+            iterator &operator=(iterator const &other) {
+                _ptr = other._ptr;
+                return (*this);
+            }
+
 
             node_pointer get_node() { return (_ptr); };
 
@@ -92,15 +95,8 @@ public:
             node_pointer _ptr;
     };
 
-    struct const_reverse_iterator  {
-        public:
-
-            typedef std::bidirectional_iterator_tag iterator_catagory;
-            typedef std::ptrdiff_t                  difference_type;
-            typedef List::value_type                value_type;
-            typedef const T*                   pointer;
-            typedef const T&                 reference;
-    
+    struct const_reverse_iterator : public iterator_traits<T> {
+        public:    
             const_reverse_iterator (node_pointer ptr) : _ptr(ptr) {};
 
             reference   operator*() { return _ptr->content; };
@@ -122,15 +118,8 @@ public:
             node_pointer _ptr;
     };
 
-    struct reverse_iterator {
-        public:
-
-            typedef std::bidirectional_iterator_tag iterator_catagory;
-            typedef std::ptrdiff_t                  difference_type;
-            typedef List::value_type                value_type;
-            typedef List::pointer                   pointer;
-            typedef List::reference                 reference;
-    
+    struct reverse_iterator : public iterator_traits<T> {
+        public:    
             reverse_iterator(node_pointer ptr) : _ptr(ptr) {};
 
             reference   operator*() { return _ptr->prev->content; };
@@ -441,7 +430,7 @@ public:
     void unique (BinaryPredicate binary_pred) {
         node_pointer tmp = _begin;
         while (tmp != _end) {
-            if (tmp->prev && binary_pred(tmp->content, tmp->prev->content)) {
+            if (tmp->prev && binary_pred(tmp->prev->content, tmp->content)) {
                 tmp = erase(tmp).get_node();
             } else {
                 tmp = tmp->next;
@@ -453,7 +442,7 @@ public:
         splice(end(), x);
     }
 
-    template <class Compare>
+    template <typename Compare>
     void merge (List& x, Compare comp) {
         iterator it = begin();
         value_type item = x._begin->content;
@@ -464,24 +453,75 @@ public:
         splice(it, x);
     }
 
-    void sort() {
-        sort(operator<);
+    void print_list() {
+        const_iterator it = begin();
+        const_iterator ite = end();
+        while (it != ite) {
+            std::cout << "value: " << *it << " ";
+            it++;
+        }
+        std::cout << std::endl;
+    }
+    template <typename Compare>
+    void sort (Compare comp) {
+        int count = _size;
+        bool is_sort = true;
+        while (count-- && is_sort) {
+            is_sort = false;
+            iterator it = begin();
+            iterator ite = end();
+            iterator next_it = it;
+            ++next_it;
+            while (it != ite && next_it != ite) {
+                if (!comp(*it, *next_it)) {
+                    node_pointer first = it.get_node();
+                    node_pointer second = next_it.get_node();
+                    node_pointer first_prev = first->prev;
+                    node_pointer second_next = second->next;
+                    if (first == _begin) {
+                        _begin = second;
+                    }
+                    first->prev = second;
+                    second->next = first;
+                    second->prev = first_prev;
+                    first->next = second_next;
+                    if (first_prev) {
+                        first_prev->next = second;
+                    }
+                    if (second_next) {
+                        second_next->prev = first;
+                    }
+                    next_it = it;
+                    ++next_it;
+                    is_sort = true;
+                } else {
+                    ++next_it;
+                    ++it;
+                }
+            }
+        }
     }
 
-    template <class Compare>
-    void sort (Compare comp) {
-        iterator it = begin();
-        iterator ite = end();
-        while (it != ite) {
-            if (comp(*it, *it->next))
+    void sort() {
+        sort(less_comp);
+    }
+
+    void reverse() {
+        node_pointer curr = _end->prev;
+        node_pointer tmp = NULL;
+        if (curr)
+            _begin = curr;
+        while (curr) {
+            tmp = curr->prev;
+            curr->prev = curr->next;
+            curr->next = tmp;
+            if (tmp == NULL) {
+                curr->next = _end;
+            }
+            curr = tmp;
         }
 
     }
-
-
-    // Operators Overload
-
-
 
 
 private:
@@ -498,16 +538,52 @@ private:
         free(val);
     }
 
+    void swap_pos(node_pointer first, node_pointer second) {
+        if (first == second || first == _end || second == _end) {
+            std::cout << "WAHT\n";
+            return ;
+        }
+        node_pointer first_prev = first->prev;
+        node_pointer first_next = first->next;
+        first->prev = second->prev;
+        first->next = second->next;
+        second->prev = first_prev;
+        second->next = first_next;
+        if (first->prev) {
+            first->prev->next = first;
+        }
+        if (first->next) {
+            first->next->prev = first;
+        }
+        if (second->prev) {
+            second->prev->next = second;
+        }
+        if (second->next) {
+            second->next->prev = second;
+        }
+        if (first == _begin) {
+            _begin = second;
+        }
+        if (second == _begin) {
+            _begin = first;
+        }
+    }
+
+    static bool less_comp(const value_type & first, const value_type & second) {
+        return (first < second);
+    }
+
 }; // List class
 
 
-template <class T>
+// Relational operators
+
+template <typename T>
 bool operator== (const List<T>& lhs, const List<T>& rhs) {
-    typename List<T>::iterator lhs_it = lhs.begin();
-    typename List<T>::iterator lhs_ite = lhs.end();
-    typename List<T>::iterator rhs_it = rhs.begin();
-    typename List<T>::iterator rhs_ite = rhs.end();
-    if (rhs._size != rhs._size)
+    typename List<T>::const_iterator lhs_it = lhs.begin();
+    typename List<T>::const_iterator lhs_ite = lhs.end();
+    typename List<T>::const_iterator rhs_it = rhs.begin();
+    if (lhs.size() != rhs.size())
         return (false);
     while (lhs_it != lhs_ite) {
         if (*lhs_it++ != *rhs_it++)
@@ -516,42 +592,49 @@ bool operator== (const List<T>& lhs, const List<T>& rhs) {
     return (true);
 }
 
-template <class T>
+template <typename T>
 bool operator!= (const List<T>& lhs, const List<T>& rhs) {
     return !(lhs == rhs);
 }
 
-template <class T>
+template <typename T>
 bool operator<  (const List<T>& lhs, const List<T>& rhs) {
-    typename List<T>::iterator lhs_it = lhs.begin();
-    typename List<T>::iterator lhs_ite = lhs.end();
-    typename List<T>::iterator rhs_it = rhs.begin();
-    typename List<T>::iterator rhs_ite = rhs.end();
+    typename List<T>::const_iterator lhs_it = lhs.begin();
+    typename List<T>::const_iterator lhs_ite = lhs.end();
+    typename List<T>::const_iterator rhs_it = rhs.begin();
+    typename List<T>::const_iterator rhs_ite = rhs.end();
     while (lhs_it != lhs_ite && rhs_it != rhs_ite) {
         if (*lhs_it < *rhs_it)
             return (true);
+        else if (*lhs_it > *rhs_it)
+            return (false);
         lhs_it++;
         rhs_it++;
     }
-    if (lhs_it == lhs_ite)
+    if (lhs_it == lhs_ite && rhs_it != rhs_ite)
         return (true);
     return (false);
 
 }
 
-template <class T>
+template <typename T>
 bool operator<= (const List<T>& lhs, const List<T>& rhs) {
     return !(lhs > rhs);
 }
 
-template <class T>
+template <typename T>
 bool operator>  (const List<T>& lhs, const List<T>& rhs) {
     return (rhs < lhs);
 }
 
-template <class T>
+template <typename T>
 bool operator>= (const List<T>& lhs, const List<T>& rhs) {
     return !(lhs < rhs);
+}
+
+template<typename T>
+void swap(List<T> &first, List<T> &second) {
+	first.swap(second);
 }
 
 } // ft namespace

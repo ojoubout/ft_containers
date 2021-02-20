@@ -1,9 +1,9 @@
 {
     "files.associations": {
+        "ios": "cpp",
         "list": "cpp",
-        "__config": "cpp",
-        "iosfwd": "cpp",
         "__bit_reference": "cpp",
+        "__config": "cpp",
         "__debug": "cpp",
         "__errc": "cpp",
         "__functional_base": "cpp",
@@ -37,7 +37,8 @@
         "exception": "cpp",
         "functional": "cpp",
         "initializer_list": "cpp",
-        "ios": "cpp",
+        "iomanip": "cpp",
+        "iosfwd": "cpp",
         "iostream": "cpp",
         "istream": "cpp",
         "iterator": "cpp",
@@ -60,8 +61,6 @@
         "typeinfo": "cpp",
         "unordered_map": "cpp",
         "utility": "cpp",
-        "vector": "cpp",
-        "memory_resource": "cpp",
-        "__functional_03": "cpp"
+        "vector": "cpp"
     }
 }
