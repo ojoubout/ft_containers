@@ -150,6 +150,7 @@ public:
 
     ~Vector() {
         clear();
+        ::operator delete(_container);
     }
 
     Vector& operator= (const Vector& x) {
@@ -202,12 +203,12 @@ public:
         }
     }
 
-    bool empty() const {
-        return (_size == 0);
-    }
-
     size_type capacity() const {
         return _capacity;
+    }
+
+    bool empty() const {
+        return (_size == 0);
     }
 
     void reserve (size_type n) {
@@ -215,6 +216,9 @@ public:
             _capacity = n;
             pointer new_container = static_cast<pointer>(::operator new(sizeof(value_type) * n));
             std::memcpy(new_container, _container, _size * sizeof(value_type));
+            size_type size = _size;
+            clear();
+            _size = size;
             ::operator delete(_container);
             _container = new_container;   
         }
@@ -303,7 +307,6 @@ public:
                 r = 1;    
             else if ((_size + n) % 2 == 0)
                 r = _size + n;
-            std::cout << r << std::endl;
             reserve(r);
         }
         std::memcpy(&_container[pos + n], &_container[pos], (_size - pos) * sizeof(value_type));
@@ -314,7 +317,8 @@ public:
     }
     void insert (iterator position, const_iterator first, const_iterator last) {
         for (const_iterator it = first; it != last; ++it) {
-            insert(position, 1, *it);
+            position = insert(position, *it);
+            position++;
         }
     }
     //--//
@@ -334,12 +338,23 @@ public:
         return (first);
     }
     //--//
+    void swap (Vector& x) {
+        pointer container = x._container;
+        size_type capacity = x._capacity;
+        size_type size = x._size;
+
+        x._container = _container;
+        x._capacity = _capacity;
+        x._size = _size;
+        _container = container;
+        _capacity = capacity;
+        _size = size;
+    }
     //--//
     void clear() {
         for (size_type i = 0; i < _size; ++i) {
             _container[i].value_type::~value_type();
         }
-        _capacity = 0;
         _size = 0;
     }
     //--//
@@ -365,6 +380,69 @@ private:
         _capacity = 0;
     }
 };
+
+template <class T>
+bool operator== (const Vector<T>& lhs, const Vector<T>& rhs) {
+    if (lhs.size() != rhs.size()) {
+        return (false);
+    }
+    typename Vector<T>::const_iterator lhs_it = lhs.begin();
+    typename Vector<T>::const_iterator lhs_ite = lhs.end();
+    typename Vector<T>::const_iterator rhs_it = rhs.begin();
+
+    if (lhs.size() != rhs.size())
+        return (false);
+    while (lhs_it != lhs_ite) {
+        if (*lhs_it++ != *rhs_it++)
+            return (false);
+    }
+    return (true);
+}
+
+template <class T>
+bool operator!= (const Vector<T>& lhs, const Vector<T>& rhs) {
+    return !(lhs == rhs);
+}
+
+template <class T>
+bool operator<  (const Vector<T>& lhs, const Vector<T>& rhs) {
+    typename Vector<T>::const_iterator lhs_it = lhs.begin();
+    typename Vector<T>::const_iterator lhs_ite = lhs.end();
+    typename Vector<T>::const_iterator rhs_it = rhs.begin();
+    typename Vector<T>::const_iterator rhs_ite = rhs.end();
+    while (lhs_it != lhs_ite && rhs_it != rhs_ite) {
+        if (*lhs_it < *rhs_it)
+            return (true);
+        else if (*lhs_it > *rhs_it)
+            return (false);
+        lhs_it++;
+        rhs_it++;
+    }
+    if (lhs_it == lhs_ite && rhs_it != rhs_ite)
+        return (true);
+    return (false);
+}
+
+template <class T>
+bool operator<= (const Vector<T>& lhs, const Vector<T>& rhs) {
+    return !(lhs > rhs);
+}
+
+template <class T>
+bool operator>  (const Vector<T>& lhs, const Vector<T>& rhs) {
+    return (rhs < lhs);
+}
+
+template <class T>
+bool operator>= (const Vector<T>& lhs, const Vector<T>& rhs) {
+    return !(lhs < rhs);
+}
+
+template<typename T>
+void swap(Vector<T> &first, Vector<T> &second) {
+	first.swap(second);
+}
+
 } // ft namespace 
 
 #endif

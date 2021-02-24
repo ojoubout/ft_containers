@@ -8,13 +8,13 @@
 #include "../test/list_test.hpp"
 class A {
 public:
-    // A() : _n(0) {};
-    A(int n) : _n(n) {};
-    int _n;
+    int n;
+    A(int num) : n(num) {std::cout << "Constructure " << n << std::endl;};
+    ~A() {std::cout << "Destructure " << n << std::endl;};
 };
 
-std::ostream & operator<<(std::ostream & out, A &a) {
-    return (out << a._n);
+std::ostream &operator<<(std::ostream & out, const A & a) {
+    return (out << a.n);
 }
 
 bool is_even(const int i) {
@@ -175,6 +175,42 @@ int main(void) {
         for (ft::List<double>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
             std::cout << ' ' << *it;
         std::cout << '\n';
+    } else if (test == 6) {
+		ft::List<int> lst;
+		lst.push_back(5);
+		lst.push_back(42);
+		lst.push_back(43);
+		lst.push_back(44);
+		lst.push_back(58);
+
+		// 	assert(lst.size() == 5);
+
+		display_container("[5, 42, 43, 44, 58]:", lst);
+		lst.reverse();
+		display_container("[5, 42, 43, 44, 58]:", lst);
+		lst.reverse();
+		display_container("[5, 42, 43, 44, 58]:", lst);
+		// display_container("[58, 44, 43, 42, 5] {reversed}:", lst);
+		// 	assert(lst.size() == 5);
+
+		// lst.reverse();
+		// display_container("[5, 42, 43, 44, 58] {reversed twice}:", lst);
+		// 	assert(lst.size() == 5);
+
+		// ListType lst2;
+		// lst2.push_back(5);
+		// lst2.push_back(42);
+
+		// display_container("[5, 42]:", lst2);
+		// 	assert(lst2.size() == 2);
+
+		// lst2.reverse();
+		// display_container("[42, 5] {reversed}:", lst2);
+		// 	assert(lst2.size() == 2);
+
+		// lst2.reverse();
+		// display_container("[5, 42] {reversed twice}:", lst2);
+		// 	assert(lst2.size() == 2);
     }
     
     return (0);

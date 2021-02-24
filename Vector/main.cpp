@@ -1,54 +1,66 @@
 #include <iostream>
 #include "Vector.hpp"
 #include <vector>
-
+#include "../test/test.hpp"
+#include "../test/vector_test.hpp"
 class A {
 public:
     int n;
-    A(int num) : n(num) {};
+    A(int num) : n(num) {std::cout << "Constructure " << n << std::endl;};
+    ~A() {std::cout << "Destructure " << n << std::endl;};
 };
 
 std::ostream &operator<<(std::ostream & out, const A & a) {
     return (out << a.n);
 }
 int main(int argc, char**) {
-    int test = 2;
+    int test = 3;
     if (test == 1) {
         std::vector<A> v;
-
-        v.push_back(8);
-        v.push_back(7);
-        v.push_back(6);
-
-        std::vector<A> v1(v);
-        v.clear();
-        std::cout << v1[0] << std::endl;
-
-    } else if (test == 2) {
-        ft::Vector<A> v;
-
+        // v.reserve(180000);
         // std::vector<int>::iterator it = v.begin();
         
         v.push_back(5);
         v.push_back(3);
         v.push_back(2);
-        
-        // ft::Vector<A> v2(v);
-        // v.insert(v.begin(), 2);
-        // v.insert(v.begin(), 4);
-        // v.insert(v.end(), 8);
-        // ft::Vector<int>::iterator it = v.begin();
-        // ft::Vector<int>::iterator ite = v.end();
-        // v.print_list();
-        // v.assign(v2.begin(), v2.end());
-        // v.pop_back();
-        // v.pop_back();
-        v.print_list();
         // v.clear();
-        // v2.print_list();
+
         std::cout << "f: " << v[0] << std::endl;
         std::cout << "s: " << v.size() << std::endl;    
         std::cout << "c: " << v.capacity() << std::endl;    
+
+    } else if (test == 2) {
+		ft::Vector<int> vec;
+			assert(vec.size() == 0);
+
+		vec.insert(vec.begin(), 5);
+        vec.print_list();
+		// display_container("[5]:", vec);
+			assert(vec.front() == 5);
+			assert(vec.back() == 5);
+			assert(vec.size() == 1);
+
+		vec.insert(vec.begin(), 2, 42);
+        vec.print_list();
+
+        ft::Vector<int> vec2;
+			assert(vec2.size() == 0);
+
+		vec2.insert(vec2.begin(), vec.begin(), vec.end());
+        vec2.print_list();
+		// display_container("vec2[42, 42, 5]:", vec2);
+		// 	assert(vec2.front() == 42);
+		// 	assert(vec2.back() == 5);
+		// 	assert(vec2.size() == 3);
+
+		// vec2.insert(vec2.end(), vec.begin(), vec.end());
+
+		// display_container("vec[42, 42, 5]:", vec);        // v.clear();
+        std::cout << "f: " << vec[0] << std::endl;
+        std::cout << "s: " << vec.size() << std::endl;    
+        std::cout << "c: " << vec.capacity() << std::endl;    
+    } else if (test == 3) {
+        test_Vector< ft::Vector<int> >();
     }
 
     if (argc != 1) {

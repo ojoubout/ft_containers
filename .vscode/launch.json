@@ -8,10 +8,10 @@
             "name": "(lldb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/Vector/a.out",
+            "program": "${workspaceFolder}/Map/a.out",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/Vector",
+            "cwd": "${workspaceFolder}/Map",
             "environment": [],
             "console": "externalTerminal",
             "MIMode": "lldb"

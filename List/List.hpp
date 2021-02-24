@@ -517,9 +517,11 @@ public:
             curr->next = tmp;
             if (tmp == NULL) {
                 curr->next = _end;
+                _end->prev = curr;
             }
             curr = tmp;
         }
+        _begin->prev = NULL;
 
     }
 
