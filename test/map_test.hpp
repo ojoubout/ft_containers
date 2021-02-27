@@ -14,7 +14,7 @@
 # define MAP_TEST_HPP
 
 # ifndef k
-# 	define k(x) (x+offset > 127) ? 127 : (x+offset)
+# 	define k(x) (x+offset > 127) ? typename MapType::key_type(127) : typename MapType::key_type(x+offset)
 # endif
 
 template<class MapType>
@@ -74,13 +74,13 @@ void test_Map(int offset=0)
 	std::cout << "\n---basic (bigger map)\n\n";
 	{
 		MapType mp;
-		mp.insert(std::make_pair(k(5), 5));
-		mp.insert(std::make_pair(k(6), 6));
-		mp.insert(std::make_pair(k(7), 7));
-		mp.insert(std::make_pair(k(8), 8));
-		mp.insert(std::make_pair(k(9), 9));
-		mp.insert(std::make_pair(k(10), 10));
-		mp.insert(std::make_pair(k(11), 11));
+		mp.insert(ft::make_pair(k(5), 5));
+		mp.insert(ft::make_pair(k(6), 6));
+		mp.insert(ft::make_pair(k(7), 7));
+		mp.insert(ft::make_pair(k(8), 8));
+		mp.insert(ft::make_pair(k(9), 9));
+		mp.insert(ft::make_pair(k(10), 10));
+		mp.insert(ft::make_pair(k(11), 11));
 
 		std::cout << "size: " << mp.size() << " (7), empty? " << mp.empty() << '\n';
 		display_container("map [5:5, ..., 11:11]:", mp);
@@ -100,20 +100,20 @@ void test_Map(int offset=0)
 	{
 		MapType mp;
 
-		mp.insert(mp.begin(), std::make_pair(k(5), 42));
+		mp.insert(mp.begin(), ft::make_pair(k(5), 42));
 		display_container("map [5:42]:", mp);
 			assert(mp.size() == 1);
-		mp.insert(mp.begin(), std::make_pair(k(6), 43));
+		mp.insert(mp.begin(), ft::make_pair(k(6), 43));
 		display_container("map [5:42, 6:43]:", mp);
 			assert(mp.size() == 2);
-		mp.insert(mp.begin(), std::make_pair(k(4), 44));
+		mp.insert(mp.begin(), ft::make_pair(k(4), 44));
 		display_container("map [4:44, 5:42, 6:43]:", mp);
 			assert(mp.size() == 3);
 
-		mp.insert(--mp.end(), std::make_pair(k(3), 45));
+		mp.insert(--mp.end(), ft::make_pair(k(3), 45));
 		display_container("map [3:45, 4:44, 5:42, 6:43]:", mp);
 			assert(mp.size() == 4);
-		mp.insert(--mp.end(), std::make_pair(k(7), 46));
+		mp.insert(--mp.end(), ft::make_pair(k(7), 46));
 		display_container("map [3:45, 4:44, 5:42, 6:43, 7:46]:", mp);
 			assert(mp.size() == 5);
 
@@ -131,11 +131,11 @@ void test_Map(int offset=0)
 	std::cout << "\n---erase\n\n";
 	{
 		MapType mp;
-		mp.insert(std::make_pair(k(5), 42));
-		mp.insert(std::make_pair(k(6), 43));
-		mp.insert(std::make_pair(k(7), 44));
-		mp.insert(std::make_pair(k(8), 45));
-		mp.insert(std::make_pair(k(9), 46));
+		mp.insert(ft::make_pair(k(5), 42));
+		mp.insert(ft::make_pair(k(6), 43));
+		mp.insert(ft::make_pair(k(7), 44));
+		mp.insert(ft::make_pair(k(8), 45));
+		mp.insert(ft::make_pair(k(9), 46));
 		display_container("map [5:42, 6:43, 7:44, 8:45, 9:46]:", mp);
 			assert(mp.size() == 5);
 
@@ -158,9 +158,9 @@ void test_Map(int offset=0)
 	std::cout << "\n---find\n\n";
 	{
 		MapType mp;
-		mp.insert(std::make_pair(k(5), 42));
-		mp.insert(std::make_pair(k(7), 43));
-		mp.insert(std::make_pair(k(6), 48));
+		mp.insert(ft::make_pair(k(5), 42));
+		mp.insert(ft::make_pair(k(7), 43));
+		mp.insert(ft::make_pair(k(6), 48));
 			assert(mp.size() == 3);
 
 		display_container("map [5:42, 6:48, 7:43]:", mp);
@@ -179,12 +179,12 @@ void test_Map(int offset=0)
 	std::cout << "\n---count\n\n";
 	{
 		MapType mp;
-		mp.insert(std::make_pair(k(5), 42));
-		mp.insert(std::make_pair(k(5), 99));
-		mp.insert(std::make_pair(k(7), 43));
-		mp.insert(std::make_pair(k(7), 34));
-		mp.insert(std::make_pair(k(6), 48));
-		mp.insert(std::make_pair(k(6), 84));
+		mp.insert(ft::make_pair(k(5), 42));
+		mp.insert(ft::make_pair(k(5), 99));
+		mp.insert(ft::make_pair(k(7), 43));
+		mp.insert(ft::make_pair(k(7), 34));
+		mp.insert(ft::make_pair(k(6), 48));
+		mp.insert(ft::make_pair(k(6), 84));
 
 		display_container("map [5:42, 6:48, 7:43]:", mp);
 			assert(mp.size() == 3);
@@ -201,15 +201,15 @@ void test_Map(int offset=0)
 	std::cout << "\n---bounds\n\n";
 	{
 		MapType mp;
-		mp.insert(std::make_pair(k(5), 42));
-		mp.insert(std::make_pair(k(7), 44));
-		mp.insert(std::make_pair(k(9), 95));
-		mp.insert(std::make_pair(k(11), 10));
-		mp.insert(std::make_pair(k(3), 12));
-		mp.insert(std::make_pair(k(1), 78));
-		mp.insert(std::make_pair(k(-1), 65));
-		mp.insert(std::make_pair(k(6), 32));
-		mp.insert(std::make_pair(k(8), 1));
+		mp.insert(ft::make_pair(k(5), 42));
+		mp.insert(ft::make_pair(k(7), 44));
+		mp.insert(ft::make_pair(k(9), 95));
+		mp.insert(ft::make_pair(k(11), 10));
+		mp.insert(ft::make_pair(k(3), 12));
+		mp.insert(ft::make_pair(k(1), 78));
+		mp.insert(ft::make_pair(k(-1), 65));
+		mp.insert(ft::make_pair(k(6), 32));
+		mp.insert(ft::make_pair(k(8), 1));
 
 		display_container("map [-1:65, 1:78, 3:12, 5:42, 6:32, 7:44, 8:1, 9:95, 11:10]:", mp);
 			assert(mp.size() == 9);
@@ -234,15 +234,15 @@ void test_Map(int offset=0)
 	std::cout << "\n---equal_range\n\n";
 	{
 		MapType mp;
-		mp.insert(std::make_pair(k(5), 42));
-		mp.insert(std::make_pair(k(7), 44));
-		mp.insert(std::make_pair(k(9), 95));
-		mp.insert(std::make_pair(k(11), 10));
-		mp.insert(std::make_pair(k(3), 12));
-		mp.insert(std::make_pair(k(1), 78));
-		mp.insert(std::make_pair(k(-1), 65));
-		mp.insert(std::make_pair(k(6), 32));
-		mp.insert(std::make_pair(k(8), 1));
+		mp.insert(ft::make_pair(k(5), 42));
+		mp.insert(ft::make_pair(k(7), 44));
+		mp.insert(ft::make_pair(k(9), 95));
+		mp.insert(ft::make_pair(k(11), 10));
+		mp.insert(ft::make_pair(k(3), 12));
+		mp.insert(ft::make_pair(k(1), 78));
+		mp.insert(ft::make_pair(k(-1), 65));
+		mp.insert(ft::make_pair(k(6), 32));
+		mp.insert(ft::make_pair(k(8), 1));
 
 		display_container("map [-1:65, 1:78, 3:12, 5:42, 6:32, 7:44, 8:1, 9:95, 11:10]:", mp);
 			assert(mp.size() == 9);
@@ -261,14 +261,14 @@ void test_Map(int offset=0)
 	std::cout << "\n---swap\n\n";
 	{
 		MapType mp;
-		mp.insert(std::make_pair(k(5), 42));
-		mp.insert(std::make_pair(k(7), 43));
-		mp.insert(std::make_pair(k(9), 44));
+		mp.insert(ft::make_pair(k(5), 42));
+		mp.insert(ft::make_pair(k(7), 43));
+		mp.insert(ft::make_pair(k(9), 44));
 
 		MapType mp2;
-		mp2.insert(std::make_pair(k(11), 84));
-		mp2.insert(std::make_pair(k(12), 85));
-		mp2.insert(std::make_pair(k(13), 86));
+		mp2.insert(ft::make_pair(k(11), 84));
+		mp2.insert(ft::make_pair(k(12), 85));
+		mp2.insert(ft::make_pair(k(13), 86));
 
 		display_container("map [5:42, 7:43, 9:44]:", mp);
 			assert(mp[k(5)] == 42);
