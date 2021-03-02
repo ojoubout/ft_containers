@@ -5,10 +5,11 @@
 #include <utility>
 #include <map>
 #include "RedBlackTree.hpp"
-#include "Pair.hpp"
+#include "../Pair.hpp"
 #include "Map.hpp"
-#include "../test/test.hpp"
-#include "../test/map_test.hpp"
+// #include "../test/test.hpp"
+// #include "../test/map_test.hpp"
+#include "../tester/tester.hpp"
 
 class A {
 public:
@@ -35,29 +36,41 @@ struct great {
 
 int main(void) {
 
-    int test = 1;
+    int test = 4;
 
     if (test == 1) {
-        ft::Map<char, int > rbt;
+        ft::Map<int, int > mp;
 
+		mp.insert(ft::make_pair(5, 5));
+		mp.insert(ft::make_pair(6, 6));
+		mp.insert(ft::make_pair(7, 7));
+		mp.insert(ft::make_pair(8, 8));
+		mp.insert(ft::make_pair(9, 9));
+		mp.insert(ft::make_pair(10, 10));
+		mp.insert(ft::make_pair(11, 11));
+        mp.print();
 
-        rbt.insert(ft::make_pair<char, int>('A', 10));
-        rbt.insert(ft::make_pair<char, int>('B', 8));
-        rbt.insert(ft::make_pair<char, int>('C', 16));
-        rbt.insert(ft::make_pair<char, int>('D', 14));
-        rbt.insert(ft::make_pair<char, int>('F', 12));
-        rbt.insert(ft::make_pair<char, int>('H', 13));
-        rbt.insert(ft::make_pair<char, int>('K', 9));
-        rbt.insert(ft::make_pair<char, int>('P', 4));
+		// mp.insert(mp.begin(), ft::make_pair(5, 42));
+		// mp.insert(mp.begin(), ft::make_pair(6, 43));
+		// mp.insert(mp.begin(), ft::make_pair(4, 44));
+		// mp.insert(--mp.end(), ft::make_pair(3, 45));
+		// mp.insert(--mp.end(), ft::make_pair(7, 46));
 
-        rbt.print();
-        std::cout << rbt.size() <<  std::endl;
-        ft::Map<char, int>::const_iterator it = rbt.begin();
-        ft::Map<char, int>::const_iterator ite = rbt.end();
-        while (it != ite) {
+    	ft::Map<int, int>::const_iterator it;
+        for (it = mp.begin(); it != mp.end(); ++it) {
             std::cout << *it << std::endl;
-            ++it;
         }
+
+        std::cout << mp.max_size() <<  std::endl;
+        
+        // ft::Map<int, int>::iterator it = mp.begin();
+        // ft::Map<int, int>::iterator ite = mp.end();
+        // while (it != ite) {
+        //     std::cout << *it << std::endl;
+        //     ++it;
+        // }
+        if (ft::is_same<ft::Map<int, int>::iterator::iterator_category, std::random_access_iterator_tag>::value)
+            std::cout << "YES" << std::endl;
 
     } else if (test == 2) {
         std::pair<std::string, int> p("WHAT", 42);
@@ -66,8 +79,11 @@ int main(void) {
         // p.second = 1337;
         std::cout << p.first << " " << p.second << std::endl;
     } else if (test == 3) {
-        test_Map< ft::Map<char, int> >();
-
+        // test_Map< ft::Map<char, int> >();
+        
+    } else if (test == 4) {
+        test_map();
+        // while (1);
     }
     return (0);
 }

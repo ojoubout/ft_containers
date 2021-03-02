@@ -14,7 +14,7 @@ public:
     first_type first;
     second_type second;
 
-    Pair() {};
+    Pair() : first(), second() {};
 
     Pair&   operator=(const Pair& x) {
         first = x.first;
@@ -23,7 +23,8 @@ public:
         return (*this);
     }
 
-    Pair (const Pair& pr) : first(pr.first), second(pr.second) {
+    template<class U, class V>
+    Pair (const Pair<U, V>& pr) : first(pr.first), second(pr.second) {
     }
 
     Pair (const first_type& a, const second_type& b) : first(a), second(b) {
@@ -34,9 +35,9 @@ std::ostream&   operator<<(std::ostream& out, const Pair<T1, T2>& x) {
     return (out << x.first << ":" << x.second);
 }
 
-template <typename T1, typename T2>
-Pair<T1, T2>    make_pair(T1 first, T2 second) {
-    return Pair<T1, T2>(first, second);
+template <class T1, class T2>
+ft::Pair<T1, T2>    make_pair(T1 first, T2 second) {
+    return ft::Pair<T1, T2>(first, second);
 }
 
 } // ft namespace

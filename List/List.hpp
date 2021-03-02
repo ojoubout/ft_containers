@@ -4,6 +4,7 @@
 #include <limits>
 #include <cstddef>
 #include "../iterator_traits.hpp"
+#include "../utils.hpp"
 
 namespace ft {
 
@@ -34,18 +35,25 @@ public:
     typedef size_t                          size_type;
     typedef ptrdiff_t                       difference_type;
     
-    struct const_iterator : public iterator_traits<T> {
+    struct const_iterator : public ft::iterator<std::bidirectional_iterator_tag, const T> {
         public:    
+
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::iterator_category  iterator_category;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::value_type         value_type;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::pointer            pointer;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::reference          reference;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::difference_type    difference_type;
+
             const_iterator() : _ptr(NULL) {};
-            const_iterator(node_pointer ptr) : _ptr(ptr) {};
+            const_iterator(const node_pointer ptr) : _ptr(ptr) {};
             const_iterator &operator=(const_iterator const &other) {
                 _ptr = other._ptr;
                 return (*this);
             }
 
 
-            reference   operator*() { return _ptr->content; };
-            pointer     operator->() { return &_ptr->content; };
+            const_reference   operator*() { return _ptr->content; };
+            const_pointer     operator->() { return &_ptr->content; };
             // Prefix increment
             const_iterator& operator++() { _ptr = _ptr->next; return *this; }  
             // Postfix increment
@@ -56,24 +64,29 @@ public:
             const_iterator operator--(int) { const_iterator tmp = *this; --(*this); return tmp; }
 
 
-            bool    operator!=(const_iterator & it) { return (_ptr != it._ptr); }
-            bool    operator==(const_iterator & it) { return (_ptr == it._ptr); }
+            bool    operator!=(const const_iterator & it) { return (_ptr != it._ptr); }
+            bool    operator==(const const_iterator & it) { return (_ptr == it._ptr); }
 
 
-        protected:
+        private:
             node_pointer _ptr;
     };
-    struct iterator : public iterator_traits<T> {
+    struct iterator : public ft::iterator<std::bidirectional_iterator_tag, T> {
+        friend class List;
         public:
+
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::iterator_category  iterator_category;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::value_type         value_type;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::pointer            pointer;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::reference          reference;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::difference_type    difference_type;
+
             iterator() : _ptr(NULL) {};
             iterator(node_pointer ptr) : _ptr(ptr) {};
             iterator &operator=(iterator const &other) {
                 _ptr = other._ptr;
                 return (*this);
             }
-
-
-            node_pointer get_node() { return (_ptr); };
 
             reference   operator*() { return _ptr->content; };
             pointer     operator->() { return &_ptr->content; };
@@ -89,18 +102,25 @@ public:
             bool    operator!=(iterator const & it) { return (_ptr != it._ptr); }
             bool    operator==(iterator const & it) { return (_ptr == it._ptr); }
 
-            operator const_iterator () const { return const_iterator(_ptr) ; }
+            operator const_iterator () const { return const_iterator(static_cast<const node_pointer>(_ptr)) ; }
 
         private:
             node_pointer _ptr;
     };
 
-    struct const_reverse_iterator : public iterator_traits<T> {
+    struct const_reverse_iterator : public ft::iterator<std::bidirectional_iterator_tag, const T> {
         public:    
-            const_reverse_iterator (node_pointer ptr) : _ptr(ptr) {};
 
-            reference   operator*() { return _ptr->content; };
-            pointer     operator->() { return &_ptr->content; };
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::iterator_category  iterator_category;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::value_type         value_type;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::pointer            pointer;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::reference          reference;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::difference_type    difference_type;
+
+            const_reverse_iterator (const node_pointer ptr) : _ptr(ptr) {};
+
+            reference   operator*() { return _ptr->prev->content; };
+            pointer     operator->() { return &_ptr->prev->content; };
             // Prefix increment
             const_reverse_iterator & operator++() { _ptr = _ptr->prev; return *this; }  
             // Postfix increment
@@ -110,16 +130,23 @@ public:
             // Postfix decrement
             const_reverse_iterator  operator--(int) { const_reverse_iterator  tmp = *this; --(*this); return tmp; }
 
-            bool    operator!=(const_reverse_iterator & it) { return (_ptr != it._ptr); }
-            bool    operator==(const_reverse_iterator & it) { return (_ptr == it._ptr); }
+            bool    operator!=(const const_reverse_iterator & it) { return (_ptr != it._ptr); }
+            bool    operator==(const const_reverse_iterator & it) { return (_ptr == it._ptr); }
 
 
         private:
             node_pointer _ptr;
     };
 
-    struct reverse_iterator : public iterator_traits<T> {
+    struct reverse_iterator : public ft::iterator<std::bidirectional_iterator_tag, T> {
         public:    
+
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::iterator_category  iterator_category;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::value_type         value_type;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::pointer            pointer;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::reference          reference;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::difference_type    difference_type;
+
             reverse_iterator(node_pointer ptr) : _ptr(ptr) {};
 
             reference   operator*() { return _ptr->prev->content; };
@@ -133,10 +160,12 @@ public:
             // Postfix decrement
             reverse_iterator operator--(int) { reverse_iterator tmp = *this; --(*this); return tmp; }
 
-            operator const_reverse_iterator  () const { return const_reverse_iterator (_ptr) ; }
+            // operator const_reverse_iterator  () const { return const_reverse_iterator (_ptr) ; }
 
-            bool    operator!=(reverse_iterator & it) { return (_ptr != it._ptr); }
-            bool    operator==(reverse_iterator & it) { return (_ptr == it._ptr); }
+            bool    operator!=(const reverse_iterator & it) { return (_ptr != it._ptr); }
+            bool    operator==(const reverse_iterator & it) { return (_ptr == it._ptr); }
+            
+            operator const_reverse_iterator () const { return const_reverse_iterator(static_cast<const node_pointer>(_ptr)) ; }
 
 
         private:
@@ -158,7 +187,9 @@ public:
         insert(begin(), n, val);
     }
 
-    List(const_iterator first, const_iterator last) {
+    template <class InputIterator>
+    List(InputIterator first, InputIterator last,
+    typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type = 0) {
         init();
         insert(begin(), first, last);
     }
@@ -214,7 +245,7 @@ public:
     }
 
     size_type       max_size() const {
-        return (std::numeric_limits<difference_type>::max());
+        return (std::numeric_limits<size_type>::max() / (sizeof(List)));
     }
 
     // Element access:
@@ -240,8 +271,9 @@ public:
     }
 
     // Modifiers:
-
-    void assign (const_iterator first, const_iterator last) {
+    template <typename InputIterator>
+    void assign (InputIterator first, InputIterator last,
+    typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type = 0) {
         clear();
         insert(end(), first, last);
     }
@@ -251,19 +283,19 @@ public:
     }
 
     void push_front (const value_type& val) {
-        _begin = insert(iterator(_begin), val).get_node();
+        _begin = insert(iterator(_begin), val)._ptr;
     }
 
     void pop_front() {
         if (_size) {
-            _begin = erase(begin()).get_node();
+            _begin = erase(begin())._ptr;
         }
     }
 
     void push_back (const value_type& val) {
         iterator it = insert(end(), val);
         if (_size == 1) {
-            _begin = it.get_node();
+            _begin = it._ptr;
         }
     }
 
@@ -274,7 +306,7 @@ public:
     }
     
     iterator insert (iterator position, const value_type& val) {
-        node_pointer node_pos = position.get_node();
+        node_pointer node_pos = position._ptr;
         node_pointer tmp = new node(val);
 
         if (node_pos->prev) {
@@ -295,14 +327,16 @@ public:
         }
     }
 
-    void insert (iterator position, const_iterator first, const_iterator last) {
+    template <typename InputIterator>
+    void insert (iterator position, InputIterator first, InputIterator last,
+    typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type = 0) {
         while (first != last) {
             insert(position, *first++);
         }
     }
 
     iterator erase (iterator position) {
-        node_pointer node_pos = position.get_node();
+        node_pointer node_pos = position._ptr;
         if (node_pos == _end)
             return (_end);
         iterator ret = ++position;
@@ -359,8 +393,8 @@ public:
     }
 
     void splice (iterator position, List& x, iterator i) {
-        node_pointer node_pos = position.get_node();
-        node_pointer x_pos = i.get_node();
+        node_pointer node_pos = position._ptr;
+        node_pointer x_pos = i._ptr;
         if (x_pos == x._end) {
             return ;
         }
@@ -396,7 +430,7 @@ public:
         node_pointer tmp = _begin;
         while (tmp != _end) {
             if (tmp->content == val) {
-                tmp = erase(tmp).get_node();
+                tmp = erase(tmp)._ptr;
             } else {
                 tmp = tmp->next;
             }
@@ -408,7 +442,7 @@ public:
         node_pointer tmp = _begin;
         while (tmp != _end) {
             if (pred(tmp->content)) {
-                tmp = erase(tmp).get_node();
+                tmp = erase(tmp)._ptr;
             } else {
                 tmp = tmp->next;
             }
@@ -419,7 +453,7 @@ public:
         node_pointer tmp = _begin;
         while (tmp != _end) {
             if (tmp->prev && tmp->content == tmp->prev->content) {
-                tmp = erase(tmp).get_node();
+                tmp = erase(tmp)._ptr;
             } else {
                 tmp = tmp->next;
             }
@@ -431,7 +465,7 @@ public:
         node_pointer tmp = _begin;
         while (tmp != _end) {
             if (tmp->prev && binary_pred(tmp->prev->content, tmp->content)) {
-                tmp = erase(tmp).get_node();
+                tmp = erase(tmp)._ptr;
             } else {
                 tmp = tmp->next;
             }
@@ -439,18 +473,36 @@ public:
     }
 
     void merge (List& x) {
-        splice(end(), x);
+        // splice(begin(), x);
+        merge(x, less_comp);
     }
 
     template <typename Compare>
     void merge (List& x, Compare comp) {
-        iterator it = begin();
-        value_type item = x._begin->content;
-        while (it != end() && !comp(item, *it))
-        {
-            ++it;
-        }
-        splice(it, x);
+        // iterator it = begin();
+        // value_type item = x._begin->content;
+        // while (it != end() && !comp(item, *it))
+        // {
+        //     ++it;
+        // }
+        // splice(it, x);
+        if (this != &x) {
+            iterator first1 = begin();
+            iterator last1 = end();
+            iterator first2 = x.begin();
+            iterator last2 = x.end();
+            while (first1 != last1 && first2 != last2)
+                if (comp(*first2, *first1))
+                {
+                    iterator next = first2;
+                    splice(first1, x, next++);
+                    first2 = next;
+                } else {
+                    ++first1;
+                }
+            if (first2 != last2)
+                splice(last1, x, first2, last2);
+       }
     }
 
     void print_list() {
@@ -474,8 +526,8 @@ public:
             ++next_it;
             while (it != ite && next_it != ite) {
                 if (!comp(*it, *next_it)) {
-                    node_pointer first = it.get_node();
-                    node_pointer second = next_it.get_node();
+                    node_pointer first = it._ptr;
+                    node_pointer second = next_it._ptr;
                     node_pointer first_prev = first->prev;
                     node_pointer second_next = second->next;
                     if (first == _begin) {

@@ -2,8 +2,9 @@
 # define REDBLACKTREE_HPP
 
 #include <string>
-#include "Pair.hpp"
+#include "../Pair.hpp"
 #include "../iterator_traits.hpp"
+#include "../utils.hpp"
 
 namespace ft {
 
@@ -89,32 +90,40 @@ public:
 
     // typedef struct RBTNode          Node;
 
-    struct const_iterator : public iterator_traits<T> {
-        public:    
+    struct const_iterator : public ft::iterator<std::bidirectional_iterator_tag, const T> {
+        public:
+
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::iterator_category  iterator_category;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::value_type         value_type;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::pointer            pointer;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::reference          reference;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::difference_type    difference_type;
+
             const_iterator() : _ptr(NULL) {};
             const_iterator(const Node* ptr, const RedBlackTree *parent) : _ptr(ptr), _parent(parent) {};
             const_iterator &operator=(const_iterator const &other) {
                 _ptr = other._ptr;
+                _parent = other._parent;
                 return (*this);
             }
 
 
-            const_reference   operator*() { return _ptr->item; };
-            const_pointer     operator->() { return &_ptr->item; };
+            reference   operator*() { return _ptr->item; };
+            pointer     operator->() { return &_ptr->item; };
             // Prefix increment
             const_iterator& operator++() { _ptr = (_ptr = _ptr->getNext()) ? _ptr : _parent->_end; return *this;}  
             // Postfix increment
             const_iterator operator++(int) { const_iterator tmp = *this; ++(*this); return tmp; }
             // Prefix decrement
             // const_iterator& operator--() { _ptr = _ptr->getPrevious(); return *this; }  
-            const_iterator& operator--() { _ptr = _ptr == _end ? _root->rightMost() : _ptr->getPrevious();return *this;}  
+            const_iterator& operator--() { _ptr = _ptr == _parent->_end ? _parent->_root->rightMost() : _ptr->getPrevious();return *this;}  
 
             // Postfix decrement
             const_iterator operator--(int) { const_iterator tmp = *this; --(*this); return tmp; }
 
 
-            bool    operator!=(const_iterator & it) { return (_ptr != it._ptr); }
-            bool    operator==(const_iterator & it) { return (_ptr == it._ptr); }
+            bool    operator!=(const const_iterator & it) { return (_ptr != it._ptr); }
+            bool    operator==(const const_iterator & it) { return (_ptr == it._ptr); }
 
 
         protected:
@@ -122,17 +131,26 @@ public:
             const RedBlackTree    *_parent;
 
     };
-    struct iterator : public iterator_traits<T> {
+    struct iterator : public ft::iterator<std::bidirectional_iterator_tag, T> {
+        friend class RedBlackTree;
+
         public:
+
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::iterator_category  iterator_category;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::value_type         value_type;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::pointer            pointer;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::reference          reference;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::difference_type    difference_type;
             iterator() : _ptr(NULL) {};
             iterator(Node* ptr, RedBlackTree * parent) : _ptr(ptr), _parent(parent) {};
             iterator &operator=(iterator const &other) {
                 _ptr = other._ptr;
+                _parent = other._parent;
                 return (*this);
             }
 
 
-            Node* get_node() { return (_ptr); };
+            // Node* get_node() { return (_ptr); };
 
             reference   operator*() { return _ptr->item; };
             pointer     operator->() { return &_ptr->item; };
@@ -148,8 +166,8 @@ public:
             // Postfix decrement
             iterator operator--(int) { iterator tmp = *this; --(*this); return tmp; }
 
-            bool    operator!=(iterator const & it) { return (_ptr != it._ptr); }
-            bool    operator==(iterator const & it) { return (_ptr == it._ptr); }
+            bool    operator!=(const iterator & it) { return (_ptr != it._ptr); }
+            bool    operator==(const iterator & it) { return (_ptr == it._ptr); }
 
             operator const_iterator () const { return const_iterator(static_cast<const Node*>(_ptr), static_cast<const RedBlackTree*>(_parent)) ; }
 
@@ -159,8 +177,15 @@ public:
 
     };
 
-    struct const_reverse_iterator : public iterator_traits<T> {
+    struct const_reverse_iterator : public ft::iterator<std::bidirectional_iterator_tag, const T> {
         public:    
+
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::iterator_category  iterator_category;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::value_type         value_type;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::pointer            pointer;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::reference          reference;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::difference_type    difference_type;
+
             const_reverse_iterator (Node* ptr, const RedBlackTree *parent) : _ptr(ptr), _parent(parent) {};
 
             reference   operator*() { return _ptr == _parent->_end ? _parent->_root->rightMost()->item : _ptr->getPrevious()->item; };
@@ -178,18 +203,25 @@ public:
             // Postfix decrement
             const_reverse_iterator  operator--(int) { const_reverse_iterator  tmp = *this; --(*this); return tmp; }
 
-            bool    operator!=(const_reverse_iterator & it) { return (_ptr != it._ptr); }
-            bool    operator==(const_reverse_iterator & it) { return (_ptr == it._ptr); }
+            bool    operator!=(const const_reverse_iterator & it) { return (_ptr != it._ptr); }
+            bool    operator==(const const_reverse_iterator & it) { return (_ptr == it._ptr); }
 
 
         private:
-            Node* _ptr;
-            RedBlackTree    *_parent;
+            const Node* _ptr;
+            const RedBlackTree    *_parent;
 
     };
 
-    struct reverse_iterator : public iterator_traits<T> {
+    struct reverse_iterator : public ft::iterator<std::bidirectional_iterator_tag, T> {
         public:    
+
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::iterator_category  iterator_category;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::value_type         value_type;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::pointer            pointer;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::reference          reference;
+            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::difference_type    difference_type;
+
             reverse_iterator(Node* ptr, RedBlackTree *parent) : _ptr(ptr), _parent(parent) {};
 
             reference   operator*() { return _ptr == _parent->_end ? _parent->_root->rightMost()->item : _ptr->getPrevious()->item; };
@@ -209,8 +241,8 @@ public:
 
             operator const_reverse_iterator  () const { return const_reverse_iterator (_ptr, _parent) ; }
 
-            bool    operator!=(reverse_iterator & it) { return (_ptr != it._ptr); }
-            bool    operator==(reverse_iterator & it) { return (_ptr == it._ptr); }
+            bool    operator!=(const reverse_iterator & it) { return (_ptr != it._ptr); }
+            bool    operator==(const reverse_iterator & it) { return (_ptr == it._ptr); }
 
 
         private:
@@ -219,26 +251,37 @@ public:
     };
 
 
-    RedBlackTree() : _root(NULL), _size(0) {
+    RedBlackTree() : _size(0) {
         _end = static_cast<Node*>(::operator new(sizeof(Node)));
+        _root = _end;
     };
 
+    ~RedBlackTree() {
+        clear();
+        delete _end;
+    }
     const_iterator begin() const {
-        std::cout << "const_iterator" << std::endl;
-        return (const_iterator(const_cast<const Node *>(_root->leftMost()), this));
+        if (_size == 0)
+            return end();
+        return (const_iterator(_root->leftMost(), this));
         // return (const_iterator(_root->leftMost(), this));
     }
     iterator begin() {
-        std::cout << "iterator" << std::endl;
+        if (_size == 0)
+            return end();
         // return (iterator(_root->leftMost(), this));
-        return (iterator(const_cast<Node*>(_root->leftMost()), this));
+        return (iterator(_root->leftMost(), this));
 
     }
     const_iterator end() const {
         return (const_iterator(_end, this));
+
+        // return (const_iterator(_end, this));
     }
     iterator end() {
         return (iterator(_end, this));
+
+        // return (iterator(_end, this));
     }
     const_reverse_iterator rbegin() const {
         return (const_reverse_iterator(_end, this));
@@ -271,7 +314,7 @@ public:
 
     void clear() {
         deleteTree(_root);
-        _root = 0;
+        _root = _end;
         _size = 0;
     }
 
@@ -299,7 +342,7 @@ public:
     }
     void printTree(Node *root, Trunk *prev, bool isLeft)
     {
-        if (!_root)
+        if (_size == 0)
             return;
         if (root == NULL)
             root = _root;
@@ -324,7 +367,7 @@ public:
         }
     
         showTrunks(trunk);
-        std::cout << (root->color == RED ? "\033[31m" : "\033[37m") << root->item << "\033[37m" << std::endl;  
+        std::cout << (root->color == RED ? "\033[31m" : "\033[37m") << root->item << ":" << (root->parent ? root->parent->item.first : 0) << "\033[37m" << std::endl;  
 
         // std::cout << root->item << std::endl;
     
@@ -375,6 +418,11 @@ public:
         }
     }
 
+    size_t max_size() const {
+        return (std::numeric_limits<std::ptrdiff_t>::max() / sizeof(RedBlackTree));
+    }
+
+
     // ft_containers Map hint insertion
 
 
@@ -410,37 +458,34 @@ public:
     // Else
     //     return iterator of pos
     iterator    insert(iterator pos, const value_type& val) {
-        if (pos.get_node() == _end) {
+        if (pos._ptr == _end) {
             if (_size > 0 && _value_comp(_root->rightMost()->item, val))
                 return insert(_root->rightMost(), val);
             else{
-                std::cout << "NAH I PREFER NORMAL 0 " << _size << std::endl;
                 return insert(val).first;
             }
-        } else if (_value_comp(val, pos.get_node()->item)) {
+        } else if (_value_comp(val, pos._ptr->item)) {
             iterator    before = pos;
-            if (pos.get_node() == _root->leftMost())
+            if (pos._ptr == _root->leftMost())
                 return insert(_root->leftMost(), val);
-            else if (_value_comp((--before).get_node()->item, val)) {
-                if (before.get_node()->right == NULL)
-                    return insert(before.get_node(), val);
+            else if (_value_comp((--before)._ptr->item, val)) {
+                if (before._ptr->right == NULL)
+                    return insert(before._ptr, val);
                 else
-                    return insert(pos.get_node(), val);
+                    return insert(pos._ptr, val);
             } else {
-                std::cout << "NAH I PREFER NORMAL 1" << std::endl;
                 return insert(val).first;
             }
-        } else if (_value_comp(pos.get_node()->item, val)) {
+        } else if (_value_comp(pos._ptr->item, val)) {
             iterator    after = pos;
-            if (pos.get_node() == _root->rightMost())
+            if (pos._ptr == _root->rightMost())
                 return insert(_root->rightMost(), val);
-            else if (_value_comp(val, (++after).get_node()->item)) {
-                if (pos.get_node()->right == NULL)
-                    return insert(pos.get_node(), val);
+            else if (_value_comp(val, (++after)._ptr->item)) {
+                if (pos._ptr->right == NULL)
+                    return insert(pos._ptr, val);
                 else
-                    return insert(after.get_node(), val);
+                    return insert(after._ptr, val);
             } else {
-                std::cout << "NAH I PREFER NORMAL 2" << std::endl;
                 return insert(val).first;
             }
         }
@@ -469,7 +514,7 @@ public:
 
 
     size_t    erase(iterator pos, const value_type & delete_item) {
-        Node* tmp = pos.get_node();
+        Node* tmp = pos._ptr;
         size_t  size = 0;
         while (tmp)
         {
@@ -504,12 +549,13 @@ public:
                         replace = c;
                     } else {
                         _root = c;
+                        c->parent = NULL;
                     }
                     c->color = BLACK;
                     delete tmp;
                 } else {
                     if (tmp == _root) {
-                        _root = NULL;
+                        _root = _end;
                     } else {
                         if (p) {
                             if (p->right == tmp) {
@@ -524,7 +570,7 @@ public:
                     }
                     delete tmp;
                 }
-                if (_root && color == BLACK && replacedColor == BLACK)
+                if (_size > 0 && color == BLACK && replacedColor == BLACK)
                     doubleBlackFix(replace, p);
                 --_size;
                 size++;
@@ -563,7 +609,7 @@ private:
 
     void deleteTree(Node* node)  
     {  
-        if (node == NULL) return;  
+        if (node == NULL || node == _end) return;  
     
         deleteTree(node->left);  
         deleteTree(node->right);  
@@ -592,9 +638,9 @@ private:
                 else
                     doubleBlackFix(p, p->parent);
             } else if ((s->left && s->left->color == RED) || (s->right && s->right->color == RED)) {
-                bool isChildLeft = (s->left && s->left->color == RED);
-                Node* redChild = isChildLeft ? s->left : s->right;
-                if ((isLeft && isChildLeft) || (!isLeft && !isChildLeft)) {
+                bool isChildRight = (s->right && s->right->color == RED);
+                Node* redChild = isChildRight ? s->right : s->left;
+                if ((isLeft && !isChildRight) || (!isLeft && isChildRight)) {
                     redChild->color = BLACK;
                     s->color = RED;
                     if (isLeft)
@@ -657,9 +703,7 @@ private:
     }
 
     void    balance(Node* x) {
-        // std::cout << "TryBalance: " << x->item << std::endl;
         if (x && x->color == RED && x->parent && x->parent->color == RED) {
-            // std::cout << "Balance: " << x->item << std::endl;
             Node* p = x->parent; // parent
             if (p && p->parent) {
                 Node* g = p->parent; // grandparent
@@ -700,10 +744,9 @@ private:
 
 
     iterator    insert(Node* pos, const value_type& new_item) {
-        if (_root == NULL) {
+        if (_size == 0) {
             _root = new Node(new_item);
             _root->color = BLACK;
-            // std::cout << "Insert Root: " << _root->item << std::endl;
             ++_size;
 
             return iterator(_root, this);
@@ -717,7 +760,6 @@ private:
                     tmp->left = new Node(new_item);
                     tmp->left->parent = tmp;
                     tmp = tmp->left;
-                    // std::cout << "Insert Left: " << tmp->item << std::endl;
                     break;
                 }
             } else if (_value_comp(tmp->item, new_item)) {
@@ -727,7 +769,6 @@ private:
                     tmp->right = new Node(new_item);
                     tmp->right->parent = tmp;
                     tmp = tmp->right;
-                    // std::cout << "Insert Right: " << tmp->item << std::endl;
                     break;
                 }
             } else {

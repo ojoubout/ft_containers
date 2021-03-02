@@ -23,8 +23,15 @@ public:
     typedef size_t      size_type;
 
     
-    struct const_iterator : public iterator_traits<T> {
+    struct const_iterator : public ft::iterator<std::random_access_iterator_tag, const T> {
         public:    
+           
+            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::iterator_category  iterator_category;
+            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::value_type         value_type;
+            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::pointer            pointer;
+            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::reference          reference;
+            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::difference_type    difference_type;
+
             const_iterator() : _ptr(NULL) {};
             const_iterator(const_pointer ptr) : _ptr(ptr) {};
             const_iterator &operator=(const_iterator const &other) {
@@ -54,11 +61,18 @@ public:
             bool    operator==(const const_iterator & it) { return (_ptr == it._ptr); }
 
 
-        protected:
+        private:
             const_pointer _ptr;
     };
-    struct iterator : public iterator_traits<T> {
+    struct iterator : public ft::iterator<std::random_access_iterator_tag, T> {
         public:    
+
+            typedef typename ft::iterator<std::random_access_iterator_tag, T>::iterator_category  iterator_category;
+            typedef typename ft::iterator<std::random_access_iterator_tag, T>::value_type         value_type;
+            typedef typename ft::iterator<std::random_access_iterator_tag, T>::pointer            pointer;
+            typedef typename ft::iterator<std::random_access_iterator_tag, T>::reference          reference;
+            typedef typename ft::iterator<std::random_access_iterator_tag, T>::difference_type    difference_type;
+
             iterator() : _ptr(NULL) {};
             iterator(pointer ptr) : _ptr(ptr) {};
             iterator &operator=(iterator const &other) {
@@ -88,12 +102,19 @@ public:
 
             operator const_iterator () const { return const_iterator(_ptr) ; }
 
-        protected:
+        private:
             pointer _ptr;
     };
 
-    struct const_reverse_iterator : public iterator_traits<T> {
+    struct const_reverse_iterator : public ft::iterator<std::random_access_iterator_tag, const T> {
         public:    
+
+            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::iterator_category  iterator_category;
+            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::value_type         value_type;
+            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::pointer            pointer;
+            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::reference          reference;
+            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::difference_type    difference_type;
+
             const_reverse_iterator (const_pointer ptr) : _ptr(ptr) {};
 
             const_reference   operator*() { return *(_ptr - 1); };
@@ -118,8 +139,15 @@ public:
             const_pointer _ptr;
     };
 
-    struct reverse_iterator : public iterator_traits<T> {
+    struct reverse_iterator : public ft::iterator<std::random_access_iterator_tag, T> {
         public:
+
+            typedef typename ft::iterator<std::random_access_iterator_tag, T>::iterator_category  iterator_category;
+            typedef typename ft::iterator<std::random_access_iterator_tag, T>::value_type         value_type;
+            typedef typename ft::iterator<std::random_access_iterator_tag, T>::pointer            pointer;
+            typedef typename ft::iterator<std::random_access_iterator_tag, T>::reference          reference;
+            typedef typename ft::iterator<std::random_access_iterator_tag, T>::difference_type    difference_type;
+
             reverse_iterator(pointer ptr) : _ptr(ptr) {};
 
             reference   operator*() { return *(_ptr - 1); };

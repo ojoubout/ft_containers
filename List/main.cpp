@@ -4,8 +4,12 @@
 #include <vector>
 #include <cmath>
 #include "List.hpp"
+#include "../Pair.hpp"
+
 #include "../test/test.hpp"
 #include "../test/list_test.hpp"
+#include "../tester/tester.hpp"
+// #include "../tester/tester_map.cpp"
 class A {
 public:
     int n;
@@ -29,10 +33,10 @@ struct is_near {
 bool mycomparison (double first, double second)
 { return ( int(first)<int(second) ); }
 
-template <typename T>
-void print_list(const ft::List<T> &list) {
-    typename ft::List<T>::const_iterator it = list.begin();
-    typename ft::List<T>::const_iterator ite = list.end();
+template <typename List>
+void print_list(const List &list) {
+    typename List::const_iterator it = list.begin();
+    typename List::const_iterator ite = list.end();
     while (it != ite) {
         std::cout << "value: " << *it << std::endl;
         it++;
@@ -47,10 +51,10 @@ bool comparaison (const double & first, const double & second)
 
 int main(void) {
 
-    int test = 4;
+    int test = 7;
 
     if (test == 1) {
-        std::list<int> list;
+        ft::List<int> list;
 
         list.push_back(2);
         list.push_back(2);
@@ -59,9 +63,11 @@ int main(void) {
         list.push_back(2);
         list.push_back(8);
 
-        list.unique();
-        std::list<int>::iterator it = list.begin();
-        std::list<int>::iterator ite = list.end();
+        // list.unique();
+        // std::list<int>::const_reverse_iterator it = list.rbegin();
+        ft::List<int>::const_reverse_iterator it = list.rbegin();
+        // std::list<int>::const_reverse_iterator ite = list.rend();
+        ft::List<int>::const_reverse_iterator ite = list.rend();
         while (it != ite) {
             std::cout << "value: " << *it << std::endl;
             it++;
@@ -211,6 +217,50 @@ int main(void) {
 		// lst2.reverse();
 		// display_container("[5, 42] {reversed twice}:", lst2);
 		// 	assert(lst2.size() == 2);
+    } else if (test == 7) {
+		// ft::List<int> lst;
+        // std::cout << lst.max_size() << std::endl;
+        // 768614336404564650
+        test_list();
+    } else if (test == 8) {
+        int range[] = {14, -20, 51, 92, 97, 124, 0};
+
+		std::list<int> stl_list;
+		ft::List<int> ft_list;
+
+		std::list<int> stl_list_two;
+		ft::List<int> ft_list_two;
+
+		for (int i = 0; i < 7; i++)
+		{
+			stl_list.push_back(range[i]);
+			ft_list.push_back(range[i]);
+			stl_list_two.push_back(range[i] + 42);
+			ft_list_two.push_back(range[i] + 42);
+		}
+
+        print_list(ft_list);
+        std::cout << "---" << std::endl;
+        print_list(ft_list_two);
+        ft_list.merge(ft_list_two);
+        std::cout << "---" << std::endl;
+        print_list(ft_list);
+        std::cout << "---" << std::endl;
+        print_list(ft_list_two);
+
+        // std::cout << "STL" << std::endl;
+    
+        // print_list(stl_list);
+        // std::cout << "---" << std::endl;
+        // print_list(stl_list_two);
+        // stl_list.merge(stl_list_two);
+        // std::cout << "---" << std::endl;
+        // print_list(stl_list);
+        // std::cout << "---" << std::endl;
+        // print_list(stl_list_two);
+
+        // print_list(stl_list);
+        // print_list(stl_list_two);
     }
     
     return (0);

@@ -2,7 +2,7 @@
 #ifndef MAP_HPP
 # define MAP_HPP
 
-#include "Pair.hpp"
+#include "../Pair.hpp"
 #include "RedBlackTree.hpp"
 
 namespace ft
@@ -150,8 +150,8 @@ public:
 
     explicit Map (const key_compare& comp = key_compare()) : _key_comp(comp) {} ;
 
-    // template <class InputIterator>
-    Map (iterator first, iterator last, const key_compare& comp = key_compare()) : _key_comp(comp) {
+    template <class InputIterator>
+    Map (InputIterator first, InputIterator last, const key_compare& comp = key_compare()) : _key_comp(comp) {
         insert(first, last);
     }
     Map (const Map& x) {
@@ -201,7 +201,7 @@ public:
     }
 
     size_type max_size() const {
-        return (std::numeric_limits<difference_type>::max());
+        return (_map.max_size());
     }
 
     // Element Access
@@ -239,8 +239,8 @@ public:
 
     // iterator insert (iterator position, const value_type& val);
 
-    // template <class InputIterator>
-    void insert (iterator first, iterator last) {
+    template <class InputIterator>
+    void insert (InputIterator first, InputIterator last) {
         while (first != last) {
             insert(*(first++));
         }
@@ -282,23 +282,14 @@ public:
     // Operations:
 
     iterator find (const key_type& k) {
-        node_pointer tmp = _map.getRoot();
-        value_type  x = value_type(k, mapped_type());
-        while (tmp) {
-            if (_value_comp(tmp->item, x)) {
-                tmp = tmp->right;
-            } else if (_value_comp(x, tmp->item)) {
-                tmp = tmp->left;
-            } else {
-                return iterator(tmp, &_map);
-            }
-        }
-        return (end());
+        iterator res = lower_bound(k);
+        return (res == end() || _key_comp(k, (*res).first) ? end() : res);
     }
 
     const_iterator find (const key_type& k) const {
-        iterator it = find(k);
-        return (it);
+        Map::const_iterator res = lower_bound(k);
+        Map::const_iterator e = end();
+        return (res == e || _key_comp(k, (*res).first) ? end() : res);
     }
 
     size_type count (const key_type& k) const {
@@ -319,7 +310,15 @@ public:
         return (first);
     }
     const_iterator  lower_bound (const key_type& k) const {
-        return lower_bound(k);
+        const_iterator first = begin();
+        const_iterator last = end();
+        while (first != last) {
+            if (_key_comp((*first).first, k) == false) {
+                break;
+            }
+            ++first;
+        }
+        return (first);
     }
 
     iterator upper_bound (const key_type& k) {

@@ -14,7 +14,7 @@
 # define MAP_TEST_HPP
 
 # ifndef k
-# 	define k(x) (x+offset > 127) ? typename MapType::key_type(127) : typename MapType::key_type(x+offset)
+# 	define k(x) (x+offset > 127) ? 127 : (x+offset)
 # endif
 
 template<class MapType>
