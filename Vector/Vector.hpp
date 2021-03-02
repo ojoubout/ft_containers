@@ -4,8 +4,10 @@
 #include <limits>
 #include <cstddef>
 #include "../iterator_traits.hpp"
+#include "../utils.hpp"
 #include <cmath>
 #include <cstring>
+#include <iostream>
 
 namespace ft {
 
@@ -24,15 +26,15 @@ public:
     struct const_iterator : public iterator_traits<T> {
         public:    
             const_iterator() : _ptr(NULL) {};
-            const_iterator(pointer ptr) : _ptr(ptr) {};
+            const_iterator(const_pointer ptr) : _ptr(ptr) {};
             const_iterator &operator=(const_iterator const &other) {
                 _ptr = other._ptr;
                 return (*this);
             }
 
 
-            reference   operator*() { return *_ptr; };
-            pointer     operator->() { return _ptr; };
+            const_reference   operator*() { return *_ptr; };
+            const_pointer     operator->() { return _ptr; };
             // Prefix increment
             const_iterator& operator++() { ++_ptr; return *this; }  
             // Postfix increment
@@ -44,13 +46,16 @@ public:
 
             size_type   operator-(const_iterator rhs) {return (_ptr - rhs._ptr);}
 
+            const_iterator   operator-(int rhs) {return const_iterator(_ptr - rhs);}
+            const_iterator   operator+(int rhs) {return const_iterator(_ptr + rhs);}
 
-            bool    operator!=(const_iterator & it) { return (_ptr != it._ptr); }
-            bool    operator==(const_iterator & it) { return (_ptr == it._ptr); }
+
+            bool    operator!=(const const_iterator & it) { return (_ptr != it._ptr); }
+            bool    operator==(const const_iterator & it) { return (_ptr == it._ptr); }
 
 
         protected:
-            pointer _ptr;
+            const_pointer _ptr;
     };
     struct iterator : public iterator_traits<T> {
         public:    
@@ -72,9 +77,14 @@ public:
             // Postfix decrement
             iterator operator--(int) { iterator tmp = *this; --(*this); return tmp; }
 
-            bool    operator!=(iterator const & it) { return (_ptr != it._ptr); }
-            bool    operator==(iterator const & it) { return (_ptr == it._ptr); }
+            bool    operator!=(const iterator & it) { return (_ptr != it._ptr); }
+            bool    operator==(const iterator & it) { return (_ptr == it._ptr); }
+
             size_type   operator-(iterator rhs) {return (_ptr - rhs._ptr);}
+
+            iterator   operator-(int rhs) {return iterator(_ptr - rhs);}
+            iterator   operator+(int rhs) {return iterator(_ptr + rhs);}
+
 
             operator const_iterator () const { return const_iterator(_ptr) ; }
 
@@ -84,10 +94,10 @@ public:
 
     struct const_reverse_iterator : public iterator_traits<T> {
         public:    
-            const_reverse_iterator (pointer ptr) : _ptr(ptr) {};
+            const_reverse_iterator (const_pointer ptr) : _ptr(ptr) {};
 
-            reference   operator*() { return *(_ptr - 1); };
-            pointer     operator->() { return (_ptr - 1); };
+            const_reference   operator*() { return *(_ptr - 1); };
+            const_pointer     operator->() { return (_ptr - 1); };
             // Prefix increment
             const_reverse_iterator & operator++() { --_ptr; return *this; }  
             // Postfix increment
@@ -97,12 +107,15 @@ public:
             // Postfix decrement
             const_reverse_iterator  operator--(int) { const_reverse_iterator  tmp = *this; --(*this); return tmp; }
 
-            bool    operator!=(const_reverse_iterator & it) { return (_ptr != it._ptr); }
-            bool    operator==(const_reverse_iterator & it) { return (_ptr == it._ptr); }
+            bool    operator!=(const const_reverse_iterator & it) { return (_ptr != it._ptr); }
+            bool    operator==(const const_reverse_iterator & it) { return (_ptr == it._ptr); }
+
+            const_reverse_iterator   operator-(int rhs) {return const_reverse_iterator(_ptr + rhs);}
+            const_reverse_iterator   operator+(int rhs) {return const_reverse_iterator(_ptr - rhs);}
 
 
         private:
-            pointer _ptr;
+            const_pointer _ptr;
     };
 
     struct reverse_iterator : public iterator_traits<T> {
@@ -120,10 +133,13 @@ public:
             // Postfix decrement
             reverse_iterator operator--(int) { reverse_iterator tmp = *this; --(*this); return tmp; }
 
-            operator const_reverse_iterator  () const { return const_reverse_iterator (_ptr) ; }
+            bool    operator!=(const reverse_iterator & it) { return (_ptr != it._ptr); }
+            bool    operator==(const reverse_iterator & it) { return (_ptr == it._ptr); }
 
-            bool    operator!=(reverse_iterator & it) { return (_ptr != it._ptr); }
-            bool    operator==(reverse_iterator & it) { return (_ptr == it._ptr); }
+            reverse_iterator   operator-(int rhs) {return reverse_iterator(_ptr + rhs);}
+            reverse_iterator   operator+(int rhs) {return reverse_iterator(_ptr - rhs);}
+
+            operator const_reverse_iterator  () const { return const_reverse_iterator (_ptr) ; }
 
 
         private:
@@ -136,11 +152,17 @@ public:
 
     explicit Vector (size_type n, const value_type& val = value_type()) {
         init();
+        // std::cout << "n: " << n << std::endl;
+        reserve(n);
         insert(begin(), n, val);
     }
 
-    Vector (iterator first, iterator last) {
+    template <class InputIterator>
+    Vector (InputIterator first, InputIterator last,
+    typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type = 0) {
         init();
+        // std::cout << "LOOOOOOOOOOOOOOOOL " << std::endl;
+        reserve(last - first);
         insert(begin(), first, last);
     }
     Vector (const Vector& x) {
@@ -192,13 +214,15 @@ public:
     }
 
     size_type max_size() const {
-        return (std::numeric_limits<difference_type>::max());
+        return (std::min((size_type) std::numeric_limits<difference_type>::max(),
+						std::numeric_limits<size_type>::max() / (sizeof(value_type) * 2)));
     }
 
     void resize (size_type n, value_type val = value_type()) {
         if (n <= _size) {
             _size = n;
         } else {
+            reserve(n);
             insert(end(), n - _size, val);
         }
     }
@@ -212,6 +236,8 @@ public:
     }
 
     void reserve (size_type n) {
+        // std::cout << _size << " " << n << " " << _capacity << std::endl;
+
         if (n > _capacity) {
             _capacity = n;
             pointer new_container = static_cast<pointer>(::operator new(sizeof(value_type) * n));
@@ -261,14 +287,15 @@ public:
     }
 
     // Modifiers:
-
-    void assign (const_iterator first, const_iterator last) {
+    template <typename InputIterator >
+    void assign (InputIterator first, InputIterator last,
+    typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type = 0) {
         size_type n = last - first;
         if (n > _capacity) {
             reserve(n);
         }
         int i = 0;
-        for (const_iterator it = first; it != last; ++it) {
+        for (InputIterator it = first; it != last; ++it) {
             _container[i] = *it;
             i++;
         }
@@ -295,28 +322,55 @@ public:
     //--//
     iterator insert (iterator position, const value_type& val) {
         size_type pos = position - begin();
+        if (_size + 1 > _capacity)
+            reserve(_capacity ? _capacity * 2 : 1);
+        position = begin() + pos;
         insert(position, 1, val);
         return (iterator(_container + pos));
 
     }
     void insert (iterator position, size_type n, const value_type& val) {
+        // std::cout << "Sz" << std::endl;
         size_type   pos = position - begin();
-        if (_size + n > _capacity) {
-            int r = ((_size + n) ^ ((_size + n) % 2)) << 1;
-            if (_size + n == 1)
-                r = 1;    
-            else if ((_size + n) % 2 == 0)
-                r = _size + n;
-            reserve(r);
-        }
+        if (_size + n > _capacity)
+            reserve(_size + n);
         std::memcpy(&_container[pos + n], &_container[pos], (_size - pos) * sizeof(value_type));
         for (size_type i = pos; i < pos + n; ++i) {
             _container[i] = val;
         }
         _size += n;
     }
-    void insert (iterator position, const_iterator first, const_iterator last) {
-        for (const_iterator it = first; it != last; ++it) {
+
+///
+
+// template <typename U>
+// struct st_integer {
+//     static const bool value = true;
+//     typedef U type;
+// };
+
+// template <>
+// struct st_integer<int> {
+//     static const bool value = false;
+// };
+
+// template <typename U>
+// typedef typename st_integer<U>::type integer_t;
+
+
+///
+
+    template <typename InputIterator >
+    void insert (iterator position, InputIterator first, InputIterator last,
+    typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type = 0) {
+        // std::cout << "It" << std::endl;
+        size_type   pos = position - begin();
+        size_type s = last - first;
+
+        if (_size + s > _capacity)
+            reserve(_size + s);
+        position = begin() + pos;
+        for (InputIterator it = first; it != last; ++it) {
             position = insert(position, *it);
             position++;
         }
@@ -361,7 +415,7 @@ public:
 
     // Utils
 
-    void print_list() {
+    void print_list() { // TODO
         const_iterator it = begin();
         const_iterator ite = end();
         while (it != ite) {
