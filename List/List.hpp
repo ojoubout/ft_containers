@@ -5,13 +5,13 @@
 #include <cstddef>
 #include "../iterator_traits.hpp"
 #include "../utils.hpp"
+#include "list_iterator.hpp"
 
 namespace ft {
 
-template <typename T>
-class List;
 template <class T>
 bool operator<  (const List<T>& lhs, const List<T>& rhs);
+
 
 template <typename T>
 struct List_Node {
@@ -34,143 +34,11 @@ public:
     typedef const value_type&               const_reference;
     typedef size_t                          size_type;
     typedef ptrdiff_t                       difference_type;
-    
-    struct const_iterator : public ft::iterator<std::bidirectional_iterator_tag, const T> {
-        public:    
 
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::iterator_category  iterator_category;
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::value_type         value_type;
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::pointer            pointer;
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::reference          reference;
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::difference_type    difference_type;
-
-            const_iterator() : _ptr(NULL) {};
-            const_iterator(const node_pointer ptr) : _ptr(ptr) {};
-            const_iterator &operator=(const_iterator const &other) {
-                _ptr = other._ptr;
-                return (*this);
-            }
-
-
-            const_reference   operator*() { return _ptr->content; };
-            const_pointer     operator->() { return &_ptr->content; };
-            // Prefix increment
-            const_iterator& operator++() { _ptr = _ptr->next; return *this; }  
-            // Postfix increment
-            const_iterator operator++(int) { const_iterator tmp = *this; ++(*this); return tmp; }
-            // Prefix decrement
-            const_iterator& operator--() { _ptr = _ptr->prev; return *this; }  
-            // Postfix decrement
-            const_iterator operator--(int) { const_iterator tmp = *this; --(*this); return tmp; }
-
-
-            bool    operator!=(const const_iterator & it) { return (_ptr != it._ptr); }
-            bool    operator==(const const_iterator & it) { return (_ptr == it._ptr); }
-
-
-        private:
-            node_pointer _ptr;
-    };
-    struct iterator : public ft::iterator<std::bidirectional_iterator_tag, T> {
-        friend class List;
-        public:
-
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::iterator_category  iterator_category;
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::value_type         value_type;
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::pointer            pointer;
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::reference          reference;
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::difference_type    difference_type;
-
-            iterator() : _ptr(NULL) {};
-            iterator(node_pointer ptr) : _ptr(ptr) {};
-            iterator &operator=(iterator const &other) {
-                _ptr = other._ptr;
-                return (*this);
-            }
-
-            reference   operator*() { return _ptr->content; };
-            pointer     operator->() { return &_ptr->content; };
-            // Prefix increment
-            iterator& operator++() { _ptr = _ptr->next; return *this; }  
-            // Postfix increment
-            iterator operator++(int) { iterator tmp = *this; ++(*this); return tmp; }
-            // Prefix decrement
-            iterator& operator--() { _ptr = _ptr->prev; return *this; }  
-            // Postfix decrement
-            iterator operator--(int) { iterator tmp = *this; --(*this); return tmp; }
-
-            bool    operator!=(iterator const & it) { return (_ptr != it._ptr); }
-            bool    operator==(iterator const & it) { return (_ptr == it._ptr); }
-
-            operator const_iterator () const { return const_iterator(static_cast<const node_pointer>(_ptr)) ; }
-
-        private:
-            node_pointer _ptr;
-    };
-
-    struct const_reverse_iterator : public ft::iterator<std::bidirectional_iterator_tag, const T> {
-        public:    
-
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::iterator_category  iterator_category;
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::value_type         value_type;
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::pointer            pointer;
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::reference          reference;
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::difference_type    difference_type;
-
-            const_reverse_iterator (const node_pointer ptr) : _ptr(ptr) {};
-
-            reference   operator*() { return _ptr->prev->content; };
-            pointer     operator->() { return &_ptr->prev->content; };
-            // Prefix increment
-            const_reverse_iterator & operator++() { _ptr = _ptr->prev; return *this; }  
-            // Postfix increment
-            const_reverse_iterator  operator++(int) { const_reverse_iterator  tmp = *this; ++(*this); return tmp; }
-            // Prefix decrement
-            const_reverse_iterator & operator--() { _ptr = _ptr->next; return *this; }  
-            // Postfix decrement
-            const_reverse_iterator  operator--(int) { const_reverse_iterator  tmp = *this; --(*this); return tmp; }
-
-            bool    operator!=(const const_reverse_iterator & it) { return (_ptr != it._ptr); }
-            bool    operator==(const const_reverse_iterator & it) { return (_ptr == it._ptr); }
-
-
-        private:
-            node_pointer _ptr;
-    };
-
-    struct reverse_iterator : public ft::iterator<std::bidirectional_iterator_tag, T> {
-        public:    
-
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::iterator_category  iterator_category;
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::value_type         value_type;
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::pointer            pointer;
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::reference          reference;
-            typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::difference_type    difference_type;
-
-            reverse_iterator(node_pointer ptr) : _ptr(ptr) {};
-
-            reference   operator*() { return _ptr->prev->content; };
-            pointer     operator->() { return &_ptr->prev->content; };
-            // Prefix increment
-            reverse_iterator& operator++() { _ptr = _ptr->prev; return *this; }  
-            // Postfix increment
-            reverse_iterator operator++(int) { reverse_iterator tmp = *this; ++(*this); return tmp; }
-            // Prefix decrement
-            reverse_iterator& operator--() { _ptr = _ptr->next; return *this; }  
-            // Postfix decrement
-            reverse_iterator operator--(int) { reverse_iterator tmp = *this; --(*this); return tmp; }
-
-            // operator const_reverse_iterator  () const { return const_reverse_iterator (_ptr) ; }
-
-            bool    operator!=(const reverse_iterator & it) { return (_ptr != it._ptr); }
-            bool    operator==(const reverse_iterator & it) { return (_ptr == it._ptr); }
-            
-            operator const_reverse_iterator () const { return const_reverse_iterator(static_cast<const node_pointer>(_ptr)) ; }
-
-
-        private:
-            node_pointer _ptr;
-    };
+    typedef list_iterator<value_type, node_pointer>                 iterator;
+    typedef list_iterator<const value_type, node_pointer>           const_iterator;
+    typedef list_reverse_iterator<value_type, node_pointer>         reverse_iterator;
+    typedef list_reverse_iterator<const value_type, node_pointer>   const_reverse_iterator;
 
     List() {
         init();
