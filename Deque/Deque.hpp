@@ -3,6 +3,8 @@
 
 #include <cstddef>
 #include "../iterator_traits.hpp"
+#include "deque_iterator.hpp"
+#include "../utils.hpp"
 
 namespace ft {
 
@@ -19,188 +21,10 @@ public:
     typedef std::ptrdiff_t  difference_type;
     typedef size_t          size_type;
 
-    static const size_type  buff_size = 16;
-
-    struct const_iterator : public ft::iterator<std::random_access_iterator_tag, const T> {
-        public:    
-           
-            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::iterator_category  iterator_category;
-            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::value_type         value_type;
-            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::pointer            pointer;
-            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::reference          reference;
-            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::difference_type    difference_type;
-
-            const_iterator() : _ptr(NULL) {};
-            const_iterator(const_pointer ptr) : _ptr(ptr) {};
-            const_iterator &operator=(const_iterator const &other) {
-                _ptr = other._ptr;
-                return (*this);
-            }
-
-
-            const_reference   operator*() { return *_ptr; };
-            const_pointer     operator->() { return _ptr; };
-            // Prefix increment
-            const_iterator& operator++() { ++_ptr; return *this; }  
-            // Postfix increment
-            const_iterator operator++(int) { const_iterator tmp = *this; ++(*this); return tmp; }
-            // Prefix decrement
-            const_iterator& operator--() { --_ptr; return *this; }  
-            // Postfix decrement
-            const_iterator operator--(int) { const_iterator tmp = *this; --(*this); return tmp; }
-
-            size_type   operator-(const_iterator rhs) {return (_ptr - rhs._ptr);}
-
-            const_iterator   operator-(int rhs) {return const_iterator(_ptr - rhs);}
-            const_iterator   operator+(int rhs) {return const_iterator(_ptr + rhs);}
-
-
-            bool    operator!=(const const_iterator & it) { return (_ptr != it._ptr); }
-            bool    operator==(const const_iterator & it) { return (_ptr == it._ptr); }
-
-
-        private:
-            const_pointer _ptr;
-    };
-    struct iterator : public ft::iterator<std::random_access_iterator_tag, T> {
-        public:    
-
-            typedef typename ft::iterator<std::random_access_iterator_tag, T>::iterator_category  iterator_category;
-            typedef typename ft::iterator<std::random_access_iterator_tag, T>::value_type         value_type;
-            typedef typename ft::iterator<std::random_access_iterator_tag, T>::pointer            pointer;
-            typedef typename ft::iterator<std::random_access_iterator_tag, T>::reference          reference;
-            typedef typename ft::iterator<std::random_access_iterator_tag, T>::difference_type    difference_type;
-
-            // iterator() : _ptr() {};
-            iterator(map_pointer map, size_type index) {
-                set_node(map);
-                _curr = _first + index;
-            };
-
-            iterator &operator=(const iterator &other) {
-                set_node(other._node);
-                _curr = other._curr;
-                return (*this);
-            }
-
-            void    set_node(map_pointer map) {
-                _node = map;
-                _first = *map;
-                _last = _first + buff_size;
-            }
-
-
-            reference   operator*() { return *_curr; };
-            pointer     operator->() { return _curr; };
-            // Prefix increment
-            iterator& operator++() {
-                ++_curr;
-                if (_curr == _last) {
-                    set_node(_node + 1);
-                    _curr = _first;
-                } 
-                return *this;
-            }
-            // Postfix increment
-            iterator operator++(int) { iterator tmp = *this; ++(*this); return tmp; }
-            // Prefix decrement
-            iterator& operator--() {
-                if (_curr == _first) {
-                    set_node(_node - 1);
-                    _curr = _last;
-                }
-                --_curr;
-                return *this;
-            }  
-            // Postfix decrement
-            iterator operator--(int) { iterator tmp = *this; --(*this); return tmp; }
-
-            bool    operator!=(const iterator & it) { return (_curr != it._curr); }
-            bool    operator==(const iterator & it) { return (_curr == it._curr); }
-
-            // size_type   operator-(iterator rhs) {return (_ptr - rhs._ptr);} // LAST
-
-            // iterator   operator-(int rhs) {return iterator(_ptr - rhs);}
-            // iterator   operator+(int rhs) {return iterator(_ptr + rhs);}
-
-
-            // operator const_iterator () const { return const_iterator(_node, _curr - _first) ; }
-
-        private:
-            pointer _curr;       
-            pointer _first;     // the begin of the chunk
-            pointer _last;      // the end of the chunk
-            map_pointer _node;
-
-    };
-
-    struct const_reverse_iterator : public ft::iterator<std::random_access_iterator_tag, const T> {
-        public:    
-
-            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::iterator_category  iterator_category;
-            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::value_type         value_type;
-            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::pointer            pointer;
-            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::reference          reference;
-            typedef typename ft::iterator<std::random_access_iterator_tag, const T>::difference_type    difference_type;
-
-            const_reverse_iterator (const_pointer ptr) : _ptr(ptr) {};
-
-            const_reference   operator*() { return *(_ptr - 1); };
-            const_pointer     operator->() { return (_ptr - 1); };
-            // Prefix increment
-            const_reverse_iterator & operator++() { --_ptr; return *this; }  
-            // Postfix increment
-            const_reverse_iterator  operator++(int) { const_reverse_iterator  tmp = *this; ++(*this); return tmp; }
-            // Prefix decrement
-            const_reverse_iterator & operator--() { ++_ptr; return *this; }  
-            // Postfix decrement
-            const_reverse_iterator  operator--(int) { const_reverse_iterator  tmp = *this; --(*this); return tmp; }
-
-            bool    operator!=(const const_reverse_iterator & it) { return (_ptr != it._ptr); }
-            bool    operator==(const const_reverse_iterator & it) { return (_ptr == it._ptr); }
-
-            const_reverse_iterator   operator-(int rhs) {return const_reverse_iterator(_ptr + rhs);}
-            const_reverse_iterator   operator+(int rhs) {return const_reverse_iterator(_ptr - rhs);}
-
-
-        private:
-            const_pointer _ptr;
-    };
-
-    struct reverse_iterator : public ft::iterator<std::random_access_iterator_tag, T> {
-        public:
-
-            typedef typename ft::iterator<std::random_access_iterator_tag, T>::iterator_category  iterator_category;
-            typedef typename ft::iterator<std::random_access_iterator_tag, T>::value_type         value_type;
-            typedef typename ft::iterator<std::random_access_iterator_tag, T>::pointer            pointer;
-            typedef typename ft::iterator<std::random_access_iterator_tag, T>::reference          reference;
-            typedef typename ft::iterator<std::random_access_iterator_tag, T>::difference_type    difference_type;
-
-            reverse_iterator(pointer ptr) : _ptr(ptr) {};
-
-            reference   operator*() { return *(_ptr - 1); };
-            pointer     operator->() { return (_ptr - 1); };
-            // Prefix increment
-            reverse_iterator& operator++() { --_ptr; return *this; }  
-            // Postfix increment
-            reverse_iterator operator++(int) { reverse_iterator tmp = *this; ++(*this); return tmp; }
-            // Prefix decrement
-            reverse_iterator& operator--() { ++_ptr; return *this; }  
-            // Postfix decrement
-            reverse_iterator operator--(int) { reverse_iterator tmp = *this; --(*this); return tmp; }
-
-            bool    operator!=(const reverse_iterator & it) { return (_ptr != it._ptr); }
-            bool    operator==(const reverse_iterator & it) { return (_ptr == it._ptr); }
-
-            reverse_iterator   operator-(int rhs) {return reverse_iterator(_ptr + rhs);}
-            reverse_iterator   operator+(int rhs) {return reverse_iterator(_ptr - rhs);}
-
-            operator const_reverse_iterator  () const { return const_reverse_iterator (_ptr) ; }
-
-
-        private:
-            pointer _ptr;
-    };
+    typedef deque_iterator<value_type>                  iterator;
+    typedef deque_iterator<const value_type>            const_iterator;
+    typedef deque_reverse_iterator<value_type>          reverse_iterator;
+    typedef deque_reverse_iterator<const value_type>    const_reverse_iterator;
 
     explicit Deque() {
         init();
@@ -221,27 +45,13 @@ public:
 
     Deque& operator= (const Deque& x);
 
-    // template <class InputIterator>
-    // void assign (InputIterator first, InputIterator last);
-
-    void assign (size_type n, const value_type& val) {
-        clear();
-        _last_chunk_size = n % buff_size;
-        _map_size = _last_chunk_size != 0 ? (n / buff_size) + 1 : (n / buff_size);
-        _map = new pointer[_map_size];
-        for (size_type i = 0; i < _map_size; i++) {
-            _map[i] = static_cast<pointer>(::operator new(sizeof(value_type) * buff_size));
-            for (size_type j = 0; j < buff_size && n > 0; j++, n--) {
-                _map[i][j] = val;
-            }
-        }
-    }
 
     void print() {
         std::cout << "_map_size:        " << _map_size << std::endl;
         std::cout << "_last_chunk_size: " << _last_chunk_size << std::endl;
+        std::cout << "size()            : " << size() << std::endl;
         for (size_type i = 0; i < _map_size; i++) {
-            size_type max = (_last_chunk_size && i == _map_size - 1) ? _last_chunk_size : buff_size;
+            size_type max = (_last_chunk_size && i == _map_size - 1) ? _last_chunk_size : BUFF_SIZE;
             for (size_type j = 0; j < max; j++) {
                 std::cout << _map[i][j] << " ";
             }
@@ -249,8 +59,287 @@ public:
         }
     }
 
-    void clear() {
+    // Iterators:
+
+    iterator    begin() {
+        return (iterator(_map, 0));
     }
+
+    iterator    end() {
+        if (_last_chunk_size == 0)
+            return (iterator(_map + _map_size, _last_chunk_size));
+        return (iterator(_map + _map_size - 1, _last_chunk_size));
+    }
+    const_iterator    begin() const {
+        return (const_iterator(_map, 0));
+    }
+
+    const_iterator    end() const {
+        if (_last_chunk_size == 0)
+            return (const_iterator(_map + _map_size, _last_chunk_size));
+        return (const_iterator(_map + _map_size - 1, _last_chunk_size));
+    }
+
+    reverse_iterator    rend() {
+        return (reverse_iterator(_map - 1, BUFF_SIZE));
+    }
+
+    reverse_iterator    rbegin() {
+        if (_last_chunk_size == 0)
+            return (reverse_iterator(_map + _map_size, _last_chunk_size));
+        return (reverse_iterator(_map + _map_size - 1, _last_chunk_size));
+    }
+    const_reverse_iterator    rend() const {
+        return (const_reverse_iterator(_map - 1, BUFF_SIZE));
+    }
+
+    const_reverse_iterator    rbegin() const {
+        if (_last_chunk_size == 0)
+            return (const_reverse_iterator(_map + _map_size, _last_chunk_size));
+        return (const_reverse_iterator(_map + _map_size - 1, _last_chunk_size));
+    }
+
+    // Capacity:
+
+    size_type size() const {
+        return ((_map_size - 1) * BUFF_SIZE + _last_chunk_size);
+    }
+
+    size_type max_size() const {
+        return (std::min((size_type) std::numeric_limits<difference_type>::max(),
+                std::numeric_limits<size_type>::max() / (sizeof(value_type) * 2)));
+    }
+
+    // void resize (size_type n, value_type val = value_type()) {
+    //     if (n > size()) {
+    //         size_type   last_chunk_size = ((n % BUFF_SIZE) == 0 && n != 0) ? BUFF_SIZE : n % BUFF_SIZE ;
+    //         size_type   map_size = last_chunk_size == BUFF_SIZE ? n / BUFF_SIZE : n / BUFF_SIZE + 1;
+    //         map_pointer map = _map;
+    //         if (map_size > _map_size)
+    //             map = new pointer[map_size];
+            
+    //         if (_map_size != 0 && _map != map) {
+    //             for (size_type i = 0; i < _map_size; i++) {
+    //                 memcpy(map[i], _map[i], i == (_map_size - 1) ? _last_chunk_size : BUFF_SIZE);
+    //                 free(_map[i]);
+    //             }
+    //             free(_map);
+    //         }
+    //         _map_size = _map_size - 1 + _last_chunk_size / BUFF_SIZE;
+    //         _last_chunk_size = _last_chunk_size % BUFF_SIZE;
+    //         for (size_type i = _map_size; i < map_size; i++) {
+    //             map[i] = static_cast<pointer>(::operator new(sizeof(value_type) * BUFF_SIZE));
+    //             size_type max_j = i == (map_size - 1) ? last_chunk_size : BUFF_SIZE;
+    //             for (size_type j = _last_chunk_size; j < max_j; j++) {
+    //                 map[i][j] = val;
+    //             }
+    //             _last_chunk_size = 0;
+    //         }
+    //         _map = map;
+    //         _last_chunk_size = last_chunk_size;
+    //         _map_size = map_size;
+
+    //         // for (size_type i = 0; i < _map_size; i++) {
+    //         //     _map[i] = static_cast<pointer>(::operator new(sizeof(value_type) * BUFF_SIZE));
+    //         //     for (size_type j = 0; j < BUFF_SIZE && n > 0; j++, n--) {
+    //         //         _map[i][j] = val;
+    //         //     }
+    //         // }
+
+    //     }
+    // }
+
+
+    void resize (size_type n, value_type val = value_type()) {
+        size_type   map_size = (n + BUFF_SIZE - 1) / BUFF_SIZE;
+        size_type   last_chunk_size = ((n % BUFF_SIZE) == 0 && n != 0) ? BUFF_SIZE : n % BUFF_SIZE ;
+        if (map_size == _map_size) {
+            if (last_chunk_size < _last_chunk_size) {
+                for (size_type i = last_chunk_size - 1; i < _last_chunk_size; i++) {
+                    _map[_map_size - 1][i].~value_type();
+                }
+                _last_chunk_size = last_chunk_size;
+            } else if (last_chunk_size > _last_chunk_size) {
+                for (size_type i = _last_chunk_size; i < last_chunk_size; i++) {
+                    _map[_map_size - 1][i] = val;
+                }
+                _last_chunk_size = last_chunk_size;
+            }
+        } else if (map_size > _map_size) {
+            map_pointer map = new pointer[map_size];
+            for (size_type i = 0; i < _map_size; i++) {
+                map[i] = _map[i];
+                if (i == _map_size - 1) {
+                    for (size_type j = _last_chunk_size; j < BUFF_SIZE; j++) {
+                        map[i][j] = val;
+                    }
+                }
+            }
+            for (size_type i = _map_size; i < map_size; i++) {
+                map[i] = static_cast<pointer>(::operator new(sizeof(value_type) * BUFF_SIZE));
+                for (size_type j = 0; j < BUFF_SIZE && n > 0; j++, n--) {
+                    map[i][j] = val;
+                }
+
+            }
+            free(_map);
+            _map = map;
+        } else if (map_size < _map_size) {
+            for (size_type i = map_size; i < _map_size; i++) {
+                for (size_type j = 0; j < BUFF_SIZE; j++) {
+                    _map[i][j].~value_type();
+                }
+                free(_map[i]);
+            }
+            if (map_size > 0) {
+                for (size_type j = last_chunk_size; j < _last_chunk_size; j++) {
+                    _map[map_size - 1][j].~value_type();
+                }
+            }
+        }
+        _map_size = map_size;
+        _last_chunk_size = last_chunk_size;
+    }
+
+
+
+    bool empty() const {
+        return (_map_size == 0 && _last_chunk_size == BUFF_SIZE);
+    }
+
+    // Element Access:
+
+    reference operator[] (size_type n) {
+        size_type map_pos = n / BUFF_SIZE;
+        size_type chunk_pos = n % BUFF_SIZE;
+        return (_map[map_pos][chunk_pos]);
+    }
+
+    const_reference operator[] (size_type n) const {
+        size_type map_pos = n / BUFF_SIZE;
+        size_type chunk_pos = n % BUFF_SIZE;
+        return (_map[map_pos][chunk_pos]);
+    }
+
+    reference at (size_type n) {
+        if (n < size()) {
+            return (*this)[n];
+        }
+        throw std::out_of_range("ft::Deque::at");
+    }
+
+    const_reference at (size_type n) const {
+        if (n < size()) {
+            return (*this)[n];
+        }
+        throw std::out_of_range("ft::Deque::at");
+    }
+
+    reference front() {
+        return (*begin());
+    }
+
+    const_reference front() const {
+        return (*begin());
+    }
+
+    reference back() {
+        return (*rbegin());
+    }
+
+    const_reference back() const {
+        return (*rbegin());
+    }
+
+
+    // Modifiers:
+
+    template <class InputIterator>
+    void assign (InputIterator first, InputIterator last,
+    typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type = 0) {
+        clear();
+        insert(begin(), first, last);
+    }
+
+    void assign (size_type n, const value_type& val) {
+        clear();
+        resize(n, val);
+    }
+
+    void push_back (const value_type& val) {
+        insert(end(), val);
+    }
+
+    void push_front (const value_type& val) {
+        insert(begin(), val);
+    }
+
+    iterator insert (iterator position, const value_type& val) {
+        insert(position, 1, val);
+        return (position);
+    }
+
+    void insert (iterator position, size_type n, const value_type& val) {
+        difference_type curr_pos = position._curr - position._first;
+        difference_type curr_chunk = position._node - _map;
+        size_type pos = curr_chunk * BUFF_SIZE + curr_pos;
+        size_type old_size = size();
+        // size_type last_chunk_size = _last_chunk_size - 1;
+        resize(old_size + n);
+        // print();
+        for (size_type i = size() - 1; i >= pos + n ; --i, --old_size) {
+            // std::cout << "i= " << i << ", old_size - 1= " << old_size - 1 << std::endl;
+            // std::cout << "at(i)= " << at(i) << ", at(old_size - 1)= " << at(old_size - 1) << std::endl;
+            at(i) = at(old_size - 1);
+        }
+        for (size_type i = pos; i < pos + n; ++i) {
+            at(i) = val;
+        }
+        // for (size_type i = _map_size - 1; i >= curr_chunk; --i, ) {
+        //     for (size_type j = _last_chunk_size - 1; j > curr_pos; --j) {
+        //         _map[i][j] = at()
+        //     }
+        // }
+        // std::cout << "pos: " << pos << ", curr_pos: " << curr_pos << ", curr_chunk: " << curr_chunk << std::endl;
+    }
+
+    template <class InputIterator>
+    void insert (iterator position, InputIterator first, InputIterator last,
+    typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type = 0) {
+        while (first != last) {
+            insert(position, 1, *(first++));
+        }
+    }
+
+    iterator erase (iterator position) {
+        difference_type curr_pos = position._curr - position._first;
+        difference_type curr_chunk = position._node - _map;
+        size_type pos = curr_chunk * BUFF_SIZE + curr_pos;
+
+        value_type & item = at(pos);
+        item.~value_type();
+        for (size_type i = pos; i < size() - 1; ++i) {
+            at(i) = at(i + 1);
+        }
+        resize(size() - 1);
+        return (position);
+    }
+
+    iterator erase (iterator first, iterator last);
+
+    void clear() {
+        for (size_type i = 0; i < _map_size; ++i) {
+            size_type max = (i == _map_size - 1) ? _last_chunk_size : BUFF_SIZE;
+            for (size_type j = 0; j < max; ++j) {
+                _map[i][j].~value_type();
+            }
+            free(_map[i]);
+        }
+        free(_map);
+        init();
+    }
+
+
 
 private:
     
@@ -260,7 +349,7 @@ private:
         void    init() {
             _map = static_cast<map_pointer>(::operator new(0));;
             _map_size = 0;
-            _last_chunk_size = 0;
+            _last_chunk_size = BUFF_SIZE;
         }
 
         // size_type   capacity() {
