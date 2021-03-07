@@ -21,10 +21,12 @@ class deque_iterator : public ft::iterator<std::random_access_iterator_tag, T> {
         typedef T**             map_pointer;
         typedef size_t          size_type;
 
-        // iterator() : _ptr() {};
-        deque_iterator(map_pointer map, size_type index) {
-            set_node(map);
-            _curr = _first + index;
+        deque_iterator() {};
+        deque_iterator(map_pointer map, size_type index = 0) {
+            if (map) {
+                set_node(map);
+                _curr = _first + index;
+            }
         };
 
         deque_iterator &operator=(const deque_iterator &other) {
@@ -68,11 +70,40 @@ class deque_iterator : public ft::iterator<std::random_access_iterator_tag, T> {
         bool    operator!=(const deque_iterator & it) { return (_curr != it._curr); }
         bool    operator==(const deque_iterator & it) { return (_curr == it._curr); }
 
-        // size_type   operator-(iterator rhs) {return (_ptr - rhs._ptr);}
+        size_t   operator-(deque_iterator rhs) {
+            size_t map_size = (_node - rhs._node) * BUFF_SIZE;
+            size_t size = map_size + (_curr - _first) - (rhs._curr - rhs._first);
+            return (size);
+        }
 
-        // iterator   operator-(int rhs) {return iterator(_ptr - rhs);}
-        // iterator   operator+(int rhs) {return iterator(_ptr + rhs);}
+        deque_iterator   operator+(int rhs) {
+            size_t n = rhs + (_curr - _first);
+            return deque_iterator(_node + n / BUFF_SIZE, n % BUFF_SIZE);
+        }
+        deque_iterator   operator-(int rhs) {
+            int n = (_curr - _first) - rhs;
+            if (n < 0) {
+                n = -n;
+                size_type   last_chunk_size = ((n % BUFF_SIZE) == 0 && n != 0) ? BUFF_SIZE : n % BUFF_SIZE ;
 
+                size_t map_size = (n + BUFF_SIZE - 1) / BUFF_SIZE;
+                // std::cout << "N: " << n << ", MS: " << map_size << ", M: " << n % BUFF_SIZE << std::endl;
+                return deque_iterator(_node - map_size, BUFF_SIZE -  last_chunk_size);
+            } else {
+                return deque_iterator(_node, n);
+
+            }
+        }
+        
+        bool    operator<(const deque_iterator & it) { return (_curr < it._curr); }
+        bool    operator>(const deque_iterator & it) { return (_curr > it._curr); }
+        bool    operator<=(const deque_iterator & it) { return (_curr <= it._curr); }
+        bool    operator>=(const deque_iterator & it) { return (_curr >= it._curr); }
+
+        deque_iterator   operator+=(int rhs) {return (*this = *this + rhs);};
+        deque_iterator   operator-=(int rhs) {return (*this = *this - rhs);};
+
+        reference   operator[](int n) { return *(*this + n); };
 
         operator deque_iterator<const value_type> () const {
             return deque_iterator<const value_type>(const_cast<const value_type **>(_node), _curr - _first) ; }
@@ -99,7 +130,7 @@ class deque_reverse_iterator : public ft::iterator<std::random_access_iterator_t
         typedef T**             map_pointer;
         typedef size_t          size_type;
 
-        // iterator() : _ptr() {};
+        deque_reverse_iterator() {};
         deque_reverse_iterator(map_pointer map, size_type index) {
             set_node(map);
             _curr = _first + index;
@@ -145,6 +176,42 @@ class deque_reverse_iterator : public ft::iterator<std::random_access_iterator_t
 
         bool    operator!=(const deque_reverse_iterator & it) { return (_curr != it._curr); }
         bool    operator==(const deque_reverse_iterator & it) { return (_curr == it._curr); }
+
+        size_t   operator-(deque_reverse_iterator rhs) {
+            size_t map_size = (_node - rhs._node) * BUFF_SIZE;
+            size_t size = map_size + (_curr - _first) - (rhs._curr - rhs._first);
+            return (size);
+        }
+
+        deque_reverse_iterator   operator-(int rhs) {
+            size_t n = rhs + (_curr - _first);
+            return deque_reverse_iterator(_node + n / BUFF_SIZE, n % BUFF_SIZE);
+        }
+
+        deque_reverse_iterator   operator+(int rhs) {
+            int n = (_curr - _first) - rhs;
+            if (n < 0) {
+                n = -n;
+                size_type   last_chunk_size = ((n % BUFF_SIZE) == 0 && n != 0) ? BUFF_SIZE : n % BUFF_SIZE ;
+
+                size_t map_size = (n + BUFF_SIZE - 1) / BUFF_SIZE;
+                // std::cout << "N: " << n << ", MS: " << map_size << ", M: " << n % BUFF_SIZE << std::endl;
+                return deque_reverse_iterator(_node - map_size, BUFF_SIZE -  last_chunk_size);
+            } else {
+                return deque_reverse_iterator(_node, n);
+
+            }
+        }
+        
+        bool    operator<(const deque_reverse_iterator & it) { return (_curr < it._curr); }
+        bool    operator>(const deque_reverse_iterator & it) { return (_curr > it._curr); }
+        bool    operator<=(const deque_reverse_iterator & it) { return (_curr <= it._curr); }
+        bool    operator>=(const deque_reverse_iterator & it) { return (_curr >= it._curr); }
+
+        deque_reverse_iterator   operator+=(int rhs) {return (*this = *this + rhs);};
+        deque_reverse_iterator   operator-=(int rhs) {return (*this = *this - rhs);};
+
+        reference   operator[](int n) { return *(*this + n); };
 
         // size_type   operator-(iterator rhs) {return (_ptr - rhs._ptr);}
 

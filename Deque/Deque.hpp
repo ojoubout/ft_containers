@@ -1,14 +1,17 @@
 #ifndef DEQUE_HPP
 # define DEQUE_HPP
 
-#include <cstddef>
-#include "../iterator_traits.hpp"
 #include "deque_iterator.hpp"
 #include "../utils.hpp"
+#include <limits>
+#include <cstddef>
+#include <cmath>
+#include <cstring>
+#include <iostream>
 
 namespace ft {
 
-template < class T >
+template < typename T >
 class Deque {
 public:
 
@@ -30,20 +33,34 @@ public:
         init();
     }
 
-    explicit Deque (size_type n, const value_type& val = value_type());
+    explicit Deque (size_type n, const value_type& val = value_type()) {
+        init();
+        if (n > 0)
+            insert(begin(), n , val);
+    }
 
     template <class InputIterator>
-    Deque (InputIterator first, InputIterator last);
+    Deque (InputIterator first, InputIterator last,
+    typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type = 0) {
+        init();
+        insert(end(), first, last);
+    }
 
     Deque (const Deque& x) {
+        init();
         *this = x;
     }
 
     ~Deque() {
-        
+        clear();
+        ::operator delete(_map);
     }
 
-    Deque& operator= (const Deque& x);
+    Deque& operator= (const Deque& x) {
+        clear();
+        insert(begin(), x.begin(), x.end());
+        return (*this);
+    }
 
 
     void print() {
@@ -53,7 +70,7 @@ public:
         for (size_type i = 0; i < _map_size; i++) {
             size_type max = (_last_chunk_size && i == _map_size - 1) ? _last_chunk_size : BUFF_SIZE;
             for (size_type j = 0; j < max; j++) {
-                std::cout << _map[i][j] << " ";
+                std::cout << _map[i][j] << "\t";
             }
             std::cout << std::endl;
         }
@@ -62,22 +79,29 @@ public:
     // Iterators:
 
     iterator    begin() {
-        return (iterator(_map, 0));
+        if (_map != 0) {
+            return (iterator(_map, 0));
+        }
+        return (iterator(_map - 1, 16));
     }
 
     iterator    end() {
-        if (_last_chunk_size == 0)
-            return (iterator(_map + _map_size, _last_chunk_size));
+        if (_last_chunk_size == BUFF_SIZE)
+            return (iterator(_map + _map_size, 0));
         return (iterator(_map + _map_size - 1, _last_chunk_size));
     }
     const_iterator    begin() const {
-        return (const_iterator(_map, 0));
+        if (_map != 0) {
+            return (iterator(_map, 0));
+        }
+        return (iterator(_map - 1, 16));
+
     }
 
     const_iterator    end() const {
-        if (_last_chunk_size == 0)
-            return (const_iterator(_map + _map_size, _last_chunk_size));
-        return (const_iterator(_map + _map_size - 1, _last_chunk_size));
+        if (_last_chunk_size == BUFF_SIZE)
+            return (iterator(_map + _map_size, 0));
+        return (iterator(_map + _map_size - 1, _last_chunk_size));
     }
 
     reverse_iterator    rend() {
@@ -107,7 +131,7 @@ public:
 
     size_type max_size() const {
         return (std::min((size_type) std::numeric_limits<difference_type>::max(),
-                std::numeric_limits<size_type>::max() / (sizeof(value_type) * 2)));
+                std::numeric_limits<size_type>::max() / sizeof(value_type)));
     }
 
     // void resize (size_type n, value_type val = value_type()) {
@@ -274,15 +298,27 @@ public:
         insert(begin(), val);
     }
 
+    void pop_back() {
+        erase(--end());
+    }
+
+    void pop_front() {
+        erase(begin());
+    }
+
     iterator insert (iterator position, const value_type& val) {
+        size_type pos = position - begin();
+
         insert(position, 1, val);
-        return (position);
+
+        return (begin() + pos);
     }
 
     void insert (iterator position, size_type n, const value_type& val) {
-        difference_type curr_pos = position._curr - position._first;
-        difference_type curr_chunk = position._node - _map;
-        size_type pos = curr_chunk * BUFF_SIZE + curr_pos;
+        // difference_type curr_pos = position._curr - position._first;
+        // difference_type curr_chunk = position._node - _map;
+        // size_type pos = curr_chunk * BUFF_SIZE + curr_pos;
+        size_type pos = position - begin();
         size_type old_size = size();
         // size_type last_chunk_size = _last_chunk_size - 1;
         resize(old_size + n);
@@ -307,25 +343,48 @@ public:
     void insert (iterator position, InputIterator first, InputIterator last,
     typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type = 0) {
         while (first != last) {
-            insert(position, 1, *(first++));
+            position = insert(position, *(first++));
+            ++position;
         }
     }
 
     iterator erase (iterator position) {
-        difference_type curr_pos = position._curr - position._first;
-        difference_type curr_chunk = position._node - _map;
-        size_type pos = curr_chunk * BUFF_SIZE + curr_pos;
-
+        // difference_type curr_pos = position._curr - position._first;
+        // difference_type curr_chunk = position._node - _map;
+        // size_type pos = curr_chunk * BUFF_SIZE + curr_pos;
+        size_type pos = position - begin();
+        // std::cout << "size: " << size() << ", pos: " << pos << std::endl;
         value_type & item = at(pos);
         item.~value_type();
         for (size_type i = pos; i < size() - 1; ++i) {
             at(i) = at(i + 1);
         }
         resize(size() - 1);
-        return (position);
+        return (begin() + pos);
     }
 
-    iterator erase (iterator first, iterator last);
+    iterator erase (iterator first, iterator last) {
+        size_type pos = first - begin();
+        size_type n = last - first;
+        while (n--) {
+            erase(begin() + pos);
+        }
+        return (begin() + pos);
+    }
+
+    void swap (Deque& x) {
+        map_pointer     map = x._map;
+        size_type       map_size = x._map_size;
+        size_type       last_chunk_size = x._last_chunk_size;
+
+        x._map = _map;
+        x._map_size = _map_size;
+        x._last_chunk_size = _last_chunk_size;
+
+        _map = map;
+        _map_size = map_size;
+        _last_chunk_size = last_chunk_size;
+    }
 
     void clear() {
         for (size_type i = 0; i < _map_size; ++i) {
@@ -356,6 +415,61 @@ private:
         //     return(_map_size * );
         // }
 };
+
+template <class T>
+bool operator== (const Deque<T>& lhs, const Deque<T>& rhs) {
+    size_t lhs_size = lhs.size();
+    size_t rhs_size = rhs.size();
+    if (lhs_size != rhs_size)
+        return false;
+    for (size_t i = 0; i < lhs_size; ++i) {
+        if (lhs[i] != rhs[i])
+            return false;
+    }
+    return true;
+}
+
+template <class T>
+bool operator!= (const Deque<T>& lhs, const Deque<T>& rhs) {
+    return !(lhs == rhs);
+}
+
+template <class T>
+bool operator<  (const Deque<T>& lhs, const Deque<T>& rhs) {
+    size_t lhs_size = lhs.size();
+    size_t rhs_size = rhs.size();
+
+    for (size_t i = 0; i < lhs_size && i < rhs_size; ++i) {
+        if (lhs[i] > rhs[i]) {
+            return false;
+        } else if (lhs[i] < rhs[i]) {
+            return true;
+        }
+    }
+    return (lhs_size < rhs_size);
+}
+
+template <class T>
+bool operator<= (const Deque<T>& lhs, const Deque<T>& rhs) {
+    return !(rhs < lhs);
+}
+
+template <class T>
+bool operator>  (const Deque<T>& lhs, const Deque<T>& rhs) {
+    return (rhs < lhs);
+}
+
+template <class T>
+bool operator>= (const Deque<T>& lhs, const Deque<T>& rhs) {
+    return !(lhs < rhs);
+}
+
+template <class T>
+void swap (Deque<T>& x, Deque<T>& y) {
+    x.swap(y);
+}
+
+
 
 } // ft namespace
 
