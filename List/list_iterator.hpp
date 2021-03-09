@@ -20,7 +20,13 @@ class list_iterator : public ft::iterator<std::bidirectional_iterator_tag, T> {
         // typedef struct List_Node<value_type>*   node_pointer;
 
         list_iterator() : _ptr(NULL) {};
+
+        list_iterator(const list_iterator & it) {
+            *this = it;
+        };
+    
         list_iterator(node_pointer ptr) : _ptr(ptr) {};
+    
         list_iterator &operator=(list_iterator const &other) {
             _ptr = other._ptr;
             return (*this);
@@ -60,6 +66,12 @@ class list_reverse_iterator : public ft::iterator<std::bidirectional_iterator_ta
         typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::reference          reference;
         typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::difference_type    difference_type;
         // typedef struct List_Node<value_type>*   node_pointer;
+
+        list_reverse_iterator() : _ptr(NULL) {};
+
+        list_reverse_iterator(const list_reverse_iterator & it) {
+            *this = it;
+        };
 
         list_reverse_iterator(node_pointer ptr) : _ptr(ptr) {};
 

@@ -46,6 +46,10 @@ public:
         *this = x;
     }
 
+    ~Map() {
+        clear();
+    }
+
     Map&    operator=(const Map& x) {
         clear();
         _map = x._map;

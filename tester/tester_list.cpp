@@ -130,7 +130,7 @@ void test_list()
 		ft::List<int> ft_default_list;
 
 		fs.open("./tester/lists_output/constructor_default", std::fstream::in | std::fstream::out | std::fstream::trunc);
-		std::cout << ((printListAttributes(fs, stl_default_list, ft_default_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_default_list, ft_default_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -147,7 +147,7 @@ void test_list()
 		ft::List<int> ft_fill_list(10, 42);
 
 		fs.open("./tester/lists_output/constructor_fill", std::fstream::in | std::fstream::out | std::fstream::trunc);
-		std::cout << ((printListAttributes(fs, stl_fill_list, ft_fill_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_fill_list, ft_fill_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -175,7 +175,7 @@ void test_list()
 		ft::List<int> ft_list_range(ft_list.begin(), ft_list.end());
 
 		fs.open("./tester/lists_output/constructor_range", std::fstream::in | std::fstream::out | std::fstream::trunc);
-		std::cout << ((printListAttributes(fs, stl_list_range, ft_list_range) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list_range, ft_list_range) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -212,7 +212,7 @@ void test_list()
 		std::list<int> stl_copy(stl_list);
 		ft::List<int> ft_copy(ft_list);
 
-		std::cout << ((printListAttributes(fs, stl_copy, ft_copy) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_copy, ft_copy) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -249,7 +249,7 @@ void test_list()
 		std::list<int> stl_assign = stl_list;
 		ft::List<int> ft_assign = ft_list;
 
-		std::cout << ((printListAttributes(fs, stl_assign, ft_assign) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_assign, ft_assign) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -286,7 +286,7 @@ void test_list()
 
 		fs.open("./tester/lists_output/begin", std::fstream::in | std::fstream::out | std::fstream::trunc);
 		printListAttributes(fs, stl_list, ft_list);
-		std::cout << ((printSingleValue(fs, *stl_list.begin(), *ft_list.begin()) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printSingleValue(fs, *stl_list.begin(), *ft_list.begin()) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -324,7 +324,7 @@ void test_list()
 
 		fs.open("./tester/lists_output/begin_const", std::fstream::in | std::fstream::out | std::fstream::trunc);
 		printListAttributes(fs, stl_list, ft_list);
-		std::cout << ((printSingleValue(fs, stl_begin, ft_begin) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printSingleValue(fs, stl_begin, ft_begin) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -364,7 +364,7 @@ void test_list()
 		int stl_test = *(--(stl_list.end()));
 		int ft_test = *(--(ft_list.end()));
 
-		std::cout << ((printSingleValue(fs, stl_test, ft_test) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printSingleValue(fs, stl_test, ft_test) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -404,7 +404,7 @@ void test_list()
 
 		fs.open("./tester/lists_output/end_const", std::fstream::in | std::fstream::out | std::fstream::trunc);
 		printListAttributes(fs, stl_list, ft_list);
-		std::cout << ((printSingleValue(fs, stl_end, ft_end) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printSingleValue(fs, stl_end, ft_end) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -444,7 +444,7 @@ void test_list()
 		int stl_test = *stl_list.rbegin();
 		int ft_test = *ft_list.rbegin();
 
-		std::cout << ((printSingleValue(fs, stl_test, ft_test) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printSingleValue(fs, stl_test, ft_test) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -484,7 +484,7 @@ void test_list()
 
 		fs.open("./tester/lists_output/reverse_begin_const", std::fstream::in | std::fstream::out | std::fstream::trunc);
 		printListAttributes(fs, stl_list, ft_list);
-		std::cout << ((printSingleValue(fs, stl_rbegin, ft_rbegin) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printSingleValue(fs, stl_rbegin, ft_rbegin) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -524,7 +524,7 @@ void test_list()
 		int stl_test = *(--(stl_list.rend()));
 		int ft_test = *(--(ft_list.rend()));
 
-		std::cout << ((printSingleValue(fs, stl_test, ft_test) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printSingleValue(fs, stl_test, ft_test) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -564,7 +564,7 @@ void test_list()
 
 		fs.open("./tester/lists_output/reverse_end_const", std::fstream::in | std::fstream::out | std::fstream::trunc);
 		printListAttributes(fs, stl_list, ft_list);
-		std::cout << ((printSingleValue(fs, stl_rend, ft_rend) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printSingleValue(fs, stl_rend, ft_rend) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -595,7 +595,7 @@ void test_list()
 
 		fs.open("./tester/lists_output/empty_true", std::fstream::in | std::fstream::out | std::fstream::trunc);
 		printListAttributes(fs, stl_default_list, ft_default_list);
-		std::cout << ((printBoolResult(fs, stl_default_list.empty(), ft_default_list.empty()) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printBoolResult(fs, stl_default_list.empty(), ft_default_list.empty()) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -613,7 +613,7 @@ void test_list()
 
 		fs.open("./tester/lists_output/empty_false", std::fstream::in | std::fstream::out | std::fstream::trunc);
 		printListAttributes(fs, stl_default_list, ft_default_list);
-		std::cout << ((printBoolResult(fs, stl_default_list.empty(), ft_default_list.empty()) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printBoolResult(fs, stl_default_list.empty(), ft_default_list.empty()) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -631,7 +631,7 @@ void test_list()
 
 		fs.open("./tester/lists_output/size", std::fstream::in | std::fstream::out | std::fstream::trunc);
 		printListAttributes(fs, stl_default_list, ft_default_list);
-		std::cout << ((printSingleValue(fs, stl_default_list.size(), ft_default_list.size()) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printSingleValue(fs, stl_default_list.size(), ft_default_list.size()) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -654,7 +654,7 @@ void test_list()
 
 		fs.open("./tester/lists_output/max_size", std::fstream::in | std::fstream::out | std::fstream::trunc);
 		printListAttributes(fs, stl_default_list, ft_default_list);
-		std::cout << ((printSingleValue(fs, stl_default_list.max_size(), ft_default_list.max_size()) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printSingleValue(fs, stl_default_list.max_size(), ft_default_list.max_size()) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -683,7 +683,7 @@ void test_list()
 
 		fs.open("./tester/lists_output/front", std::fstream::in | std::fstream::out | std::fstream::trunc);
 		printListAttributes(fs, stl_list, ft_list);
-		std::cout << ((printSingleValue(fs, stl_list.front(), ft_list.front()) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printSingleValue(fs, stl_list.front(), ft_list.front()) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -715,7 +715,7 @@ void test_list()
 
 		fs.open("./tester/lists_output/back", std::fstream::in | std::fstream::out | std::fstream::trunc);
 		printListAttributes(fs, stl_list, ft_list);
-		std::cout << ((printSingleValue(fs, stl_list.back(), ft_list.back()) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printSingleValue(fs, stl_list.back(), ft_list.back()) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -758,7 +758,7 @@ void test_list()
 		stl_list.assign(stl_range.begin(), stl_range.end());
 		ft_list.assign(ft_range.begin(), ft_range.end());
 		
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -800,7 +800,7 @@ void test_list()
 		stl_list.assign(19, 42);
 		ft_list.assign(19, 42);
 		
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -835,7 +835,7 @@ void test_list()
 		}
 
 		fs.open("./tester/lists_output/push_front", std::fstream::in | std::fstream::out | std::fstream::trunc);
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -871,7 +871,7 @@ void test_list()
 		stl_list.pop_front();
 		ft_list.pop_front();
 		
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -906,7 +906,7 @@ void test_list()
 		}
 
 		fs.open("./tester/lists_output/push_back", std::fstream::in | std::fstream::out | std::fstream::trunc);
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -942,7 +942,7 @@ void test_list()
 		stl_list.pop_back();
 		ft_list.pop_back();
 		
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -990,7 +990,7 @@ void test_list()
 		stl_list.insert(stl_it, 42);
 		ft_list.insert(ft_it, 42);
 
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1042,7 +1042,7 @@ void test_list()
 		stl_list.insert(stl_it, 10, 42);
 		ft_list.insert(ft_it, 10, 42);
 
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1088,7 +1088,7 @@ void test_list()
 		stl_test.insert(stl_test.begin(), stl_list.begin(), stl_list.end());
 		ft_test.insert(ft_test.begin(), ft_list.begin(), ft_list.end());
 
-		std::cout << ((printListAttributes(fs, stl_test, ft_test) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_test, ft_test) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1136,7 +1136,7 @@ void test_list()
 		stl_list.erase(stl_it);
 		ft_list.erase(ft_it);
 
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1184,7 +1184,7 @@ void test_list()
 		stl_list.erase(stl_it_beg, stl_it_end);
 		ft_list.erase(ft_it_beg, ft_it_end);
 
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1225,8 +1225,8 @@ void test_list()
 		stl_swap_one.swap(stl_swap_tow);
 		ft_swap_one.swap(ft_swap_tow);
 
-		std::cout << ((printListAttributes(fs, stl_swap_one, ft_swap_one) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printListAttributes(fs, stl_swap_tow, ft_swap_tow)  == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_swap_one, ft_swap_one) == true) ? OK : NOP);
+		std::cout << ((printListAttributes(fs, stl_swap_tow, ft_swap_tow)  == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1254,7 +1254,7 @@ void test_list()
 		stl_fill_list.resize(42, 19);
 		ft_fill_list.resize(42, 19);
 
-		std::cout << ((printListAttributes(fs, stl_fill_list, ft_fill_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_fill_list, ft_fill_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1280,7 +1280,7 @@ void test_list()
 		stl_fill_list.resize(14, 18);
 		ft_fill_list.resize(14, 18);
 
-		std::cout << ((printListAttributes(fs, stl_fill_list, ft_fill_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_fill_list, ft_fill_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1306,7 +1306,7 @@ void test_list()
 		stl_fill_list.clear();
 		ft_fill_list.clear();
 		
-		std::cout << ((printListAttributes(fs, stl_fill_list, ft_fill_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_fill_list, ft_fill_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1357,8 +1357,8 @@ void test_list()
 		stl_list.splice(stl_list_it, stl_list_sec);
 		ft_list.splice(ft_list_it, ft_list_sec);
 
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printListAttributes(fs, stl_list_sec, ft_list_sec) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
+		std::cout << ((printListAttributes(fs, stl_list_sec, ft_list_sec) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1430,8 +1430,8 @@ void test_list()
 		stl_list.splice(stl_list_it, stl_list_sec, stl_list_sec.begin());
 		ft_list.splice(ft_list_it, ft_list_sec, ft_list_sec.begin());
 
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printListAttributes(fs, stl_list_sec, ft_list_sec) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
+		std::cout << ((printListAttributes(fs, stl_list_sec, ft_list_sec) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1503,8 +1503,8 @@ void test_list()
 		stl_list.splice(stl_list_it, stl_list_sec, ++(stl_list_sec.begin()), --(stl_list_sec.end()));
 		ft_list.splice(ft_list_it, ft_list_sec, ++(ft_list_sec.begin()), --(ft_list_sec.end()));
 
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printListAttributes(fs, stl_list_sec, ft_list_sec) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
+		std::cout << ((printListAttributes(fs, stl_list_sec, ft_list_sec) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1562,7 +1562,7 @@ void test_list()
 		stl_list.remove(-895);
 		ft_list.remove(-895);
 
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1598,7 +1598,7 @@ void test_list()
 		stl_list.remove_if(is_negative);
 		ft_list.remove_if(is_negative);
 
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1636,7 +1636,7 @@ void test_list()
 		stl_list.unique();
 		ft_list.unique();
 
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1674,7 +1674,7 @@ void test_list()
 		stl_list.unique(is_near());
 		ft_list.unique(is_near());
 
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1725,7 +1725,7 @@ void test_list()
 		stl_list.merge(stl_list_two);
 		ft_list.merge(ft_list_two);
 
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1790,7 +1790,7 @@ void test_list()
 		stl_list.merge(stl_list_two, std::less<int>());
 		ft_list.merge(ft_list_two, std::less<int>());
 
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1844,7 +1844,7 @@ void test_list()
 		stl_list.sort();
 		ft_list.sort();
 		
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1885,7 +1885,7 @@ void test_list()
 		stl_list.sort(std::less<int>());
 		ft_list.sort(std::less<int>());
 		
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1926,7 +1926,7 @@ void test_list()
 		stl_list.reverse();
 		ft_list.reverse();
 		
-		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printListAttributes(fs, stl_list, ft_list) == true) ? OK : NOP);
 
 		fs << "\nCode executed:\n";
 		fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1973,7 +1973,7 @@ void test_list()
         printListAttributes(fs, stl_list_one, ft_list_one);
         printListAttributes(fs, stl_list_two, ft_list_two);
 
-        std::cout << ((printBoolResult(fs, (stl_list_one == stl_list_two), (ft_list_one == ft_list_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_list_one == stl_list_two), (ft_list_one == ft_list_two))) ? OK : NOP);
     
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -2021,7 +2021,7 @@ void test_list()
         printListAttributes(fs, stl_list_one, ft_list_one);
         printListAttributes(fs, stl_list_two, ft_list_two);
 
-        std::cout << ((printBoolResult(fs, (stl_list_one == stl_list_two), (ft_list_one == ft_list_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_list_one == stl_list_two), (ft_list_one == ft_list_two))) ? OK : NOP);
     
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -2071,7 +2071,7 @@ void test_list()
         printListAttributes(fs, stl_list_one, ft_list_one);
         printListAttributes(fs, stl_list_two, ft_list_two);
 
-        std::cout << ((printBoolResult(fs, (stl_list_one != stl_list_two), (ft_list_one != ft_list_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_list_one != stl_list_two), (ft_list_one != ft_list_two))) ? OK : NOP);
     
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -2119,7 +2119,7 @@ void test_list()
         printListAttributes(fs, stl_list_one, ft_list_one);
         printListAttributes(fs, stl_list_two, ft_list_two);
 
-        std::cout << ((printBoolResult(fs, (stl_list_one != stl_list_two), (ft_list_one != ft_list_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_list_one != stl_list_two), (ft_list_one != ft_list_two))) ? OK : NOP);
     
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -2167,7 +2167,7 @@ void test_list()
         printListAttributes(fs, stl_list_one, ft_list_one);
         printListAttributes(fs, stl_list_two, ft_list_two);
 
-        std::cout << ((printBoolResult(fs, (stl_list_one < stl_list_two), (ft_list_one < ft_list_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_list_one < stl_list_two), (ft_list_one < ft_list_two))) ? OK : NOP);
     
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -2217,7 +2217,7 @@ void test_list()
         printListAttributes(fs, stl_list_one, ft_list_one);
         printListAttributes(fs, stl_list_two, ft_list_two);
 
-        std::cout << ((printBoolResult(fs, (stl_list_one < stl_list_two), (ft_list_one < ft_list_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_list_one < stl_list_two), (ft_list_one < ft_list_two))) ? OK : NOP);
     
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -2267,7 +2267,7 @@ void test_list()
         printListAttributes(fs, stl_list_one, ft_list_one);
         printListAttributes(fs, stl_list_two, ft_list_two);
 
-        std::cout << ((printBoolResult(fs, (stl_list_one <= stl_list_two), (ft_list_one <= ft_list_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_list_one <= stl_list_two), (ft_list_one <= ft_list_two))) ? OK : NOP);
     
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -2317,7 +2317,7 @@ void test_list()
         printListAttributes(fs, stl_list_one, ft_list_one);
         printListAttributes(fs, stl_list_two, ft_list_two);
 
-        std::cout << ((printBoolResult(fs, (stl_list_one <= stl_list_two), (ft_list_one <= ft_list_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_list_one <= stl_list_two), (ft_list_one <= ft_list_two))) ? OK : NOP);
     
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -2367,7 +2367,7 @@ void test_list()
         printListAttributes(fs, stl_list_one, ft_list_one);
         printListAttributes(fs, stl_list_two, ft_list_two);
 
-        std::cout << ((printBoolResult(fs, (stl_list_one <= stl_list_two), (ft_list_one <= ft_list_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_list_one <= stl_list_two), (ft_list_one <= ft_list_two))) ? OK : NOP);
     
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -2417,7 +2417,7 @@ void test_list()
         printListAttributes(fs, stl_list_one, ft_list_one);
         printListAttributes(fs, stl_list_two, ft_list_two);
 
-        std::cout << ((printBoolResult(fs, (stl_list_one > stl_list_two), (ft_list_one > ft_list_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_list_one > stl_list_two), (ft_list_one > ft_list_two))) ? OK : NOP);
     
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -2467,7 +2467,7 @@ void test_list()
         printListAttributes(fs, stl_list_one, ft_list_one);
         printListAttributes(fs, stl_list_two, ft_list_two);
 
-        std::cout << ((printBoolResult(fs, (stl_list_one > stl_list_two), (ft_list_one > ft_list_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_list_one > stl_list_two), (ft_list_one > ft_list_two))) ? OK : NOP);
     
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -2517,7 +2517,7 @@ void test_list()
         printListAttributes(fs, stl_list_one, ft_list_one);
         printListAttributes(fs, stl_list_two, ft_list_two);
 
-        std::cout << ((printBoolResult(fs, (stl_list_one > stl_list_two), (ft_list_one > ft_list_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_list_one > stl_list_two), (ft_list_one > ft_list_two))) ? OK : NOP);
     
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -2567,7 +2567,7 @@ void test_list()
         printListAttributes(fs, stl_list_one, ft_list_one);
         printListAttributes(fs, stl_list_two, ft_list_two);
 
-        std::cout << ((printBoolResult(fs, (stl_list_one > stl_list_two), (ft_list_one > ft_list_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_list_one > stl_list_two), (ft_list_one > ft_list_two))) ? OK : NOP);
     
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -2617,8 +2617,8 @@ void test_list()
         
         fs.open("./tester/lists_output/swap_no_member", std::fstream::in | std::fstream::out | std::fstream::trunc);
 
-        std::cout << ((printListAttributes(fs, stl_list_one, ft_list_one)) ? "[OK]" : "[NOP]");
-        std::cout << ((printListAttributes(fs, stl_list_two, ft_list_two)) ? "[OK]" : "[NOP]");
+        std::cout << ((printListAttributes(fs, stl_list_one, ft_list_one)) ? OK : NOP);
+        std::cout << ((printListAttributes(fs, stl_list_two, ft_list_two)) ? OK : NOP);
     
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";

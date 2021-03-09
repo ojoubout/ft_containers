@@ -22,6 +22,11 @@ class deque_iterator : public ft::iterator<std::random_access_iterator_tag, T> {
         typedef size_t          size_type;
 
         deque_iterator() {};
+
+        deque_iterator(const deque_iterator & it) {
+            *this = it;
+        };
+
         deque_iterator(map_pointer map, size_type index = 0) {
             if (map) {
                 _node = map;
@@ -35,13 +40,6 @@ class deque_iterator : public ft::iterator<std::random_access_iterator_tag, T> {
 
             return (*this);
         }
-
-        // void    set_node(map_pointer map) {
-        //     _node = map;
-        //     _first = *map;
-        //     _last = _first + BUFF_SIZE;
-        // }
-
 
         reference   operator*() { return *curr(); };
         pointer     operator->() { return curr(); };
@@ -132,6 +130,11 @@ class deque_reverse_iterator : public ft::iterator<std::random_access_iterator_t
         typedef size_t          size_type;
 
         deque_reverse_iterator() {};
+
+        deque_reverse_iterator(const deque_reverse_iterator & it) {
+            *this = it;
+        };
+
         deque_reverse_iterator(map_pointer map, size_type index) {
             _node = map;
             _index = index;

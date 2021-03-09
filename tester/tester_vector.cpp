@@ -135,7 +135,7 @@ void test_vector()
         ft::Vector<int> ft_default_vector;
 
         fs.open("./tester/vectors_output/constructor_default", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_default_vector, ft_default_vector) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_default_vector, ft_default_vector) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -152,7 +152,7 @@ void test_vector()
         ft::Vector<int> *ft_pointer_default_vector = new ft::Vector<int>;
 
         fs.open("./tester/vectors_output/constructor_default_pointer", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, *stl_pointer_default_vector, *ft_pointer_default_vector) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, *stl_pointer_default_vector, *ft_pointer_default_vector) == true) ? OK : NOP);
         
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -172,7 +172,7 @@ void test_vector()
         ft::Vector<int> ft_fill_vector(0);
 
         fs.open("./tester/vectors_output/constructor_fill_empty", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_fill_vector, ft_fill_vector) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_fill_vector, ft_fill_vector) == true) ? OK : NOP);
         
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -189,7 +189,7 @@ void test_vector()
         ft::Vector<int> ft_fill_vector_sized(19);
 
         fs.open("./tester/vectors_output/constructor_fill_sized", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_fill_vector_sized, ft_fill_vector_sized) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_fill_vector_sized, ft_fill_vector_sized) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "ft::Vector<int> ft_fill_vector_sized(19);\n";
@@ -205,7 +205,7 @@ void test_vector()
         ft::Vector<int> ft_fill_vector_sized(19, 42);
 
         fs.open("./tester/vectors_output/constructor_fill_sized_valued", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_fill_vector_sized, ft_fill_vector_sized) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_fill_vector_sized, ft_fill_vector_sized) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "ft::Vector<int> ft_fill_vector_sized(19, 42);\n";
@@ -227,7 +227,7 @@ void test_vector()
         std::vector<int> stl_range_vector(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_range_vector(ft_iterator, ft_iterator + 5);
 
-        std::cout << ((printVectorAttributes(fs, stl_range_vector, ft_range_vector) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_range_vector, ft_range_vector) == true) ? OK : NOP);
         
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -257,7 +257,7 @@ void test_vector()
         std::vector<int> stl_copy_vector(stl_range_vector);
         ft::Vector<int> ft_copy_vector(ft_range_vector);
 
-        std::cout << ((printVectorAttributes(fs, stl_copy_vector, ft_copy_vector) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_copy_vector, ft_copy_vector) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { -89, 561, 874, 7777 , 987, -6 };\n";
@@ -291,7 +291,7 @@ void test_vector()
         std::vector<int> stl_assign_vector = stl_range_vector;
         ft::Vector<int> ft_assign_vector = ft_range_vector;
 
-        std::cout << ((printVectorAttributes(fs, stl_assign_vector, ft_assign_vector) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_assign_vector, ft_assign_vector) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 74, 569, -8822, 8515, 5 };\n";
@@ -325,7 +325,7 @@ void test_vector()
         int from_stl = *(stl_range_vector.begin());
         int from_ft = *(ft_range_vector.begin());
 
-        std::cout << ((printSingleValue(fs, from_stl, from_ft) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, from_stl, from_ft) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 87, 92, -5, 8984, 96 };\n";
@@ -362,7 +362,7 @@ void test_vector()
         const int from_stl = *(stl_const_it);
         const int from_ft = *(ft_const_it);
 
-        std::cout << ((printSingleValue(fs, from_stl, from_ft) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, from_stl, from_ft) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 87, 92, -5, 8984, 96 };\n";
@@ -399,7 +399,7 @@ void test_vector()
         int from_stl = *(stl_range_vector.end() - 1);
         int from_ft = *(ft_range_vector.end() - 1);
 
-        std::cout << ((printSingleValue(fs, from_stl, from_ft) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, from_stl, from_ft) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 48, 967, 52, -45, -9, 956551, 44};\n";
@@ -436,7 +436,7 @@ void test_vector()
         const int from_stl = *(stl_const_it);
         const int from_ft = *(ft_const_it);
 
-        std::cout << ((printSingleValue(fs, from_stl, from_ft) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, from_stl, from_ft) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 95, 89, -6121, 48, 5 };\n";
@@ -473,7 +473,7 @@ void test_vector()
         int from_stl = *(stl_range_vector.rbegin());
         int from_ft = *(ft_range_vector.rbegin());
 
-        std::cout << ((printSingleValue(fs, from_stl, from_ft) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, from_stl, from_ft) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {250, -1200, -98657, 2, 34};\n";
@@ -510,7 +510,7 @@ void test_vector()
         const int from_stl = *(stl_const_it);
         const int from_ft = *(ft_const_it);
 
-        std::cout << ((printSingleValue(fs, from_stl, from_ft) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, from_stl, from_ft) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 958, -561, 54, 789, -8};\n";
@@ -547,7 +547,7 @@ void test_vector()
         int from_stl = *(stl_range_vector.rend() - 1);
         int from_ft = *(ft_range_vector.rend() - 1);
 
-        std::cout << ((printSingleValue(fs, from_stl, from_ft) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, from_stl, from_ft) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {78, -951, 562, 8, 745, 51236, 6987};\n";
@@ -584,7 +584,7 @@ void test_vector()
         const int from_stl = *(stl_const_it);
         const int from_ft = *(ft_const_it);
 
-        std::cout << ((printSingleValue(fs, from_stl, from_ft) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, from_stl, from_ft) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 8, -5615, 412, 89, 475};\n";
@@ -615,7 +615,7 @@ void test_vector()
         ft::Vector<int> ft_filled(20);
 
         fs.open("./tester/vectors_output/size_small", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_filled, ft_filled) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_filled, ft_filled) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "ft::Vector<int> ft_filled(20);\n";
@@ -631,7 +631,7 @@ void test_vector()
         ft::Vector<int> ft_filled(100000);
 
         fs.open("./tester/vectors_output/size_big", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_filled, ft_filled) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_filled, ft_filled) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "ft::Vector<int> ft_filled(1000000);\n";
@@ -647,7 +647,7 @@ void test_vector()
         ft::Vector<int> ft_base;
 
         fs.open("./tester/vectors_output/maximum_size", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "ft::Vector<int> ft_base;\n";
@@ -666,7 +666,7 @@ void test_vector()
         ft_base.resize(85);
 
         fs.open("./tester/vectors_output/resize_extension", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "ft::Vector<int> ft_base(40);\n";
@@ -687,7 +687,7 @@ void test_vector()
         ft_base.resize(3);
 
         fs.open("./tester/vectors_output/resize_reduction", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "ft::Vector<int> ft_base(40);\n";
@@ -710,7 +710,7 @@ void test_vector()
         ft_base.push_back(69);
 
         fs.open("./tester/vectors_output/capacity_short", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "ft::Vector<int> ft_base(40);\n";
@@ -730,7 +730,7 @@ void test_vector()
         ft::Vector<int> ft_base(40000);
 
         fs.open("./tester/vectors_output/capacity_big", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "ft::Vector<int> ft_base(40000);\n";
@@ -746,7 +746,7 @@ void test_vector()
         ft::Vector<int> ft_base;
 
         fs.open("./tester/vectors_output/empty_true", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "ft::Vector<int> ft_base;\n";
@@ -762,7 +762,7 @@ void test_vector()
         ft::Vector<int> ft_base(5);
 
         fs.open("./tester/vectors_output/empty_false", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "ft::Vector<int> ft_base(5);\n";
@@ -781,7 +781,7 @@ void test_vector()
         ft_base.resize(0);
 
         fs.open("./tester/vectors_output/empty_after_resize", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "ft::Vector<int> ft_base(5);\n";
@@ -804,7 +804,7 @@ void test_vector()
         ft_base.push_back(42);
         
         fs.open("./tester/vectors_output/reserve", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_base, ft_base) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "ft::Vector<int> ft_base;\n";
@@ -832,7 +832,7 @@ void test_vector()
         ft::Vector<int> ft_operator(ft_iterator_beg, ft_iterator_beg + 5);
 
         fs.open("./tester/vectors_output/operator_at", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printSingleValue(fs, stl_operator[1], ft_operator[1]) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, stl_operator[1], ft_operator[1]) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 8, -5615, 412, 89, 475};\n";
@@ -860,7 +860,7 @@ void test_vector()
         const int ft_const = ft_operator[1];
         
         fs.open("./tester/vectors_output/operator_at_const", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printSingleValue(fs, stl_const, ft_const) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, stl_const, ft_const) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {8, -98, 541, 53361, 9};\n";
@@ -887,7 +887,7 @@ void test_vector()
         ft::Vector<int> ft_at(ft_iterator_beg, ft_iterator_beg + 5);
 
         fs.open("./tester/vectors_output/at", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printSingleValue(fs, stl_at.at(3), ft_at.at(3)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, stl_at.at(3), ft_at.at(3)) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {8, -986, -8, 66, 7};\n";
@@ -915,7 +915,7 @@ void test_vector()
         const int ft_const = ft_at.at(4);
         
         fs.open("./tester/vectors_output/const_at", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printSingleValue(fs, stl_const, ft_const) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, stl_const, ft_const) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {845, -9, 47, 4, -825};\n";
@@ -942,7 +942,7 @@ void test_vector()
         ft::Vector<int> ft_front(ft_iterator_beg, ft_iterator_beg + 5);
 
         fs.open("./tester/vectors_output/front", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printSingleValue(fs, stl_front.front(), ft_front.front()) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, stl_front.front(), ft_front.front()) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {2, 0, 982, -9, 87};\n";
@@ -970,7 +970,7 @@ void test_vector()
         const int ft_const = ft_front.front();
 
         fs.open("./tester/vectors_output/front_const", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printSingleValue(fs, stl_const, ft_const) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, stl_const, ft_const) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {5589, -97, -98, -63, 8};\n";
@@ -997,7 +997,7 @@ void test_vector()
         ft::Vector<int> ft_back(ft_iterator_beg, ft_iterator_beg + 5);
 
         fs.open("./tester/vectors_output/back", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printSingleValue(fs, stl_back.back(), ft_back.back()) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, stl_back.back(), ft_back.back()) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {2, 0, 982, -9, 87};\n";
@@ -1025,7 +1025,7 @@ void test_vector()
         const int ft_const = ft_back.back();
 
         fs.open("./tester/vectors_output/back_const", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printSingleValue(fs, stl_const, ft_const) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, stl_const, ft_const) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {5589, -97, -98, -63, 8};\n";
@@ -1058,7 +1058,7 @@ void test_vector()
         ft_assign.assign(ft_iterator_beg, ft_iterator_beg + 5);
 
         fs.open("./tester/vectors_output/assign_range", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_assign, ft_assign) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_assign, ft_assign) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {84, 522, -654, -7623, 4};\n";
@@ -1088,7 +1088,7 @@ void test_vector()
         ft_assign.assign(ft_iterator_beg, ft_iterator_beg + 5);
 
         fs.open("./tester/vectors_output/assign_range_replace", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_assign, ft_assign) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_assign, ft_assign) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {547, 98, -6, 0, 47};\n";
@@ -1113,7 +1113,7 @@ void test_vector()
         ft_assign_fill.assign(87, 42);
         
         fs.open("./tester/vectors_output/assign_fill", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_assign_fill, ft_assign_fill) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_assign_fill, ft_assign_fill) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "ft::Vector<int> ft_assign_fill;\n";
@@ -1134,7 +1134,7 @@ void test_vector()
         ft_assign_fill.assign(420, 14);
         
         fs.open("./tester/vectors_output/assign_fill_replace", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_assign_fill, ft_assign_fill) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_assign_fill, ft_assign_fill) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "ft::Vector<int> ft_assign_fill;\n";
@@ -1155,7 +1155,7 @@ void test_vector()
         ft_pushback.push_back(42);
 
         fs.open("./tester/vectors_output/push_back_empty", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_pushback, ft_pushback) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_pushback, ft_pushback) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "ft::Vector<int> ft_pushback;\n";
@@ -1176,7 +1176,7 @@ void test_vector()
         ft_pushback.push_back(42);
 
         fs.open("./tester/vectors_output/push_back", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_pushback, ft_pushback) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_pushback, ft_pushback) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "ft::Vector<int> ft_pushback(7);\n";
@@ -1202,7 +1202,7 @@ void test_vector()
         ft_popback.pop_back();
         
         fs.open("./tester/vectors_output/pop_back", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_popback, ft_popback) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_popback, ft_popback) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {547, 98, -6, 0, 47};\n";
@@ -1230,7 +1230,7 @@ void test_vector()
         ft_insert.insert(ft_insert.begin() + 2, 9999);
         
         fs.open("./tester/vectors_output/insert_single", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_insert, ft_insert) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_insert, ft_insert) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {478, 87, -85, 44, 7};\n";
@@ -1259,7 +1259,7 @@ void test_vector()
         ft_insert.insert(ft_insert.begin() + 2, 6, 4269);
         
         fs.open("./tester/vectors_output/insert_fill", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_insert, ft_insert) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_insert, ft_insert) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {47, 152, -325, 9, 14444};\n";
@@ -1287,7 +1287,7 @@ void test_vector()
         ft_insert.insert(ft_insert.end(), ft_iterator_beg, ft_iterator_beg + 5);
 
         fs.open("./tester/vectors_output/insert_range", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_insert, ft_insert) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_insert, ft_insert) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {47, 152, -325, 9, 14444};\n";
@@ -1317,7 +1317,7 @@ void test_vector()
         ft_erase.erase(ft_erase.begin() + 2);
         
         fs.open("./tester/vectors_output/erase_single", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_erase, ft_erase) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_erase, ft_erase) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {47, 152, -325, 9, 14444};\n";
@@ -1347,7 +1347,7 @@ void test_vector()
         ft_erase.erase(ft_erase.begin() + 1, ft_erase.end() - 2);
         
         fs.open("./tester/vectors_output/erase_range", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_erase, ft_erase) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_erase, ft_erase) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {1458, -98, 745, 62, 9};\n";
@@ -1382,8 +1382,8 @@ void test_vector()
         ft_swap_one.swap(ft_swap_two);
 
         fs.open("./tester/vectors_output/swap_member", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_swap_one, ft_swap_one) == true) ? "[OK]" : "[NOP]");
-        std::cout << ((printVectorAttributes(fs, stl_swap_two, ft_swap_two) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_swap_one, ft_swap_one) == true) ? OK : NOP);
+        std::cout << ((printVectorAttributes(fs, stl_swap_two, ft_swap_two) == true) ? OK : NOP);
         
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1421,7 +1421,7 @@ void test_vector()
         ft_clear.clear();
         
         fs.open("./tester/vectors_output/clear", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_clear, ft_clear) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_clear, ft_clear) == true) ? OK : NOP);
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {-455, 2, 1347, 75, 945};\n";
@@ -1464,7 +1464,7 @@ void test_vector()
         printVectorAttributes(fs, stl_equal_one, ft_equal_one);
         printVectorAttributes(fs, stl_equal_two, ft_equal_two);
 
-        std::cout << ((printBoolResult(fs, (stl_equal_one == stl_equal_two), (ft_equal_one == ft_equal_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_equal_one == stl_equal_two), (ft_equal_one == ft_equal_two))) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1508,7 +1508,7 @@ void test_vector()
         printVectorAttributes(fs, stl_equal_one, ft_equal_one);
         printVectorAttributes(fs, stl_equal_two, ft_equal_two);
 
-        std::cout << ((printBoolResult(fs, (stl_equal_one == stl_equal_two), (ft_equal_one == ft_equal_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_equal_one == stl_equal_two), (ft_equal_one == ft_equal_two))) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1552,7 +1552,7 @@ void test_vector()
         printVectorAttributes(fs, stl_operator_one, ft_operator_one);
         printVectorAttributes(fs, stl_operator_two, ft_operator_two);
 
-        std::cout << ((printBoolResult(fs, (stl_operator_one != stl_operator_two), (ft_operator_one != ft_operator_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_operator_one != stl_operator_two), (ft_operator_one != ft_operator_two))) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1596,7 +1596,7 @@ void test_vector()
         printVectorAttributes(fs, stl_operator_one, ft_operator_one);
         printVectorAttributes(fs, stl_operator_two, ft_operator_two);
 
-        std::cout << ((printBoolResult(fs, (stl_operator_one != stl_operator_two), (ft_operator_one != ft_operator_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_operator_one != stl_operator_two), (ft_operator_one != ft_operator_two))) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1640,7 +1640,7 @@ void test_vector()
         printVectorAttributes(fs, stl_operator_one, ft_operator_one);
         printVectorAttributes(fs, stl_operator_two, ft_operator_two);
 
-        std::cout << ((printBoolResult(fs, (stl_operator_one < stl_operator_two), (ft_operator_one < ft_operator_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_operator_one < stl_operator_two), (ft_operator_one < ft_operator_two))) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1684,7 +1684,7 @@ void test_vector()
         printVectorAttributes(fs, stl_operator_one, ft_operator_one);
         printVectorAttributes(fs, stl_operator_two, ft_operator_two);
 
-        std::cout << ((printBoolResult(fs, (stl_operator_one < stl_operator_two), (ft_operator_one < ft_operator_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_operator_one < stl_operator_two), (ft_operator_one < ft_operator_two))) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1728,7 +1728,7 @@ void test_vector()
         printVectorAttributes(fs, stl_operator_one, ft_operator_one);
         printVectorAttributes(fs, stl_operator_two, ft_operator_two);
 
-        std::cout << ((printBoolResult(fs, (stl_operator_one <= stl_operator_two), (ft_operator_one <= ft_operator_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_operator_one <= stl_operator_two), (ft_operator_one <= ft_operator_two))) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1772,7 +1772,7 @@ void test_vector()
         printVectorAttributes(fs, stl_operator_one, ft_operator_one);
         printVectorAttributes(fs, stl_operator_two, ft_operator_two);
 
-        std::cout << ((printBoolResult(fs, (stl_operator_one <= stl_operator_two), (ft_operator_one <= ft_operator_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_operator_one <= stl_operator_two), (ft_operator_one <= ft_operator_two))) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1813,7 +1813,7 @@ void test_vector()
         printVectorAttributes(fs, stl_operator_one, ft_operator_one);
         printVectorAttributes(fs, stl_operator_two, ft_operator_two);
 
-        std::cout << ((printBoolResult(fs, (stl_operator_one <= stl_operator_two), (ft_operator_one <= ft_operator_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_operator_one <= stl_operator_two), (ft_operator_one <= ft_operator_two))) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1854,7 +1854,7 @@ void test_vector()
         printVectorAttributes(fs, stl_operator_one, ft_operator_one);
         printVectorAttributes(fs, stl_operator_two, ft_operator_two);
 
-        std::cout << ((printBoolResult(fs, (stl_operator_one > stl_operator_two), (ft_operator_one > ft_operator_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_operator_one > stl_operator_two), (ft_operator_one > ft_operator_two))) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1895,7 +1895,7 @@ void test_vector()
         printVectorAttributes(fs, stl_operator_one, ft_operator_one);
         printVectorAttributes(fs, stl_operator_two, ft_operator_two);
 
-        std::cout << ((printBoolResult(fs, (stl_operator_one > stl_operator_two), (ft_operator_one > ft_operator_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_operator_one > stl_operator_two), (ft_operator_one > ft_operator_two))) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1936,7 +1936,7 @@ void test_vector()
         printVectorAttributes(fs, stl_operator_one, ft_operator_one);
         printVectorAttributes(fs, stl_operator_two, ft_operator_two);
 
-        std::cout << ((printBoolResult(fs, (stl_operator_one >= stl_operator_two), (ft_operator_one >= ft_operator_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_operator_one >= stl_operator_two), (ft_operator_one >= ft_operator_two))) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1977,7 +1977,7 @@ void test_vector()
         printVectorAttributes(fs, stl_operator_one, ft_operator_one);
         printVectorAttributes(fs, stl_operator_two, ft_operator_two);
 
-        std::cout << ((printBoolResult(fs, (stl_operator_one >= stl_operator_two), (ft_operator_one >= ft_operator_two))) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_operator_one >= stl_operator_two), (ft_operator_one >= ft_operator_two))) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -2021,8 +2021,8 @@ void test_vector()
         ft::swap(ft_swap_one, ft_swap_two);
 
         fs.open("./tester/vectors_output/swap_no_member", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printVectorAttributes(fs, stl_swap_one, ft_swap_one) == true) ? "[OK]" : "[NOP]");
-        std::cout << ((printVectorAttributes(fs, stl_swap_two, ft_swap_two) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printVectorAttributes(fs, stl_swap_one, ft_swap_one) == true) ? OK : NOP);
+        std::cout << ((printVectorAttributes(fs, stl_swap_two, ft_swap_two) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";

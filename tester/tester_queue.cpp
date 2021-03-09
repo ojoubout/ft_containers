@@ -120,7 +120,7 @@ void test_queue()
         ft::Queue<int> ft_queue;
 
         fs.open("./tester/queues_output/constructor_default", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -137,7 +137,7 @@ void test_queue()
         ft::Queue<int> ft_queue;
 
         fs.open("./tester/queues_output/empty_true", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -157,7 +157,7 @@ void test_queue()
         ft_queue.push(42);
 
         fs.open("./tester/queues_output/empty_false", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -182,7 +182,7 @@ void test_queue()
         }
 
         fs.open("./tester/queues_output/size", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -209,12 +209,12 @@ void test_queue()
         fs.open("./tester/queues_output/front", std::fstream::in | std::fstream::out | std::fstream::trunc);
         printQueueAttributes(fs, stl_queue, ft_queue);
         
-        std::cout << ((printSingleValue(fs, stl_queue.front(), ft_queue.front()) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, stl_queue.front(), ft_queue.front()) == true) ? OK : NOP);
 
         stl_queue.pop();
         ft_queue.pop();
         
-        std::cout << ((printSingleValue(fs, stl_queue.front(), ft_queue.front()) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, stl_queue.front(), ft_queue.front()) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -247,7 +247,7 @@ void test_queue()
         fs.open("./tester/queues_output/back", std::fstream::in | std::fstream::out | std::fstream::trunc);
         printQueueAttributes(fs, stl_queue, ft_queue);
         
-        std::cout << ((printSingleValue(fs, stl_queue.back(), ft_queue.back()) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, stl_queue.back(), ft_queue.back()) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -271,12 +271,12 @@ void test_queue()
         ft_queue.push(42);
 
         fs.open("./tester/queues_output/push", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? OK : NOP);
 
         stl_queue.push(19);
         ft_queue.push(19);
 
-        std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -302,12 +302,12 @@ void test_queue()
         ft_queue.push(42);
 
         fs.open("./tester/queues_output/push", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? OK : NOP);
 
         stl_queue.pop();
         ft_queue.pop();
 
-        std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -348,7 +348,7 @@ void test_queue()
         printQueueAttributes(fs, stl_pop_one, ft_pop_one);
         printQueueAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one == stl_pop_two), (ft_pop_one == ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one == stl_pop_two), (ft_pop_one == ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -388,7 +388,7 @@ void test_queue()
         printQueueAttributes(fs, stl_pop_one, ft_pop_one);
         printQueueAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one == stl_pop_two), (ft_pop_one == ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one == stl_pop_two), (ft_pop_one == ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -428,7 +428,7 @@ void test_queue()
         printQueueAttributes(fs, stl_pop_one, ft_pop_one);
         printQueueAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one != stl_pop_two), (ft_pop_one != ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one != stl_pop_two), (ft_pop_one != ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -468,7 +468,7 @@ void test_queue()
         printQueueAttributes(fs, stl_pop_one, ft_pop_one);
         printQueueAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one != stl_pop_two), (ft_pop_one != ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one != stl_pop_two), (ft_pop_one != ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -516,7 +516,7 @@ void test_queue()
         printQueueAttributes(fs, stl_pop_one, ft_pop_one);
         printQueueAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one < stl_pop_two), (ft_pop_one < ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one < stl_pop_two), (ft_pop_one < ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -570,7 +570,7 @@ void test_queue()
         printQueueAttributes(fs, stl_pop_one, ft_pop_one);
         printQueueAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one < stl_pop_two), (ft_pop_one < ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one < stl_pop_two), (ft_pop_one < ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -616,7 +616,7 @@ void test_queue()
         printQueueAttributes(fs, stl_pop_one, ft_pop_one);
         printQueueAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one <= stl_pop_two), (ft_pop_one <= ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one <= stl_pop_two), (ft_pop_one <= ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -656,7 +656,7 @@ void test_queue()
         printQueueAttributes(fs, stl_pop_one, ft_pop_one);
         printQueueAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one <= stl_pop_two), (ft_pop_one <= ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one <= stl_pop_two), (ft_pop_one <= ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -696,7 +696,7 @@ void test_queue()
         printQueueAttributes(fs, stl_pop_one, ft_pop_one);
         printQueueAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one <= stl_pop_two), (ft_pop_one <= ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one <= stl_pop_two), (ft_pop_one <= ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -736,7 +736,7 @@ void test_queue()
         printQueueAttributes(fs, stl_pop_one, ft_pop_one);
         printQueueAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one > stl_pop_two), (ft_pop_one > ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one > stl_pop_two), (ft_pop_one > ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -776,7 +776,7 @@ void test_queue()
         printQueueAttributes(fs, stl_pop_one, ft_pop_one);
         printQueueAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one > stl_pop_two), (ft_pop_one > ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one > stl_pop_two), (ft_pop_one > ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -816,7 +816,7 @@ void test_queue()
         printQueueAttributes(fs, stl_pop_one, ft_pop_one);
         printQueueAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one >= stl_pop_two), (ft_pop_one >= ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one >= stl_pop_two), (ft_pop_one >= ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -864,7 +864,7 @@ void test_queue()
         printQueueAttributes(fs, stl_pop_one, ft_pop_one);
         printQueueAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one >= stl_pop_two), (ft_pop_one >= ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one >= stl_pop_two), (ft_pop_one >= ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";

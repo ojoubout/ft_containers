@@ -97,6 +97,11 @@ public:
             typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::difference_type    difference_type;
 
             const_iterator() : _ptr(NULL) {};
+
+            const_iterator(const const_iterator & it) {
+                *this = it;
+            };
+
             const_iterator(const Node* ptr, const RedBlackTree *parent) : _ptr(ptr), _parent(parent) {};
             const_iterator &operator=(const_iterator const &other) {
                 _ptr = other._ptr;
@@ -137,10 +142,13 @@ public:
             typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::pointer            pointer;
             typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::reference          reference;
             typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::difference_type    difference_type;
+
             iterator() : _ptr(NULL) {};
-            // iterator(const iterator & it) {
-            //     *this = it;
-            // };
+
+            iterator(const iterator & it) {
+                *this = it;
+            };
+
             iterator(Node* ptr, RedBlackTree * parent) : _ptr(ptr), _parent(parent) {};
             iterator &operator=(iterator const &other) {
                 _ptr = other._ptr;
@@ -185,6 +193,12 @@ public:
             typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::reference          reference;
             typedef typename ft::iterator<std::bidirectional_iterator_tag, const T>::difference_type    difference_type;
 
+            const_reverse_iterator() : _ptr(NULL) {};
+
+            const_reverse_iterator(const const_reverse_iterator & it) {
+                *this = it;
+            };
+
             const_reverse_iterator (Node* ptr, const RedBlackTree *parent) : _ptr(ptr), _parent(parent) {};
 
             reference   operator*() { return _ptr == _parent->_end ? _parent->_root->rightMost()->item : _ptr->getPrevious()->item; };
@@ -221,6 +235,12 @@ public:
             typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::reference          reference;
             typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::difference_type    difference_type;
 
+            reverse_iterator() : _ptr(NULL) {};
+
+            reverse_iterator(const reverse_iterator & it) {
+                *this = it;
+            };
+
             reverse_iterator(Node* ptr, RedBlackTree *parent) : _ptr(ptr), _parent(parent) {};
 
             reference   operator*() { return _ptr == _parent->_end ? _parent->_root->rightMost()->item : _ptr->getPrevious()->item; };
@@ -255,10 +275,20 @@ public:
         _root = _end;
     };
 
+    RedBlackTree(const RedBlackTree & rbt) {
+        *this = rbt;
+    }
+
     ~RedBlackTree() {
         clear();
         delete _end;
     }
+
+    RedBlackTree&   operator=(const RedBlackTree& x) {
+        clear();
+        copy(x._root);
+        return (*this);
+    }   
     const_iterator begin() const {
         if (_size == 0)
             return end();
@@ -294,12 +324,6 @@ public:
     reverse_iterator rend() {
         return (reverse_iterator(_root->leftMost(), this));
     }
-
-    RedBlackTree&   operator=(const RedBlackTree& x) {
-        clear();
-        copy(x._root);
-        return (*this);
-    }   
 
     void    copy(Node*  x) {
         if (x == NULL)

@@ -119,7 +119,7 @@ void test_stack()
         ft::Stack<int> ft_default;
 
         fs.open("./tester/stacks_output/constructor_default", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printStackAttributes(fs, stl_default, ft_default) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printStackAttributes(fs, stl_default, ft_default) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -137,7 +137,7 @@ void test_stack()
         ft::Stack<int> ft_empty;
 
         fs.open("./tester/stacks_output/empty_true", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printStackAttributes(fs, stl_empty, ft_empty) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printStackAttributes(fs, stl_empty, ft_empty) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -157,7 +157,7 @@ void test_stack()
         ft_empty.push(42);
 
         fs.open("./tester/stacks_output/empty_false", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printStackAttributes(fs, stl_empty, ft_empty) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printStackAttributes(fs, stl_empty, ft_empty) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -182,7 +182,7 @@ void test_stack()
         }
 
         fs.open("./tester/stacks_output/size", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printStackAttributes(fs, stl_size, ft_size) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printStackAttributes(fs, stl_size, ft_size) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -209,12 +209,12 @@ void test_stack()
         }
 
         fs.open("./tester/stacks_output/top", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printSingleValue(fs, stl_top.top(), ft_top.top()) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, stl_top.top(), ft_top.top()) == true) ? OK : NOP);
         
         stl_top.pop();
         ft_top.pop();
 
-        std::cout << ((printSingleValue(fs, stl_top.top(), ft_top.top()) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printSingleValue(fs, stl_top.top(), ft_top.top()) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -245,7 +245,7 @@ void test_stack()
         }
 
         fs.open("./tester/stacks_output/push", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printStackAttributes(fs, stl_size, ft_size) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printStackAttributes(fs, stl_size, ft_size) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -272,12 +272,12 @@ void test_stack()
         }
 
         fs.open("./tester/stacks_output/pop", std::fstream::in | std::fstream::out | std::fstream::trunc);
-        std::cout << ((printStackAttributes(fs, stl_pop, ft_pop) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printStackAttributes(fs, stl_pop, ft_pop) == true) ? OK : NOP);
         
         stl_pop.pop();
         ft_pop.pop();
 
-        std::cout << ((printStackAttributes(fs, stl_pop, ft_pop) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printStackAttributes(fs, stl_pop, ft_pop) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -320,7 +320,7 @@ void test_stack()
         printStackAttributes(fs, stl_pop_one, ft_pop_one);
         printStackAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one == stl_pop_two), (ft_pop_one == ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one == stl_pop_two), (ft_pop_one == ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -360,7 +360,7 @@ void test_stack()
         printStackAttributes(fs, stl_pop_one, ft_pop_one);
         printStackAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one == stl_pop_two), (ft_pop_one == ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one == stl_pop_two), (ft_pop_one == ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -400,7 +400,7 @@ void test_stack()
         printStackAttributes(fs, stl_pop_one, ft_pop_one);
         printStackAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one != stl_pop_two), (ft_pop_one != ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one != stl_pop_two), (ft_pop_one != ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -440,7 +440,7 @@ void test_stack()
         printStackAttributes(fs, stl_pop_one, ft_pop_one);
         printStackAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one != stl_pop_two), (ft_pop_one != ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one != stl_pop_two), (ft_pop_one != ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -488,7 +488,7 @@ void test_stack()
         printStackAttributes(fs, stl_pop_one, ft_pop_one);
         printStackAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one < stl_pop_two), (ft_pop_one < ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one < stl_pop_two), (ft_pop_one < ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -542,7 +542,7 @@ void test_stack()
         printStackAttributes(fs, stl_pop_one, ft_pop_one);
         printStackAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one < stl_pop_two), (ft_pop_one < ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one < stl_pop_two), (ft_pop_one < ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -588,7 +588,7 @@ void test_stack()
         printStackAttributes(fs, stl_pop_one, ft_pop_one);
         printStackAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one <= stl_pop_two), (ft_pop_one <= ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one <= stl_pop_two), (ft_pop_one <= ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -628,7 +628,7 @@ void test_stack()
         printStackAttributes(fs, stl_pop_one, ft_pop_one);
         printStackAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one <= stl_pop_two), (ft_pop_one <= ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one <= stl_pop_two), (ft_pop_one <= ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -668,7 +668,7 @@ void test_stack()
         printStackAttributes(fs, stl_pop_one, ft_pop_one);
         printStackAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one <= stl_pop_two), (ft_pop_one <= ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one <= stl_pop_two), (ft_pop_one <= ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -708,7 +708,7 @@ void test_stack()
         printStackAttributes(fs, stl_pop_one, ft_pop_one);
         printStackAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one > stl_pop_two), (ft_pop_one > ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one > stl_pop_two), (ft_pop_one > ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -748,7 +748,7 @@ void test_stack()
         printStackAttributes(fs, stl_pop_one, ft_pop_one);
         printStackAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one > stl_pop_two), (ft_pop_one > ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one > stl_pop_two), (ft_pop_one > ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -788,7 +788,7 @@ void test_stack()
         printStackAttributes(fs, stl_pop_one, ft_pop_one);
         printStackAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one >= stl_pop_two), (ft_pop_one >= ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one >= stl_pop_two), (ft_pop_one >= ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -836,7 +836,7 @@ void test_stack()
         printStackAttributes(fs, stl_pop_one, ft_pop_one);
         printStackAttributes(fs, stl_pop_two, ft_pop_two);
         
-        std::cout << ((printBoolResult(fs, (stl_pop_one >= stl_pop_two), (ft_pop_one >= ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((printBoolResult(fs, (stl_pop_one >= stl_pop_two), (ft_pop_one >= ft_pop_two)) == true) ? OK : NOP);
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";

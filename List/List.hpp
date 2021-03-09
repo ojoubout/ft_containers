@@ -61,12 +61,12 @@ public:
         insert(begin(), first, last);
     }
 
-    ~List() { // TODO: clear()
+    ~List() {
         clear();
         delete _end;
     }
 
-    List&   operator=(const List& x) { // TODO: after finishing clear()
+    List&   operator=(const List& x) {
         clear();
         insert(begin(), x.begin(), x.end());
         return (*this);

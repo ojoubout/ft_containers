@@ -271,17 +271,6 @@ public:
     }
     //--//
 
-    // Utils
-
-    void print_list() { // TODO
-        const_iterator it = begin();
-        const_iterator ite = end();
-        while (it != ite) {
-            std::cout << "value: " << *it << " ";
-            it++;
-        }
-        std::cout << std::endl;
-    }
 private:
     pointer     _container;
     size_type   _capacity;
