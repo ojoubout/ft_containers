@@ -1,0 +1,25 @@
+
+══════════════════════════════════════════════════════════════
+Vectors attributes : 
+STL : 
+Empty       : true
+Size        : 0
+Max size    : 4611686018427387903
+Capacity    : 0
+Content     : []
+
+FT : 
+Empty    [✔]: true
+Size     [✔]: 0
+Max size [✔]: 4611686018427387903
+Capacity [✔]: 0
+Content  [✔]: []
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+ft::Vector<int> ft_fill_vector(0);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+std::vector<int> stl_fill_vector(0);

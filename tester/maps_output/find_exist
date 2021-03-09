@@ -1,0 +1,45 @@
+
+══════════════════════════════════════════════════════════════
+maps attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 288230376151711743
+Content     : [[-965, Three], [12, Two], [42, Four], [954, One], [1000, Five], ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 288230376151711743
+Content  [✔]: [[-965, Three], [12, Two], [42, Four], [954, One], [1000, Five], ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+Value from :
+STL    : 42
+FT  [✔]: 42
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+Value from :
+STL    : Four
+FT  [✔]: Four
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+const int range_int[] = {954, 12, -965, 42, 1000};
+const std::string range_str[] = {"One", "Two", "Three", "Four", "Five"};
+ft::Map<int, std::string> ft_map;
+for (int i = 0; i < 5; i++)
+    ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
+ft::Map<int, std::string>::iterator ft_it = ft_map.find(42);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+const int range_int[] = {954, 12, -965, 42, 1000};
+const std::string range_str[] = {"One", "Two", "Three", "Four", "Five"};
+std::map<int, std::string> stl_map;
+for (int i = 0; i < 5; i++)
+    stl_map.insert(std::make_pair(range_int[i], range_str[i]));
+std::map<int, std::string>::iterator stl_it = stl_map.find(42);

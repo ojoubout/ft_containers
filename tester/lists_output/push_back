@@ -1,0 +1,29 @@
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 768614336404564650
+Content     : [-874, 844, 5, 12, 63, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 768614336404564650
+Content  [✔]: [-874, 844, 5, 12, 63, ]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {-874, 844, 5, 12, 63};
+ft::List<int> ft_list;
+for (int i = 0; i < 5; i++)
+    ft_list.push_back(range[i]);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {-874, 844, 5, 12, 63};
+std::list<int> stl_list;
+for (int i = 0; i < 5; i++)
+    stl_list.push_back(range[i]);

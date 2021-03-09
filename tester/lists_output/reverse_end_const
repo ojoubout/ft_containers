@@ -1,0 +1,39 @@
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 768614336404564650
+Content     : [145, 842, -95, 32, 5, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 768614336404564650
+Content  [✔]: [145, 842, -95, 32, 5, ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+Value from :
+STL    : 145
+FT  [✔]: 145
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+const int range[] = {145, 842, -95, 32, 5};
+ft::List<int> ft_list;
+for (int i = 0; i < 5; i++)
+    ft_list.push_back(range[i]);
+ft::List<int>::const_reverse_iterator ft_const_it = ft_list.rend();
+const int ft_rend = *(--ft_const_it);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+const int range[] = {145, 842, -95, 32, 5};
+std::list<int> stl_list;
+for (int i = 0; i < 5; i++)
+    stl_list.push_back(range[i]);
+std::list<int>::const_reverse_iterator stl_const_it = stl_list.rend();
+const int stl_rend = *(--stl_const_it);

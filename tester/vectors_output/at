@@ -1,0 +1,18 @@
+
+══════════════════════════════════════════════════════════════
+Value from :
+STL    : 66
+FT  [✔]: 66
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {8, -986, -8, 66, 7};
+ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
+ft::Vector<int> ft_at(ft_iterator_beg, ft_iterator_beg + 5);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {8, -986, -8, 66, 7};
+std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+std::vector<int> stl_at(std::begin(range_array), std::end(range_array));

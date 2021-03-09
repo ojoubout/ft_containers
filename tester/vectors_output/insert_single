@@ -1,0 +1,30 @@
+
+══════════════════════════════════════════════════════════════
+Vectors attributes : 
+STL : 
+Empty       : false
+Size        : 6
+Max size    : 4611686018427387903
+Capacity    : 10
+Content     : [478, 87, 9999, -85, 44, 7]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 6
+Max size [✔]: 4611686018427387903
+Capacity [✔]: 10
+Content  [✔]: [478, 87, 9999, -85, 44, 7]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {478, 87, -85, 44, 7};
+ft::Vector<int> ft_insert(ft_iterator_beg, ft_iterator_beg + 5);
+ft_insert.pop_back();
+ft_insert.insert(ft_insert.begin() + 2, 9999);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {478, 87, -85, 44, 7};
+std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+stl_insert.insert(stl_insert.begin() + 2, 9999);

@@ -12,15 +12,15 @@
 
 # include <deque>
 # include "tester.hpp"
-# include "../containers/deque.hpp"
+# include "../Deque/Deque.hpp"
 
 template <class T>
 std::string equalContent(
     const std::deque<T> & stl_deque,
-    const ft::deque<T> & ft_deque
+    const ft::Deque<T> & ft_deque
 )
 {
-    typename ft::deque<T>::const_iterator ft_it;
+    typename ft::Deque<T>::const_iterator ft_it;
     typename std::deque<T>::const_iterator stl_it;
     if (ft_deque.size() != stl_deque.size())
         return ("✘");
@@ -38,7 +38,7 @@ template <class T>
 bool printDequeAttributes(
     std::fstream& fs,
     std::deque<T>& stl_deque,
-    ft::deque<T>& ft_deque
+    ft::Deque<T>& ft_deque
 )
 {
     /* STL Values */
@@ -83,7 +83,7 @@ bool printDequeAttributes(
 
     fs << "Content  [" << content << "]: [";
 
-    typename ft::deque<T>::const_iterator ft_it;
+    typename ft::Deque<T>::const_iterator ft_it;
     for(ft_it = ft_deque.begin(); ft_it != ft_deque.end(); ft_it++)
     {
         fs << *ft_it;
@@ -120,14 +120,14 @@ void test_deque()
     /* Default constructor */
     {
         std::deque<int> stl_default_deque;
-        ft::deque<int> ft_default_deque;
+        ft::Deque<int> ft_default_deque;
 
         fs.open("./tester/deques_output/constructor_default", std::fstream::in | std::fstream::out | std::fstream::trunc);
         std::cout << ((printDequeAttributes(fs, stl_default_deque, ft_default_deque) == true) ? "[OK]" : "[NOP]");
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_default_deque;\n";
+        fs << "ft::Deque<int> ft_default_deque;\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "std::deque<int> stl_default_deque;\n";
@@ -137,14 +137,14 @@ void test_deque()
     /* Default constructor pointer */
     {
         std::deque<int> *stl_pointer_default_deque = new std::deque<int>;
-        ft::deque<int> *ft_pointer_default_deque = new ft::deque<int>;
+        ft::Deque<int> *ft_pointer_default_deque = new ft::Deque<int>;
 
         fs.open("./tester/deques_output/constructor_default_pointer", std::fstream::in | std::fstream::out | std::fstream::trunc);
         std::cout << ((printDequeAttributes(fs, *stl_pointer_default_deque, *ft_pointer_default_deque) == true) ? "[OK]" : "[NOP]");
         
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> *ft_pointer_default_deque = new ft::deque<int>;\n";
+        fs << "ft::Deque<int> *ft_pointer_default_deque = new ft::Deque<int>;\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "std::deque<int> *stl_pointer_default_deque = new std::deque<int>;\n";
@@ -157,14 +157,14 @@ void test_deque()
     /* Fill constructor */
     {
         std::deque<int> stl_fill_deque(0);
-        ft::deque<int> ft_fill_deque(0);
+        ft::Deque<int> ft_fill_deque(0);
 
         fs.open("./tester/deques_output/constructor_fill_empty", std::fstream::in | std::fstream::out | std::fstream::trunc);
         std::cout << ((printDequeAttributes(fs, stl_fill_deque, ft_fill_deque) == true) ? "[OK]" : "[NOP]");
         
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_fill_deque(0);\n";
+        fs << "ft::Deque<int> ft_fill_deque(0);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "std::deque<int> stl_fill_deque(0);\n";
@@ -174,13 +174,13 @@ void test_deque()
     /* Fill constructor sized */
     {
         std::deque<int> stl_fill_deque_sized(19);
-        ft::deque<int> ft_fill_deque_sized(19);
+        ft::Deque<int> ft_fill_deque_sized(19);
 
         fs.open("./tester/deques_output/constructor_fill_sized", std::fstream::in | std::fstream::out | std::fstream::trunc);
         std::cout << ((printDequeAttributes(fs, stl_fill_deque_sized, ft_fill_deque_sized) == true) ? "[OK]" : "[NOP]");
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_fill_deque_sized(19);\n";
+        fs << "ft::Deque<int> ft_fill_deque_sized(19);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "std::deque<int> stl_fill_deque_sized(19);\n";
@@ -190,13 +190,13 @@ void test_deque()
     /* Fill constructor sized & valued */
     {
         std::deque<int> stl_fill_deque_sized(19, 42);
-        ft::deque<int> ft_fill_deque_sized(19, 42);
+        ft::Deque<int> ft_fill_deque_sized(19, 42);
 
         fs.open("./tester/deques_output/constructor_fill_sized_valued", std::fstream::in | std::fstream::out | std::fstream::trunc);
         std::cout << ((printDequeAttributes(fs, stl_fill_deque_sized, ft_fill_deque_sized) == true) ? "[OK]" : "[NOP]");
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_fill_deque_sized(19, 42);\n";
+        fs << "ft::Deque<int> ft_fill_deque_sized(19, 42);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "std::deque<int> stl_fill_deque_sized(19, 42);\n";
@@ -206,13 +206,13 @@ void test_deque()
     /* Fill constructor sized & valued big */
     {
         std::deque<int> stl_fill_deque_sized(4000, 42);
-        ft::deque<int> ft_fill_deque_sized(4000, 42);
+        ft::Deque<int> ft_fill_deque_sized(4000, 42);
 
         fs.open("./tester/deques_output/constructor_fill_sv_big", std::fstream::in | std::fstream::out | std::fstream::trunc);
         std::cout << ((printDequeAttributes(fs, stl_fill_deque_sized, ft_fill_deque_sized) == true) ? "[OK]" : "[NOP]");
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_fill_deque_sized(4000, 42);\n";
+        fs << "ft::Deque<int> ft_fill_deque_sized(4000, 42);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "std::deque<int> stl_fill_deque_sized(4000, 42);\n";
@@ -224,7 +224,7 @@ void test_deque()
         int range_array[] = { 45, 87846, 12, 965, 5 };
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -235,17 +235,17 @@ void test_deque()
         fs.open("./tester/deques_output/constructor_range", std::fstream::in | std::fstream::out | std::fstream::trunc);
 
         std::deque<int> stl_range_deque(stl_iterator.begin(), stl_iterator.end());
-        ft::deque<int> ft_range_deque(ft_iterator.begin(), ft_iterator.end());
+        ft::Deque<int> ft_range_deque(ft_iterator.begin(), ft_iterator.end());
 
         std::cout << ((printDequeAttributes(fs, stl_range_deque, ft_range_deque) == true) ? "[OK]" : "[NOP]");
         
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 45, 87846, 12, 965, 5 };\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
-        fs << "ft::deque<int> ft_range_deque(ft_iterator.begin(), ft_iterator.end());\n";
+        fs << "ft::Deque<int> ft_range_deque(ft_iterator.begin(), ft_iterator.end());\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 45, 87846, 12, 965, 5 };\n";
@@ -261,7 +261,7 @@ void test_deque()
         int range_array[] = { 58, 963, -478, 61, 25};
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -272,21 +272,21 @@ void test_deque()
         fs.open("./tester/deques_output/constructor_copy", std::fstream::in | std::fstream::out | std::fstream::trunc);
 
         std::deque<int> stl_range_deque(stl_iterator.begin(), stl_iterator.end());
-        ft::deque<int> ft_range_deque(ft_iterator.begin(), ft_iterator.end());
+        ft::Deque<int> ft_range_deque(ft_iterator.begin(), ft_iterator.end());
 
         std::deque<int> stl_copy_deque(stl_range_deque);
-        ft::deque<int> ft_copy_deque(ft_range_deque);
+        ft::Deque<int> ft_copy_deque(ft_range_deque);
 
         std::cout << ((printDequeAttributes(fs, stl_copy_deque, ft_copy_deque) == true) ? "[OK]" : "[NOP]");
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 58, 963, -478, 61, 25};\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
-        fs << "ft::deque<int> ft_range_deque(ft_iterator.begin(), ft_iterator.end());\n";
-        fs << "ft::deque<int> ft_copy_deque(ft_range_deque);\n";
+        fs << "ft::Deque<int> ft_range_deque(ft_iterator.begin(), ft_iterator.end());\n";
+        fs << "ft::Deque<int> ft_copy_deque(ft_range_deque);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 58, 963, -478, 61, 25};\n";
@@ -306,7 +306,7 @@ void test_deque()
         int range_array[] = {74, 569, -8822, 8515, 5 };
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -317,20 +317,20 @@ void test_deque()
         fs.open("./tester/deques_output/operator_assign", std::fstream::in | std::fstream::out | std::fstream::trunc);
 
         std::deque<int> stl_assign_deque(stl_iterator.begin(), stl_iterator.end());
-        ft::deque<int> ft_assign_deque(ft_iterator.begin(), ft_iterator.end());
+        ft::Deque<int> ft_assign_deque(ft_iterator.begin(), ft_iterator.end());
 
         std::deque<int> stl_assi_op_deque = stl_assign_deque;
-        ft::deque<int> ft_assi_op_deque = ft_assign_deque;
+        ft::Deque<int> ft_assi_op_deque = ft_assign_deque;
 
         std::cout << ((printDequeAttributes(fs, stl_assi_op_deque, ft_assi_op_deque) == true) ? "[OK]" : "[NOP]");
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int assign_array[] = {74, 569, -8822, 8515, 5 };\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(assign_array[i]);\n";
-        fs << "ft::deque<int> ft_assi_op_deque = ft_assign_deque;\n";
+        fs << "ft::Deque<int> ft_assi_op_deque = ft_assign_deque;\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int assign_array[] = {74, 569, -8822, 8515, 5 };\n";
@@ -349,7 +349,7 @@ void test_deque()
         int range_array[] = { 87, 92, -5, 8984, 96 };
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -364,7 +364,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 87, 92, -5, 8984, 96 };\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
         fs << "\nCompared with:\n";
@@ -381,7 +381,7 @@ void test_deque()
         int range_array[] = { 87, 92, -5, 8984, 96 };
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -392,7 +392,7 @@ void test_deque()
         fs.open("./tester/deques_output/iterator_begin_const", std::fstream::in | std::fstream::out | std::fstream::trunc);
 
         std::deque<int>::const_iterator stl_const_it = stl_iterator.begin();
-        ft::deque<int>::const_iterator ft_const_it = ft_iterator.begin();
+        ft::Deque<int>::const_iterator ft_const_it = ft_iterator.begin();
 
         const int from_stl = *(stl_const_it);
         const int from_ft = *(ft_const_it);
@@ -402,10 +402,10 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 87, 92, -5, 8984, 96 };\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
-        fs << "ft::deque<int>::const_iterator ft_const_it = ft_iterator.begin();\n";
+        fs << "ft::Deque<int>::const_iterator ft_const_it = ft_iterator.begin();\n";
         fs << "const int from_ft = *(ft_const_it);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -423,7 +423,7 @@ void test_deque()
         int range_array[] = {95, 89, -6121, 48, 5 };
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -439,7 +439,7 @@ void test_deque()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "/* Checked at end() - 1 */\n";
         fs << "int range_array[] = {95, 89, -6121, 48, 5 };\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
         fs << "\nCompared with:\n";
@@ -457,7 +457,7 @@ void test_deque()
         int range_array[] = { 52, -45, -9, 956551, 44};
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -468,7 +468,7 @@ void test_deque()
         fs.open("./tester/deques_output/iterator_end_const", std::fstream::in | std::fstream::out | std::fstream::trunc);
 
         std::deque<int>::const_iterator stl_const_it = stl_iterator.end();
-        ft::deque<int>::const_iterator ft_const_it = ft_iterator.end();
+        ft::Deque<int>::const_iterator ft_const_it = ft_iterator.end();
 
         const int from_stl = *(stl_const_it - 1);
         const int from_ft = *(ft_const_it - 1);
@@ -478,10 +478,10 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 52, -45, -9, 956551, 44};\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
-        fs << "ft::deque<int>::const_iterator ft_const_it = ft_iterator.end();\n";
+        fs << "ft::Deque<int>::const_iterator ft_const_it = ft_iterator.end();\n";
         fs << "const int from_ft = *(ft_const_it - 1);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -499,7 +499,7 @@ void test_deque()
         int range_array[] = { 250, -1200, -98657, 2, 34};
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -514,10 +514,10 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 250, -1200, -98657, 2, 34};\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
-        fs << "ft::deque<int>::const_iterator ft_const_it = ft_iterator.rbegin();\n";
+        fs << "ft::Deque<int>::const_iterator ft_const_it = ft_iterator.rbegin();\n";
         fs << "const int from_ft = *(ft_const_it);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -535,7 +535,7 @@ void test_deque()
         int range_array[] = { 52, -45, -9, 956551, 44};
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -546,7 +546,7 @@ void test_deque()
         fs.open("./tester/deques_output/iterator_reverse_begin_const", std::fstream::in | std::fstream::out | std::fstream::trunc);
 
         std::deque<int>::const_reverse_iterator stl_const_it = stl_iterator.rbegin();
-        ft::deque<int>::const_reverse_iterator ft_const_it = ft_iterator.rbegin();
+        ft::Deque<int>::const_reverse_iterator ft_const_it = ft_iterator.rbegin();
 
         const int from_stl = *(stl_const_it);
         const int from_ft = *(ft_const_it);
@@ -556,10 +556,10 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 52, -45, -9, 956551, 44};\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
-        fs << "ft::deque<int>::const_iterator ft_const_it = ft_iterator.rbegin();\n";
+        fs << "ft::Deque<int>::const_iterator ft_const_it = ft_iterator.rbegin();\n";
         fs << "const int from_ft = *(ft_const_it);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -577,7 +577,7 @@ void test_deque()
         int range_array[] = {95, 89, -6121, 48, 5 };
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -593,7 +593,7 @@ void test_deque()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "/* Checked at rend() - 1 */\n";
         fs << "int range_array[] = {95, 89, -6121, 48, 5 };\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
         fs << "\nCompared with:\n";
@@ -611,7 +611,7 @@ void test_deque()
         int range_array[] = { 8, -5615, 412, 89, 475};
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -622,7 +622,7 @@ void test_deque()
         fs.open("./tester/deques_output/iterator_revese_rend_const", std::fstream::in | std::fstream::out | std::fstream::trunc);
 
         std::deque<int>::const_reverse_iterator stl_const_it = stl_iterator.rend();
-        ft::deque<int>::const_reverse_iterator ft_const_it = ft_iterator.rend();
+        ft::Deque<int>::const_reverse_iterator ft_const_it = ft_iterator.rend();
 
         const int from_stl = *(stl_const_it - 1);
         const int from_ft = *(ft_const_it - 1);
@@ -632,10 +632,10 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 8, -5615, 412, 89, 475};\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
-        fs << "ft::deque<int>::const_iterator ft_const_it = ft_iterator.rend();\n";
+        fs << "ft::Deque<int>::const_iterator ft_const_it = ft_iterator.rend();\n";
         fs << "const int from_ft = *(ft_const_it - 1);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -654,13 +654,13 @@ void test_deque()
     /* Size small */
     {
         std::deque<int> stl_filled(20);
-        ft::deque<int> ft_filled(20);
+        ft::Deque<int> ft_filled(20);
 
         fs.open("./tester/deques_output/size_small", std::fstream::in | std::fstream::out | std::fstream::trunc);
         std::cout << ((printDequeAttributes(fs, stl_filled, ft_filled) == true) ? "[OK]" : "[NOP]");
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_filled(20);\n";
+        fs << "ft::Deque<int> ft_filled(20);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "std::deque<int> stl_filled(20);\n";
@@ -670,13 +670,13 @@ void test_deque()
     /* Size big */
     {
         std::deque<int> stl_filled(1000000);
-        ft::deque<int> ft_filled(1000000);
+        ft::Deque<int> ft_filled(1000000);
 
         fs.open("./tester/deques_output/size_big", std::fstream::in | std::fstream::out | std::fstream::trunc);
         std::cout << ((printDequeAttributes(fs, stl_filled, ft_filled) == true) ? "[OK]" : "[NOP]");
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_filled(1000000);\n";
+        fs << "ft::Deque<int> ft_filled(1000000);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "std::deque<int> stl_filled(1000000);\n";
@@ -686,13 +686,13 @@ void test_deque()
     /* Maximum size */
     {
         std::deque<int> stl_base;
-        ft::deque<int> ft_base;
+        ft::Deque<int> ft_base;
 
         fs.open("./tester/deques_output/maximum_size", std::fstream::in | std::fstream::out | std::fstream::trunc);
         std::cout << ((printDequeAttributes(fs, stl_base, ft_base) == true) ? "[OK]" : "[NOP]");
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_base;\n";
+        fs << "ft::Deque<int> ft_base;\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "std::deque<int> stl_base;\n";
@@ -702,7 +702,7 @@ void test_deque()
     /* Resize extension */
     {
         std::deque<int> stl_base(40);
-        ft::deque<int> ft_base(40);
+        ft::Deque<int> ft_base(40);
 
         stl_base.resize(85);
         ft_base.resize(85);
@@ -711,7 +711,7 @@ void test_deque()
         std::cout << ((printDequeAttributes(fs, stl_base, ft_base) == true) ? "[OK]" : "[NOP]");
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_base(40);\n";
+        fs << "ft::Deque<int> ft_base(40);\n";
         fs << "ft_base.resize(85);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -723,7 +723,7 @@ void test_deque()
     /* Resize reduction */
     {
         std::deque<int> stl_base(40);
-        ft::deque<int> ft_base(40);
+        ft::Deque<int> ft_base(40);
 
         stl_base.resize(3);
         ft_base.resize(3);
@@ -732,7 +732,7 @@ void test_deque()
         std::cout << ((printDequeAttributes(fs, stl_base, ft_base) == true) ? "[OK]" : "[NOP]");
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_base(40);\n";
+        fs << "ft::Deque<int> ft_base(40);\n";
         fs << "ft_base.resize(3);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -744,13 +744,13 @@ void test_deque()
     /* Empty true */
     {
         std::deque<int> stl_base;
-        ft::deque<int> ft_base;
+        ft::Deque<int> ft_base;
 
         fs.open("./tester/deques_output/empty_true", std::fstream::in | std::fstream::out | std::fstream::trunc);
         std::cout << ((printDequeAttributes(fs, stl_base, ft_base) == true) ? "[OK]" : "[NOP]");
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_base;\n";
+        fs << "ft::Deque<int> ft_base;\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "std::deque<int> stl_base;\n";
@@ -760,13 +760,13 @@ void test_deque()
     /* Empty false */
     {
         std::deque<int> stl_base(5);
-        ft::deque<int> ft_base(5);
+        ft::Deque<int> ft_base(5);
 
         fs.open("./tester/deques_output/empty_false", std::fstream::in | std::fstream::out | std::fstream::trunc);
         std::cout << ((printDequeAttributes(fs, stl_base, ft_base) == true) ? "[OK]" : "[NOP]");
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_base(5);\n";
+        fs << "ft::Deque<int> ft_base(5);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "std::deque<int> stl_base(5);\n";
@@ -776,7 +776,7 @@ void test_deque()
     /* Empty after resize */
     {
         std::deque<int> stl_base(5);
-        ft::deque<int> ft_base(5);
+        ft::Deque<int> ft_base(5);
 
         stl_base.resize(0);
         ft_base.resize(0);
@@ -785,7 +785,7 @@ void test_deque()
         std::cout << ((printDequeAttributes(fs, stl_base, ft_base) == true) ? "[OK]" : "[NOP]");
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_base(5);\n";
+        fs << "ft::Deque<int> ft_base(5);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "std::deque<int> stl_base(5);\n";
@@ -801,7 +801,7 @@ void test_deque()
         int range_array[] = { 8, -5615, 412, 89, 475};
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -819,7 +819,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 8, -5615, 412, 89, 475};\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
         fs << "int from_ft = ft_iterator[1];\n";
@@ -838,7 +838,7 @@ void test_deque()
         int range_array[] = {8, -98, 541, 53361, 9};
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -856,7 +856,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {8, -98, 541, 53361, 9};\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
         fs << "const int from_ft = ft_iterator[1];\n";
@@ -875,7 +875,7 @@ void test_deque()
         int range_array[] = {8, -986, -8, 66, 7};
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -893,7 +893,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {8, -986, -8, 66, 7};\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
         fs << "int from_ft = ft_iterator.at(3);\n";
@@ -912,7 +912,7 @@ void test_deque()
         int range_array[] = {845, -9, 47, 4, -825};
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -930,7 +930,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {845, -9, 47, 4, -825};\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
         fs << "const int from_ft = ft_iterator.at(2);\n";
@@ -949,7 +949,7 @@ void test_deque()
         int range_array[] = {2, 0, 982, -9, 87};
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -967,7 +967,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {2, 0, 982, -9, 87};\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
         fs << "int from_ft = ft_iterator.front();\n";
@@ -986,7 +986,7 @@ void test_deque()
         int range_array[] = {5589, -97, -98, -63, 8};
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1004,7 +1004,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {5589, -97, -98, -63, 8};\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
         fs << "const int from_ft = ft_iterator.front();\n";
@@ -1023,7 +1023,7 @@ void test_deque()
         int range_array[] = {2, 0, 982, -9, 87};
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1041,7 +1041,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {2, 0, 982, -9, 87};\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
         fs << "int from_ft = ft_iterator.back();\n";
@@ -1060,7 +1060,7 @@ void test_deque()
         int range_array[] = {5589, -97, -98, -63, 8};
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1078,7 +1078,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {5589, -97, -98, -63, 8};\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
         fs << "const int from_ft = ft_iterator.back();\n";
@@ -1100,7 +1100,7 @@ void test_deque()
         int range_array[] = {5589, -97, -98, -63, 8};
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1111,7 +1111,7 @@ void test_deque()
         fs.open("./tester/deques_output/assign_range", std::fstream::in | std::fstream::out | std::fstream::trunc);
 
         std::deque<int> stl_assign;
-        ft::deque<int> ft_assign;
+        ft::Deque<int> ft_assign;
 
         stl_assign.assign(stl_iterator.begin(), stl_iterator.end());
         ft_assign.assign(ft_iterator.begin(), ft_iterator.end());
@@ -1121,10 +1121,10 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {5589, -97, -98, -63, 8};\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
-        fs << "ft::deque<int> ft_assign;\n";
+        fs << "ft::Deque<int> ft_assign;\n";
         fs << "ft_assign.assign(ft_iterator.begin(), ft_iterator.end());\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1142,7 +1142,7 @@ void test_deque()
         int range_array[] = {5589, -97, -98, -63, 8};
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1153,7 +1153,7 @@ void test_deque()
         fs.open("./tester/deques_output/assign_range_replace", std::fstream::in | std::fstream::out | std::fstream::trunc);
 
         std::deque<int> stl_assign(42);
-        ft::deque<int> ft_assign(42);
+        ft::Deque<int> ft_assign(42);
 
         stl_assign.assign(stl_iterator.begin(), stl_iterator.end());
         ft_assign.assign(ft_iterator.begin(), ft_iterator.end());
@@ -1163,10 +1163,10 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {5589, -97, -98, -63, 8};\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
-        fs << "ft::deque<int> ft_assign(42);\n";
+        fs << "ft::Deque<int> ft_assign(42);\n";
         fs << "ft_assign.assign(ft_iterator.begin(), ft_iterator.end());\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1182,7 +1182,7 @@ void test_deque()
     /* Assign fill */
     {
         std::deque<int> stl_assign_fill;
-        ft::deque<int> ft_assign_fill;
+        ft::Deque<int> ft_assign_fill;
 
         stl_assign_fill.assign(87, 42);
         ft_assign_fill.assign(87, 42);
@@ -1191,7 +1191,7 @@ void test_deque()
         std::cout << ((printDequeAttributes(fs, stl_assign_fill, ft_assign_fill) == true) ? "[OK]" : "[NOP]");
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_assign_fill;\n";
+        fs << "ft::Deque<int> ft_assign_fill;\n";
         fs << "ft_assign_fill.assign(87, 42);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";    
@@ -1203,7 +1203,7 @@ void test_deque()
     /* Assign fill replace */
     {
         std::deque<int> stl_assign_fill(42);
-        ft::deque<int> ft_assign_fill(42);
+        ft::Deque<int> ft_assign_fill(42);
 
         stl_assign_fill.assign(420, 14);
         ft_assign_fill.assign(420, 14);
@@ -1212,7 +1212,7 @@ void test_deque()
         std::cout << ((printDequeAttributes(fs, stl_assign_fill, ft_assign_fill) == true) ? "[OK]" : "[NOP]");
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_assign_fill;\n";
+        fs << "ft::Deque<int> ft_assign_fill;\n";
         fs << "ft_assign_fill.assign(87, 42);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";    
@@ -1224,7 +1224,7 @@ void test_deque()
     /* Push back empty */
     {
         std::deque<int> stl_pushback;
-        ft::deque<int> ft_pushback;
+        ft::Deque<int> ft_pushback;
 
         stl_pushback.push_back(42);
         ft_pushback.push_back(42);
@@ -1233,7 +1233,7 @@ void test_deque()
         std::cout << ((printDequeAttributes(fs, stl_pushback, ft_pushback) == true) ? "[OK]" : "[NOP]");
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_pushback;\n";
+        fs << "ft::Deque<int> ft_pushback;\n";
         fs << "ft_pushback.push_back(42);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1247,7 +1247,7 @@ void test_deque()
         int range_array[] = {5589, -97, -98, -63, 8};
 
         std::deque<int> stl_iterator;
-        ft::deque<int> ft_iterator;
+        ft::Deque<int> ft_iterator;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1265,7 +1265,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {5589, -97, -98, -63, 8};\n";
-        fs << "ft::deque<int>::iterator ft_iterator;\n";
+        fs << "ft::Deque<int>::iterator ft_iterator;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_iterator.push_back(range_array[i]);\n";
         fs << "ft_iterator.push_back(999);\n";
@@ -1282,7 +1282,7 @@ void test_deque()
     /* Push front empty */
     {
         std::deque<int> stl_pushback;
-        ft::deque<int> ft_pushback;
+        ft::Deque<int> ft_pushback;
 
         stl_pushback.push_back(42);
         ft_pushback.push_back(42);
@@ -1291,7 +1291,7 @@ void test_deque()
         std::cout << ((printDequeAttributes(fs, stl_pushback, ft_pushback) == true) ? "[OK]" : "[NOP]");
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_pushback;\n";
+        fs << "ft::Deque<int> ft_pushback;\n";
         fs << "ft_pushback.push_back(42);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1303,7 +1303,7 @@ void test_deque()
     /* Push front */
     {
         std::deque<int> stl_pushback(10);
-        ft::deque<int> ft_pushback(10);
+        ft::Deque<int> ft_pushback(10);
 
         stl_pushback.push_front(42);
         ft_pushback.push_front(42);
@@ -1312,7 +1312,7 @@ void test_deque()
         std::cout << ((printDequeAttributes(fs, stl_pushback, ft_pushback) == true) ? "[OK]" : "[NOP]");
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_pushback(10);\n";
+        fs << "ft::Deque<int> ft_pushback(10);\n";
         fs << "ft_pushback.push_front(42);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1326,7 +1326,7 @@ void test_deque()
         int range_array[] = {547, 98, -6, 0, 47};
 
         std::deque<int> stl_popback;
-        ft::deque<int> ft_popback;
+        ft::Deque<int> ft_popback;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1342,7 +1342,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {547, 98, -6, 0, 47};\n";
-        fs << "ft::deque<int> ft_popback;\n";
+        fs << "ft::Deque<int> ft_popback;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_popback.push_back(range_array[i]);\n";
         fs << "ft_popback.pop_back();\n";
@@ -1361,7 +1361,7 @@ void test_deque()
         int range_array[] = {149, -78, 53, 5444, 62};
 
         std::deque<int> stl_popfront;
-        ft::deque<int> ft_popfront;
+        ft::Deque<int> ft_popfront;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1377,7 +1377,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {149, -78, 53, 5444, 62};\n";
-        fs << "ft::deque<int> ft_popfront;\n";
+        fs << "ft::Deque<int> ft_popfront;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_popfront.push_back(range_array[i]);\n";
         fs << "ft_popfront.pop_front();\n";
@@ -1396,7 +1396,7 @@ void test_deque()
         int range_array[] = {147, 985, -9, -9965, 4};
 
         std::deque<int> stl_insert;
-        ft::deque<int> ft_insert;
+        ft::Deque<int> ft_insert;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1412,7 +1412,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {147, 985, -9, -9965, 4};\n";
-        fs << "ft::deque<int> ft_insert;\n";
+        fs << "ft::Deque<int> ft_insert;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_insert.push_back(range_array[i]);\n";
         fs << "ft_insert.insert(ft_insert.begin(), 42);\n";
@@ -1431,7 +1431,7 @@ void test_deque()
         int range_array[] = {147, 84, 55, -9, 777};
 
         std::deque<int> stl_insert;
-        ft::deque<int> ft_insert;
+        ft::Deque<int> ft_insert;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1447,7 +1447,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {147, 84, 55, -9, 777};\n";
-        fs << "ft::deque<int> ft_insert;\n";
+        fs << "ft::Deque<int> ft_insert;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_insert.push_back(range_array[i]);\n";
         fs << "ft_insert.insert(ft_insert.end(), 42);\n";
@@ -1466,7 +1466,7 @@ void test_deque()
         int range_array[] = {654, 987, -32, 47, 85};
 
         std::deque<int> stl_insert;
-        ft::deque<int> ft_insert;
+        ft::Deque<int> ft_insert;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1482,7 +1482,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {654, 987, -32, 47, 85};\n";
-        fs << "ft::deque<int> ft_insert;\n";
+        fs << "ft::Deque<int> ft_insert;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_insert.push_back(range_array[i]);\n";
         fs << "ft_insert.insert(ft_insert.begin() + 2, 42);\n";
@@ -1499,7 +1499,7 @@ void test_deque()
     /* Insert fill */
     {
         std::deque<int> stl_insert(10);
-        ft::deque<int> ft_insert(10);
+        ft::Deque<int> ft_insert(10);
 
         stl_insert.insert(stl_insert.begin() + 2, 10, 42);
         ft_insert.insert(ft_insert.begin() + 2, 10, 42);
@@ -1509,7 +1509,7 @@ void test_deque()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_insert(10);\n";
+        fs << "ft::Deque<int> ft_insert(10);\n";
         fs << "ft_insert.insert(ft_insert.begin() + 2, 10, 42);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1521,7 +1521,7 @@ void test_deque()
     /* Insert fill big */
     {
         std::deque<int> stl_insert(10);
-        ft::deque<int> ft_insert(10);
+        ft::Deque<int> ft_insert(10);
 
         stl_insert.insert(stl_insert.begin() + 2, 10000, 42);
         ft_insert.insert(ft_insert.begin() + 2, 10000, 42);
@@ -1531,7 +1531,7 @@ void test_deque()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_insert(10);\n";
+        fs << "ft::Deque<int> ft_insert(10);\n";
         fs << "ft_insert.insert(ft_insert.begin() + 2, 10000, 42);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1545,7 +1545,7 @@ void test_deque()
         int range_array[] = {147, 985, -9, -9965, 4};
 
         std::deque<int> stl_range;
-        ft::deque<int> ft_range;
+        ft::Deque<int> ft_range;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1554,7 +1554,7 @@ void test_deque()
         }
 
         std::deque<int> stl_insert(10);
-        ft::deque<int> ft_insert(10);
+        ft::Deque<int> ft_insert(10);
 
         stl_insert.insert(stl_insert.begin(), stl_range.begin(), stl_range.end());
         ft_insert.insert(ft_insert.begin(), ft_range.begin(), ft_range.end());
@@ -1564,7 +1564,7 @@ void test_deque()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_insert(10);\n";
+        fs << "ft::Deque<int> ft_insert(10);\n";
         fs << "ft_insert.insert(ft_insert.begin(), ft_range.begin(), ft_range.end());\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1578,7 +1578,7 @@ void test_deque()
         int range_array[] = {147, 985, -9, -9965, 4};
 
         std::deque<int> stl_range;
-        ft::deque<int> ft_range;
+        ft::Deque<int> ft_range;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1587,7 +1587,7 @@ void test_deque()
         }
 
         std::deque<int> stl_insert(10);
-        ft::deque<int> ft_insert(10);
+        ft::Deque<int> ft_insert(10);
 
         stl_insert.insert(stl_insert.end(), stl_range.begin(), stl_range.end());
         ft_insert.insert(ft_insert.end(), ft_range.begin(), ft_range.end());
@@ -1597,7 +1597,7 @@ void test_deque()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_insert(10);\n";
+        fs << "ft::Deque<int> ft_insert(10);\n";
         fs << "ft_insert.insert(ft_insert.end(), ft_range.begin(), ft_range.end());\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1611,7 +1611,7 @@ void test_deque()
         int range_array[] = {147, 985, -9, -9965, 4};
 
         std::deque<int> stl_range;
-        ft::deque<int> ft_range;
+        ft::Deque<int> ft_range;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1620,7 +1620,7 @@ void test_deque()
         }
 
         std::deque<int> stl_insert(10);
-        ft::deque<int> ft_insert(10);
+        ft::Deque<int> ft_insert(10);
 
         stl_insert.insert(stl_insert.begin() + 2, stl_range.begin(), stl_range.end());
         ft_insert.insert(ft_insert.begin() + 2, ft_range.begin(), ft_range.end());
@@ -1631,10 +1631,10 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {147, 985, -9, -9965, 4};\n";
-        fs << "ft::deque<int> ft_range;\n";
+        fs << "ft::Deque<int> ft_range;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_range.push_back(range_array[i]);\n";
-        fs << "ft::deque<int> ft_insert(10);\n";
+        fs << "ft::Deque<int> ft_insert(10);\n";
         fs << "ft_insert.insert(ft_insert.begin() + 2, ft_range.begin(), ft_range.end());\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -1652,7 +1652,7 @@ void test_deque()
         int range_array[] = {147, -985, 666, 8, 9};
 
         std::deque<int> stl_range;
-        ft::deque<int> ft_range;
+        ft::Deque<int> ft_range;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1668,7 +1668,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";    
         fs << "int range_array[] = {147, -985, 666, 8, 9};\n";
-        fs << "ft::deque<int> ft_range;\n";
+        fs << "ft::Deque<int> ft_range;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_range.push_back(range_array[i]);\n";
         fs << "ft_range.erase(ft_range.begin() + 2);\n";
@@ -1687,7 +1687,7 @@ void test_deque()
         int range_array[] = {147, -985, 666, 8, 9};
 
         std::deque<int> stl_range;
-        ft::deque<int> ft_range;
+        ft::Deque<int> ft_range;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1703,7 +1703,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";    
         fs << "int range_array[] = {147, -985, 666, 8, 9};\n";
-        fs << "ft::deque<int> ft_range;\n";
+        fs << "ft::Deque<int> ft_range;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_range.push_back(range_array[i]);\n";
         fs << "ft_range.erase(ft_range.begin() + 2);\n";
@@ -1722,7 +1722,7 @@ void test_deque()
         int range_array[] = {147, -985, 666, 8, 9};
 
         std::deque<int> stl_range;
-        ft::deque<int> ft_range;
+        ft::Deque<int> ft_range;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1738,7 +1738,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";    
         fs << "int range_array[] = {147, -985, 666, 8, 9};\n";
-        fs << "ft::deque<int> ft_range;\n";
+        fs << "ft::Deque<int> ft_range;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_range.push_back(range_array[i]);\n";
         fs << "ft_range.erase(ft_range.begin() + 2);\n";
@@ -1757,7 +1757,7 @@ void test_deque()
         int range_array[] = {147, -985, 666, 8, 9};
 
         std::deque<int> stl_range;
-        ft::deque<int> ft_range;
+        ft::Deque<int> ft_range;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1773,7 +1773,7 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";    
         fs << "int range_array[] = {147, -985, 666, 8, 9};\n";
-        fs << "ft::deque<int> ft_range;\n";
+        fs << "ft::Deque<int> ft_range;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "    ft_range.push_back(range_array[i]);\n";
         fs << "ft_range.erase(ft_range.begin() + 2);\n";
@@ -1794,8 +1794,8 @@ void test_deque()
 
         std::deque<int> stl_deque_one;
         std::deque<int> stl_deque_two;
-        ft::deque<int> ft_deque_one;
-        ft::deque<int> ft_deque_two;
+        ft::Deque<int> ft_deque_one;
+        ft::Deque<int> ft_deque_two;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1817,8 +1817,8 @@ void test_deque()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array_one[] = {1458, -98, 745, 62, 9};\n";
         fs << "int range_array_two[] = {478, 87, -15, 44, 7};\n";
-        fs << "ft::deque<int> ft_deque_one;\n";
-        fs << "ft::deque<int> ft_deque_two;\n";
+        fs << "ft::Deque<int> ft_deque_one;\n";
+        fs << "ft::Deque<int> ft_deque_two;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "{\n";
         fs << "    ft_deque_one.push_back(range_array_one[i]);\n";
@@ -1839,11 +1839,10 @@ void test_deque()
         fs << "stl_deque_one.swap(stl_deque_two);\n";
         fs.close();  
     }
-
     /* Clear */
     {
         std::deque<int> stl_clear(20);
-        ft::deque<int> ft_clear(20);
+        ft::Deque<int> ft_clear(20);
 
         stl_clear.push_back(42);
         ft_clear.push_back(42);
@@ -1855,7 +1854,7 @@ void test_deque()
         std::cout << ((printDequeAttributes(fs, stl_clear, ft_clear) == true) ? "[OK]" : "[NOP]");
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::deque<int> ft_clear;\n";
+        fs << "ft::Deque<int> ft_clear;\n";
         fs << "ft_clear.push_back(42);\n";
         fs << "ft_clear.clear();\n";
         fs << "\nCompared with:\n";
@@ -1877,8 +1876,8 @@ void test_deque()
 
         std::deque<int> stl_deque_one;
         std::deque<int> stl_deque_two;
-        ft::deque<int> ft_deque_one;
-        ft::deque<int> ft_deque_two;
+        ft::Deque<int> ft_deque_one;
+        ft::Deque<int> ft_deque_two;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1897,8 +1896,8 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {1458, -98, 745, 62, 9};\n";
-        fs << "ft::deque<int> ft_deque_one;\n";
-        fs << "ft::deque<int> ft_deque_two;\n";
+        fs << "ft::Deque<int> ft_deque_one;\n";
+        fs << "ft::Deque<int> ft_deque_two;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "{\n";
         fs << "    ft_deque_one.push_back(range_array[i]);\n";
@@ -1924,8 +1923,8 @@ void test_deque()
 
         std::deque<int> stl_deque_one;
         std::deque<int> stl_deque_two;
-        ft::deque<int> ft_deque_one;
-        ft::deque<int> ft_deque_two;
+        ft::Deque<int> ft_deque_one;
+        ft::Deque<int> ft_deque_two;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1946,8 +1945,8 @@ void test_deque()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array_one[] = {1458, -98, 745, 62, 9};\n";
         fs << "int range_array_two[] = {1458, 9, 458, 5, -88};\n";
-        fs << "ft::deque<int> ft_deque_one;\n";
-        fs << "ft::deque<int> ft_deque_two;\n";
+        fs << "ft::Deque<int> ft_deque_one;\n";
+        fs << "ft::Deque<int> ft_deque_two;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "{\n";
         fs << "    ft_deque_one.push_back(range_array_one[i]);\n";
@@ -1974,8 +1973,8 @@ void test_deque()
 
         std::deque<int> stl_deque_one;
         std::deque<int> stl_deque_two;
-        ft::deque<int> ft_deque_one;
-        ft::deque<int> ft_deque_two;
+        ft::Deque<int> ft_deque_one;
+        ft::Deque<int> ft_deque_two;
 
         for (int i = 0; i < 5; i++)
         {
@@ -1996,8 +1995,8 @@ void test_deque()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array_one[] = {144, 335, 5, 0, -54};\n";
         fs << "int range_array_two[] = {1458, -98, 745, 62, 9};\n";
-        fs << "ft::deque<int> ft_deque_one;\n";
-        fs << "ft::deque<int> ft_deque_two;\n";
+        fs << "ft::Deque<int> ft_deque_one;\n";
+        fs << "ft::Deque<int> ft_deque_two;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "{\n";
         fs << "    ft_deque_one.push_back(range_array_one[i]);\n";
@@ -2023,8 +2022,8 @@ void test_deque()
 
         std::deque<int> stl_deque_one;
         std::deque<int> stl_deque_two;
-        ft::deque<int> ft_deque_one;
-        ft::deque<int> ft_deque_two;
+        ft::Deque<int> ft_deque_one;
+        ft::Deque<int> ft_deque_two;
 
         for (int i = 0; i < 5; i++)
         {
@@ -2043,8 +2042,8 @@ void test_deque()
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {1458, -98, 745, 62, 9};\n";
-        fs << "ft::deque<int> ft_deque_one;\n";
-        fs << "ft::deque<int> ft_deque_two;\n";
+        fs << "ft::Deque<int> ft_deque_one;\n";
+        fs << "ft::Deque<int> ft_deque_two;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "{\n";
         fs << "    ft_deque_one.push_back(range_array[i]);\n";
@@ -2070,8 +2069,8 @@ void test_deque()
 
         std::deque<int> stl_deque_one;
         std::deque<int> stl_deque_two;
-        ft::deque<int> ft_deque_one;
-        ft::deque<int> ft_deque_two;
+        ft::Deque<int> ft_deque_one;
+        ft::Deque<int> ft_deque_two;
 
         for (int i = 0; i < 5; i++)
         {
@@ -2092,8 +2091,8 @@ void test_deque()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array_one[] = {144, 335, 1, -98, 5};\n";
         fs << "int range_array_two[] = {144, 335, 5, 0, -54};\n";
-        fs << "ft::deque<int> ft_deque_one;\n";
-        fs << "ft::deque<int> ft_deque_two;\n";
+        fs << "ft::Deque<int> ft_deque_one;\n";
+        fs << "ft::Deque<int> ft_deque_two;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "{\n";
         fs << "    ft_deque_one.push_back(range_array_one[i]);\n";
@@ -2120,8 +2119,8 @@ void test_deque()
 
         std::deque<int> stl_deque_one;
         std::deque<int> stl_deque_two;
-        ft::deque<int> ft_deque_one;
-        ft::deque<int> ft_deque_two;
+        ft::Deque<int> ft_deque_one;
+        ft::Deque<int> ft_deque_two;
 
         for (int i = 0; i < 5; i++)
         {
@@ -2142,8 +2141,8 @@ void test_deque()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array_one[] = {6780, 335, 1, -98, 5};\n";
         fs << "int range_array_two[] = {144, 335, 5, 0, -54};\n";
-        fs << "ft::deque<int> ft_deque_one;\n";
-        fs << "ft::deque<int> ft_deque_two;\n";
+        fs << "ft::Deque<int> ft_deque_one;\n";
+        fs << "ft::Deque<int> ft_deque_two;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "{\n";
         fs << "    ft_deque_one.push_back(range_array_one[i]);\n";
@@ -2170,8 +2169,8 @@ void test_deque()
 
         std::deque<int> stl_deque_one;
         std::deque<int> stl_deque_two;
-        ft::deque<int> ft_deque_one;
-        ft::deque<int> ft_deque_two;
+        ft::Deque<int> ft_deque_one;
+        ft::Deque<int> ft_deque_two;
 
         for (int i = 0; i < 5; i++)
         {
@@ -2192,8 +2191,8 @@ void test_deque()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array_one[] = {144, 335, 1, -98, 5};\n";
         fs << "int range_array_two[] = {144, 335, 5, 0, -54};\n";
-        fs << "ft::deque<int> ft_deque_one;\n";
-        fs << "ft::deque<int> ft_deque_two;\n";
+        fs << "ft::Deque<int> ft_deque_one;\n";
+        fs << "ft::Deque<int> ft_deque_two;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "{\n";
         fs << "    ft_deque_one.push_back(range_array_one[i]);\n";
@@ -2220,8 +2219,8 @@ void test_deque()
 
         std::deque<int> stl_deque_one;
         std::deque<int> stl_deque_two;
-        ft::deque<int> ft_deque_one;
-        ft::deque<int> ft_deque_two;
+        ft::Deque<int> ft_deque_one;
+        ft::Deque<int> ft_deque_two;
 
         for (int i = 0; i < 5; i++)
         {
@@ -2242,8 +2241,8 @@ void test_deque()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array_one[] = {144, 335, 5, 0, -54};\n";
         fs << "int range_array_two[] = {144, 335, 5, 0, -54};\n";
-        fs << "ft::deque<int> ft_deque_one;\n";
-        fs << "ft::deque<int> ft_deque_two;\n";
+        fs << "ft::Deque<int> ft_deque_one;\n";
+        fs << "ft::Deque<int> ft_deque_two;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "{\n";
         fs << "    ft_deque_one.push_back(range_array_one[i]);\n";
@@ -2270,8 +2269,8 @@ void test_deque()
 
         std::deque<int> stl_deque_one;
         std::deque<int> stl_deque_two;
-        ft::deque<int> ft_deque_one;
-        ft::deque<int> ft_deque_two;
+        ft::Deque<int> ft_deque_one;
+        ft::Deque<int> ft_deque_two;
 
         for (int i = 0; i < 5; i++)
         {
@@ -2292,8 +2291,8 @@ void test_deque()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array_one[] = {144, 9999, 5, 0, -54};\n";
         fs << "int range_array_two[] = {144, 335, 5, 0, -54};\n";
-        fs << "ft::deque<int> ft_deque_one;\n";
-        fs << "ft::deque<int> ft_deque_two;\n";
+        fs << "ft::Deque<int> ft_deque_one;\n";
+        fs << "ft::Deque<int> ft_deque_two;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "{\n";
         fs << "    ft_deque_one.push_back(range_array_one[i]);\n";
@@ -2320,8 +2319,8 @@ void test_deque()
 
         std::deque<int> stl_deque_one;
         std::deque<int> stl_deque_two;
-        ft::deque<int> ft_deque_one;
-        ft::deque<int> ft_deque_two;
+        ft::Deque<int> ft_deque_one;
+        ft::Deque<int> ft_deque_two;
 
         for (int i = 0; i < 5; i++)
         {
@@ -2342,8 +2341,8 @@ void test_deque()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array_one[] = {144, 9999, 5, 0, -54};\n";
         fs << "int range_array_two[] = {144, 335, 5, 0, -54};\n";
-        fs << "ft::deque<int> ft_deque_one;\n";
-        fs << "ft::deque<int> ft_deque_two;\n";
+        fs << "ft::Deque<int> ft_deque_one;\n";
+        fs << "ft::Deque<int> ft_deque_two;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "{\n";
         fs << "    ft_deque_one.push_back(range_array_one[i]);\n";
@@ -2370,8 +2369,8 @@ void test_deque()
 
         std::deque<int> stl_deque_one;
         std::deque<int> stl_deque_two;
-        ft::deque<int> ft_deque_one;
-        ft::deque<int> ft_deque_two;
+        ft::Deque<int> ft_deque_one;
+        ft::Deque<int> ft_deque_two;
 
         for (int i = 0; i < 5; i++)
         {
@@ -2392,8 +2391,8 @@ void test_deque()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array_one[] = {144, 335, 5, 0, -54};\n";
         fs << "int range_array_two[] = {144, 335, 77, 0, -54};\n";
-        fs << "ft::deque<int> ft_deque_one;\n";
-        fs << "ft::deque<int> ft_deque_two;\n";
+        fs << "ft::Deque<int> ft_deque_one;\n";
+        fs << "ft::Deque<int> ft_deque_two;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "{\n";
         fs << "    ft_deque_one.push_back(range_array_one[i]);\n";
@@ -2420,8 +2419,8 @@ void test_deque()
 
         std::deque<int> stl_deque_one;
         std::deque<int> stl_deque_two;
-        ft::deque<int> ft_deque_one;
-        ft::deque<int> ft_deque_two;
+        ft::Deque<int> ft_deque_one;
+        ft::Deque<int> ft_deque_two;
 
         for (int i = 0; i < 5; i++)
         {
@@ -2442,8 +2441,8 @@ void test_deque()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array_one[] = {144, 335, 78, 0, -54};\n";
         fs << "int range_array_two[] = {144, 335, 77, 0, -54};\n";
-        fs << "ft::deque<int> ft_deque_one;\n";
-        fs << "ft::deque<int> ft_deque_two;\n";
+        fs << "ft::Deque<int> ft_deque_one;\n";
+        fs << "ft::Deque<int> ft_deque_two;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "{\n";
         fs << "    ft_deque_one.push_back(range_array_one[i]);\n";
@@ -2470,8 +2469,8 @@ void test_deque()
 
         std::deque<int> stl_deque_one;
         std::deque<int> stl_deque_two;
-        ft::deque<int> ft_deque_one;
-        ft::deque<int> ft_deque_two;
+        ft::Deque<int> ft_deque_one;
+        ft::Deque<int> ft_deque_two;
 
         for (int i = 0; i < 5; i++)
         {
@@ -2492,8 +2491,8 @@ void test_deque()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array_one[] = {144, 335, 5, 0, -54};\n";
         fs << "int range_array_two[] = {144, 335, 77, 0, -54};\n";
-        fs << "ft::deque<int> ft_deque_one;\n";
-        fs << "ft::deque<int> ft_deque_two;\n";
+        fs << "ft::Deque<int> ft_deque_one;\n";
+        fs << "ft::Deque<int> ft_deque_two;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "{\n";
         fs << "    ft_deque_one.push_back(range_array_one[i]);\n";
@@ -2520,8 +2519,8 @@ void test_deque()
 
         std::deque<int> stl_deque_one;
         std::deque<int> stl_deque_two;
-        ft::deque<int> ft_deque_one;
-        ft::deque<int> ft_deque_two;
+        ft::Deque<int> ft_deque_one;
+        ft::Deque<int> ft_deque_two;
 
         for (int i = 0; i < 5; i++)
         {
@@ -2543,8 +2542,8 @@ void test_deque()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array_one[] = {144, 335, 5, 0, -54};\n";
         fs << "int range_array_two[] = {47, -98, 58, 611, -4};\n";
-        fs << "ft::deque<int> ft_deque_one;\n";
-        fs << "ft::deque<int> ft_deque_two;\n";
+        fs << "ft::Deque<int> ft_deque_one;\n";
+        fs << "ft::Deque<int> ft_deque_two;\n";
         fs << "for (int i = 0; i < 5; i++)\n";
         fs << "{\n";
         fs << "    ft_deque_one.push_back(range_array_one[i]);\n";

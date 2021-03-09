@@ -3,8 +3,8 @@
 
 #include <limits>
 #include <cstddef>
-#include "../iterator_traits.hpp"
-#include "../utils.hpp"
+#include "../utils/iterator_traits.hpp"
+#include "../utils/utils.hpp"
 #include <cmath>
 #include <cstring>
 #include <iostream>
@@ -34,7 +34,6 @@ public:
 
     explicit Vector (size_type n, const value_type& val = value_type()) {
         init();
-        // std::cout << "n: " << n << std::endl;
         reserve(n);
         insert(begin(), n, val);
     }
@@ -57,7 +56,6 @@ public:
     }
 
     Vector& operator= (const Vector& x) {
-        // clear();
         assign(x.begin(), x.end());
         return (*this);
     }
@@ -96,7 +94,7 @@ public:
 
     size_type max_size() const {
         return (std::min((size_type) std::numeric_limits<difference_type>::max(),
-						std::numeric_limits<size_type>::max() / (sizeof(value_type) * 2)));
+						std::numeric_limits<size_type>::max() / sizeof(value_type)));
     }
 
     void resize (size_type n, value_type val = value_type()) {
@@ -117,12 +115,10 @@ public:
     }
 
     void reserve (size_type n) {
-        // std::cout << _size << " " << n << " " << _capacity << std::endl;
-
         if (n > _capacity) {
             _capacity = n;
             pointer new_container = static_cast<pointer>(::operator new(sizeof(value_type) * n));
-            std::memcpy(new_container, _container, _size * sizeof(value_type));
+            std::memmove(new_container, _container, _size * sizeof(value_type));
             size_type size = _size;
             clear();
             _size = size;
@@ -215,31 +211,12 @@ public:
         size_type   pos = position - begin();
         if (_size + n > _capacity)
             reserve(_size + n);
-        std::memcpy(&_container[pos + n], &_container[pos], (_size - pos) * sizeof(value_type));
+        std::memmove(&_container[pos + n], &_container[pos], (_size - pos) * sizeof(value_type));
         for (size_type i = pos; i < pos + n; ++i) {
             _container[i] = val;
         }
         _size += n;
     }
-
-///
-
-// template <typename U>
-// struct st_integer {
-//     static const bool value = true;
-//     typedef U type;
-// };
-
-// template <>
-// struct st_integer<int> {
-//     static const bool value = false;
-// };
-
-// template <typename U>
-// typedef typename st_integer<U>::type integer_t;
-
-
-///
 
     template <typename InputIterator >
     void insert (iterator position, InputIterator first, InputIterator last,
@@ -260,7 +237,7 @@ public:
     iterator erase (iterator position) {
         size_type pos = position - begin();
         if (position != end()) {
-            std::memcpy(_container + pos, _container + pos + 1, (_size - pos) * sizeof(value_type));
+            std::memmove(_container + pos, _container + pos + 1, (_size - pos - 1) * sizeof(value_type));
         }
         _size--;
         return (position);
@@ -268,7 +245,7 @@ public:
     iterator erase (iterator first, iterator last) {
         size_type pos = first - begin();
         size_type len = last - first;
-        std::memcpy(_container + pos, _container + pos + len, (_size - len) * sizeof(value_type));
+        std::memmove(_container + pos, _container + pos + len, (_size - pos - len) * sizeof(value_type));
         _size -= len;
         return (first);
     }

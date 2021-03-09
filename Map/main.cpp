@@ -5,7 +5,7 @@
 #include <utility>
 #include <map>
 #include "RedBlackTree.hpp"
-#include "../Pair.hpp"
+#include "../utils/Pair.hpp"
 #include "Map.hpp"
 // #include "../test/test.hpp"
 // #include "../test/map_test.hpp"
@@ -36,7 +36,7 @@ struct great {
 
 int main(void) {
 
-    int test = 4;
+    int test = 3;
 
     if (test == 1) {
         ft::Map<int, int > mp;
@@ -48,7 +48,7 @@ int main(void) {
 		mp.insert(ft::make_pair(9, 9));
 		mp.insert(ft::make_pair(10, 10));
 		mp.insert(ft::make_pair(11, 11));
-        mp.print();
+        // mp.print();
 
 		// mp.insert(mp.begin(), ft::make_pair(5, 42));
 		// mp.insert(mp.begin(), ft::make_pair(6, 43));
@@ -79,10 +79,38 @@ int main(void) {
         // p.second = 1337;
         std::cout << p.first << " " << p.second << std::endl;
     } else if (test == 3) {
-        // test_Map< ft::Map<char, int> >();
+        const int range_int[] = {-854, 1, 965, -9, 755};
+        const std::string range_str[] = {"One", "Two", "Three", "Four", "Five"};
+
+		std::map<int, std::string> stl_map;
+		ft::Map<int, std::string> ft_map;
+
+        for (int i = 0; i < 5; i++)
+        {
+            stl_map.insert(std::make_pair(range_int[i], range_str[i]));
+            ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
+        }
+	    
+		std::map<int, std::string>::iterator stl_it_beg = stl_map.begin();
+		ft::Map<int, std::string>::iterator ft_it_beg = ft_map.begin();
+		std::map<int, std::string>::iterator stl_it_end = stl_map.end();
+		ft::Map<int, std::string>::iterator ft_it_end = ft_map.end();
+
+		for (int i = 0; i < 2; i++)
+		{
+			stl_it_beg++;
+			ft_it_beg++;
+		}
+		stl_it_end--;
+		ft_it_end--;
+
+        // std::cout << "STL: " << (*stl_it_beg).second << '\n';
+        // std::cout << "FT: " << (*ft_it_beg).second << '\n';
+        stl_map.erase(stl_it_beg, stl_it_end);
+        ft_map.erase(ft_it_beg, ft_it_end);
         
     } else if (test == 4) {
-        test_map();
+        // test_map();
         // while (1);
     }
     return (0);

@@ -1,0 +1,73 @@
+
+══════════════════════════════════════════════════════════════
+maps attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 288230376151711743
+Content     : [[-985, Two], [5, Five], [58, Three], [754, One], [999, Four], ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 288230376151711743
+Content  [✔]: [[-985, Two], [5, Five], [58, Three], [754, One], [999, Four], ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+maps attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 288230376151711743
+Content     : [[-719, Two_two], [271, Five_two], [324, Three_two], [1020, One_two], [1265, Four_two], ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 288230376151711743
+Content  [✔]: [[-719, Two_two], [271, Five_two], [324, Three_two], [1020, One_two], [1265, Four_two], ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+maps attributes : 
+STL : 
+Empty       : false
+Size        : 10
+Max size    : 288230376151711743
+Content     : [[-985, Two], [-719, Two_two], [5, Five], [58, Three], [271, Five_two], [324, Three_two], [754, One], [999, Four], [1020, One_two], [1265, Four_two], ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 10
+Max size [✔]: 288230376151711743
+Content  [✔]: [[-985, Two], [-719, Two_two], [5, Five], [58, Three], [271, Five_two], [324, Three_two], [754, One], [999, Four], [1020, One_two], [1265, Four_two], ]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+const int range_int[] = {754, -985, 58, 999, 5};
+const std::string range_str[] = {"One", "Two", "Three", "Four", "Five"};
+ft::Map<int, std::string> ft_map_one;
+ft::Map<int, std::string> ft_map_two;
+for (int i = 0; i < 5; i++)
+{
+	ft_map_one.insert(ft::make_pair(range_int[i], range_str[i]));
+	ft_map_two.insert(ft::make_pair(range_int[i] + 266, range_str[i] + "_two"));
+}
+Sending output...
+ft_map_one.insert(ft_map_two.begin(), ft_map_two.end());
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+const int range_int[] = {754, -985, 58, 999, 5};
+const std::string range_str[] = {"One", "Two", "Three", "Four", "Five"};
+std::map<int, std::string> stl_map_one;
+std::map<int, std::string> stl_map_two;
+for (int i = 0; i < 5; i++)
+{
+	stl_map_one.insert(std::make_pair(range_int[i], range_str[i]));
+	stl_map_two.insert(std::make_pair(range_int[i] + 266, range_str[i] + "_two"));
+}
+Sending output...
+stl_map_one.insert(stl_map_two.begin(), stl_map_two.end());

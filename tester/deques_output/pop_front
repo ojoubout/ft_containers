@@ -1,0 +1,31 @@
+
+══════════════════════════════════════════════════════════════
+deques attributes : 
+STL : 
+Empty       : false
+Size        : 4
+Max size    : 4611686018427387903
+Content     : [-78, 53, 5444, 62]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 4
+Max size [✔]: 4611686018427387903
+Content  [✔]: [-78, 53, 5444, 62]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {149, -78, 53, 5444, 62};
+ft::Deque<int> ft_popfront;
+for (int i = 0; i < 5; i++)
+    ft_popfront.push_back(range_array[i]);
+ft_popfront.pop_front();
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {149, -78, 53, 5444, 62};
+std::deque<int> stl_popfront;
+for (int i = 0; i < 5; i++)
+    stl_popfront.push_back(range_array[i]);
+stl_popfront.pop_front();

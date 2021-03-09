@@ -5,15 +5,19 @@
 int main() {
     int test = 2;
     if (test == 1) {
-        ft::Deque<int> x;
+        std::deque<int> stl_default_deque;
+        ft::Deque<int> ft_default_deque;
 
-        ft::Deque<int>::iterator it;
-        for (it = x.begin(); it != x.end(); ++it) {
-            std::cout << "ENTER: " << *it << std::endl;
-        }
+        // fs.open("./tester/deques_output/constructor_default", std::fstream::in | std::fstream::out | std::fstream::trunc);
+        // std::cout << ((printDequeAttributes(fs, stl_default_deque, ft_default_deque) == true) ? "[OK]" : "[NOP]");
 
-        // std::cout << "front: " << x.front() << std::endl;
-        // std::cout << "back: " << x.back() << std::endl;
+        // fs << "\nCode executed:\n";
+        // fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
+        // fs << "ft::Deque<int> ft_default_deque;\n";
+        // fs << "\nCompared with:\n";
+        // fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
+        // fs << "std::deque<int> stl_default_deque;\n";
+        // fs.close();
     } else if (test == 2) {
         test_deque();
     }

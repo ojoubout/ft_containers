@@ -1,0 +1,47 @@
+
+══════════════════════════════════════════════════════════════
+maps attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 288230376151711743
+Content     : [[-98, Two], [-46, Four], [-9, Three], [256, Five], [1489, One], ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 288230376151711743
+Content  [✔]: [[-98, Two], [-46, Four], [-9, Three], [256, Five], [1489, One], ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+Value from :
+STL    : Three
+FT  [✔]: Three
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+Value from :
+STL    : Changed
+FT  [✔]: Changed
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+const int range_int[] = {1489, -98, -9, -46, 256};
+const std::string range_str[] = {"One", "Two", "Three", "Four", "Five"};
+ft::Map<int, std::string> ft_map;
+for (int i = 0; i < 5; i++)
+    ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
+Sending output...
+ft_map[-9] = "Changed";
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+const int range_int[] = {1489, -98, -9, -46, 256};
+const std::string range_str[] = {"One", "Two", "Three", "Four", "Five"};
+std::map<int, std::string> stl_map;
+for (int i = 0; i < 5; i++)
+    stl_map.insert(std::make_pair(range_int[i], range_str[i]));
+Sending output...
+stl_map[-9] = "Changed";

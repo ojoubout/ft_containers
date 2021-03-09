@@ -1,0 +1,25 @@
+
+══════════════════════════════════════════════════════════════
+deques attributes : 
+STL : 
+Empty       : false
+Size        : 1
+Max size    : 4611686018427387903
+Content     : [42]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 1
+Max size [✔]: 4611686018427387903
+Content  [✔]: [42]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+ft::Deque<int> ft_pushback;
+ft_pushback.push_back(42);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+std::deque<int> stl_pushback;
+stl_pushback.push_back(42);

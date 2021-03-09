@@ -1,0 +1,54 @@
+
+══════════════════════════════════════════════════════════════
+Vectors attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 4611686018427387903
+Capacity    : 5
+Content     : [478, 87, -15, 44, 7]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 4611686018427387903
+Capacity [✔]: 5
+Content  [✔]: [478, 87, -15, 44, 7]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+Vectors attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 4611686018427387903
+Capacity    : 5
+Content     : [1458, -98, 745, 62, 9]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 4611686018427387903
+Capacity [✔]: 5
+Content  [✔]: [1458, -98, 745, 62, 9]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array_one[] = {1458, -98, 745, 62, 9};
+int range_array_two[] = {478, 87, -15, 44, 7};       
+ft::Vector<int>::iterator ft_iterator_beg_one(&(range_array_one[0]));
+ft::Vector<int>::iterator ft_iterator_beg_two(&(range_array_two[0]));
+ft::Vector<int> ft_swap_one(ft_iterator_beg_one, ft_iterator_beg_one + 5);
+ft::Vector<int> ft_swap_two(ft_iterator_beg_two, ft_iterator_beg_two + 5);
+ft_swap_one.swap(ft_swap_two);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array_one[] = {1458, -98, 745, 62, 9};
+int range_array_two[] = {478, 87, -15, 44, 7};
+std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
+std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
+std::vector<int> stl_swap_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
+std::vector<int> stl_swap_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
+stl_swap_one.swap(stl_swap_two);

@@ -1,0 +1,23 @@
+
+══════════════════════════════════════════════════════════════
+Value from :
+STL    : 44
+FT  [✔]: 44
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = { 48, 967, 52, -45, -9, 956551, 44};
+ft::Vector<int>::iterator ft_iterator(&(range_array[0]));
+ft::Vector<int> ft_range_vector(ft_iterator, ft_iterator + 7);
+int from_ft = *(ft_range_vector.end() - 1);
+    ^^^^^^^
+    Compared value
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = { 48, 967, 52, -45, -9, 956551, 44};
+std::vector<int>::iterator stl_iterator(&(range_array[0]));
+std::vector<int> stl_range_vector(stl_iterator, stl_iterator + 7);
+int from_stl = *(stl_range_vector.end() - 1);
+    ^^^^^^^^
+    Compared value

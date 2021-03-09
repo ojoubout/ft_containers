@@ -1,0 +1,25 @@
+
+══════════════════════════════════════════════════════════════
+maps attributes : 
+STL : 
+Empty       : false
+Size        : 1
+Max size    : 288230376151711743
+Content     : [[42, La famille], ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 1
+Max size [✔]: 288230376151711743
+Content  [✔]: [[42, La famille], ]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+ft::Map<int, std::string> ft_map;
+ft_map.insert(ft::make_pair(42, "La famille"));
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+std::map<int, std::string> stl_map;
+stl_map.insert(std::make_pair(42, "La famille"));

@@ -11,13 +11,13 @@
 /* ************************************************************************** */
 
 #include "tester.hpp"
-#include "../containers/stack.hpp"
+#include "../Stack/Stack.hpp"
 #include <stack>
 
 template <class T>
 std::string equalContent(
     std::stack<T> stl_stack,
-    ft::stack<T> ft_stack
+    ft::Stack<T> ft_stack
 )
 {
     while (42)
@@ -36,7 +36,7 @@ template <class T>
 bool printStackAttributes(
     std::fstream& fs,
     std::stack<T> stl_stack,
-    ft::stack<T> ft_stack
+    ft::Stack<T> ft_stack
 )
 {
     /* STL Values */
@@ -116,14 +116,14 @@ void test_stack()
     /* Default Constructor */
     {
         std::stack<int> stl_default;
-        ft::stack<int> ft_default;
+        ft::Stack<int> ft_default;
 
         fs.open("./tester/stacks_output/constructor_default", std::fstream::in | std::fstream::out | std::fstream::trunc);
         std::cout << ((printStackAttributes(fs, stl_default, ft_default) == true) ? "[OK]" : "[NOP]");
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_default;\n";
+        fs << "ft::Stack<int> ft_default;\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "std::stack<int> stl_default;\n";
@@ -134,14 +134,14 @@ void test_stack()
     /* Empty true */
     {
         std::stack<int> stl_empty;
-        ft::stack<int> ft_empty;
+        ft::Stack<int> ft_empty;
 
         fs.open("./tester/stacks_output/empty_true", std::fstream::in | std::fstream::out | std::fstream::trunc);
         std::cout << ((printStackAttributes(fs, stl_empty, ft_empty) == true) ? "[OK]" : "[NOP]");
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_empty;\n";
+        fs << "ft::Stack<int> ft_empty;\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "std::stack<int> stl_empty;\n";
@@ -151,7 +151,7 @@ void test_stack()
     /* Empty false */
     {
         std::stack<int> stl_empty;
-        ft::stack<int> ft_empty;
+        ft::Stack<int> ft_empty;
 
         stl_empty.push(42);
         ft_empty.push(42);
@@ -161,7 +161,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_empty;\n";
+        fs << "ft::Stack<int> ft_empty;\n";
         fs << "ft_empty.push(42);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -173,7 +173,7 @@ void test_stack()
     /* Size */
     {
         std::stack<int> stl_size;
-        ft::stack<int> ft_size;
+        ft::Stack<int> ft_size;
 
         for (int i = 0; i < 42; i++)
         {
@@ -186,7 +186,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_size;\n";
+        fs << "ft::Stack<int> ft_size;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "     ft_size.push(i);\n";
         fs << "\nCompared with:\n";
@@ -200,7 +200,7 @@ void test_stack()
     /* Top */
     {
         std::stack<int> stl_top;
-        ft::stack<int> ft_top;
+        ft::Stack<int> ft_top;
 
         for (int i = 0; i < 42; i++)
         {
@@ -218,7 +218,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_top;\n";
+        fs << "ft::Stack<int> ft_top;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "     ft_top.push(i);\n";
         fs << "Send output...\n";
@@ -236,7 +236,7 @@ void test_stack()
     /* Push */
     {
         std::stack<int> stl_size;
-        ft::stack<int> ft_size;
+        ft::Stack<int> ft_size;
 
         for (int i = 0; i < 42; i++)
         {
@@ -249,7 +249,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_size;\n";
+        fs << "ft::Stack<int> ft_size;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "     ft_size.push(i * 2);\n";
         fs << "\nCompared with:\n";
@@ -263,7 +263,7 @@ void test_stack()
     /* Pop */
     {
         std::stack<int> stl_pop;
-        ft::stack<int> ft_pop;
+        ft::Stack<int> ft_pop;
 
         for (int i = 0; i < 42; i++)
         {
@@ -281,7 +281,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_pop;\n";
+        fs << "ft::Stack<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "     ft_pop.push(i);\n";
         fs << "Send output...\n";
@@ -305,8 +305,8 @@ void test_stack()
     {
         std::stack<int> stl_pop_one;
         std::stack<int> stl_pop_two;
-        ft::stack<int> ft_pop_one;
-        ft::stack<int> ft_pop_two;
+        ft::Stack<int> ft_pop_one;
+        ft::Stack<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -324,7 +324,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_pop;\n";
+        fs << "ft::Stack<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -345,8 +345,8 @@ void test_stack()
     {
         std::stack<int> stl_pop_one;
         std::stack<int> stl_pop_two;
-        ft::stack<int> ft_pop_one;
-        ft::stack<int> ft_pop_two;
+        ft::Stack<int> ft_pop_one;
+        ft::Stack<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -364,7 +364,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_pop;\n";
+        fs << "ft::Stack<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -385,8 +385,8 @@ void test_stack()
     {
         std::stack<int> stl_pop_one;
         std::stack<int> stl_pop_two;
-        ft::stack<int> ft_pop_one;
-        ft::stack<int> ft_pop_two;
+        ft::Stack<int> ft_pop_one;
+        ft::Stack<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -404,7 +404,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_pop;\n";
+        fs << "ft::Stack<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -425,8 +425,8 @@ void test_stack()
     {
         std::stack<int> stl_pop_one;
         std::stack<int> stl_pop_two;
-        ft::stack<int> ft_pop_one;
-        ft::stack<int> ft_pop_two;
+        ft::Stack<int> ft_pop_one;
+        ft::Stack<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -444,7 +444,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_pop;\n";
+        fs << "ft::Stack<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -465,8 +465,8 @@ void test_stack()
     {
         std::stack<int> stl_pop_one;
         std::stack<int> stl_pop_two;
-        ft::stack<int> ft_pop_one;
-        ft::stack<int> ft_pop_two;
+        ft::Stack<int> ft_pop_one;
+        ft::Stack<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -492,7 +492,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_pop;\n";
+        fs << "ft::Stack<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -519,8 +519,8 @@ void test_stack()
     {
         std::stack<int> stl_pop_one;
         std::stack<int> stl_pop_two;
-        ft::stack<int> ft_pop_one;
-        ft::stack<int> ft_pop_two;
+        ft::Stack<int> ft_pop_one;
+        ft::Stack<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -546,7 +546,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_pop;\n";
+        fs << "ft::Stack<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_two.push(i);\n";
@@ -573,8 +573,8 @@ void test_stack()
     {
         std::stack<int> stl_pop_one;
         std::stack<int> stl_pop_two;
-        ft::stack<int> ft_pop_one;
-        ft::stack<int> ft_pop_two;
+        ft::Stack<int> ft_pop_one;
+        ft::Stack<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -592,7 +592,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_pop;\n";
+        fs << "ft::Stack<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -613,8 +613,8 @@ void test_stack()
     {
         std::stack<int> stl_pop_one;
         std::stack<int> stl_pop_two;
-        ft::stack<int> ft_pop_one;
-        ft::stack<int> ft_pop_two;
+        ft::Stack<int> ft_pop_one;
+        ft::Stack<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -632,7 +632,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_pop;\n";
+        fs << "ft::Stack<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -653,8 +653,8 @@ void test_stack()
     {
         std::stack<int> stl_pop_one;
         std::stack<int> stl_pop_two;
-        ft::stack<int> ft_pop_one;
-        ft::stack<int> ft_pop_two;
+        ft::Stack<int> ft_pop_one;
+        ft::Stack<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -672,7 +672,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_pop;\n";
+        fs << "ft::Stack<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i * 2);\n";
@@ -693,8 +693,8 @@ void test_stack()
     {
         std::stack<int> stl_pop_one;
         std::stack<int> stl_pop_two;
-        ft::stack<int> ft_pop_one;
-        ft::stack<int> ft_pop_two;
+        ft::Stack<int> ft_pop_one;
+        ft::Stack<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -712,7 +712,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_pop;\n";
+        fs << "ft::Stack<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i * 2);\n";
@@ -733,8 +733,8 @@ void test_stack()
     {
         std::stack<int> stl_pop_one;
         std::stack<int> stl_pop_two;
-        ft::stack<int> ft_pop_one;
-        ft::stack<int> ft_pop_two;
+        ft::Stack<int> ft_pop_one;
+        ft::Stack<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -752,7 +752,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_pop;\n";
+        fs << "ft::Stack<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -773,8 +773,8 @@ void test_stack()
     {
         std::stack<int> stl_pop_one;
         std::stack<int> stl_pop_two;
-        ft::stack<int> ft_pop_one;
-        ft::stack<int> ft_pop_two;
+        ft::Stack<int> ft_pop_one;
+        ft::Stack<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -792,7 +792,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_pop;\n";
+        fs << "ft::Stack<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -813,8 +813,8 @@ void test_stack()
     {
         std::stack<int> stl_pop_one;
         std::stack<int> stl_pop_two;
-        ft::stack<int> ft_pop_one;
-        ft::stack<int> ft_pop_two;
+        ft::Stack<int> ft_pop_one;
+        ft::Stack<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -840,7 +840,7 @@ void test_stack()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::stack<int> ft_pop;\n";
+        fs << "ft::Stack<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";

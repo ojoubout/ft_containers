@@ -2,15 +2,12 @@
 # define REDBLACKTREE_HPP
 
 #include <string>
-#include "../Pair.hpp"
-#include "../iterator_traits.hpp"
-#include "../utils.hpp"
+#include <limits>
+#include "../utils/Pair.hpp"
+#include "../utils/iterator_traits.hpp"
+#include "../utils/utils.hpp"
 
 namespace ft {
-
-template <class T> struct less {
-  bool operator() (const T& x, const T& y) const {return x<y;}
-};
 
 template <typename T, class Compare = less<T> >
 class RedBlackTree {
@@ -64,7 +61,7 @@ public:
 
             Node*   getNext() const {
                 const Node*   next = this;
-                if (right) {
+                if (this->right != NULL) {
                     next = right->leftMost();
                 } else {
                     const Node*   tmp = this->parent;
@@ -132,7 +129,6 @@ public:
 
     };
     struct iterator : public ft::iterator<std::bidirectional_iterator_tag, T> {
-        friend class RedBlackTree;
 
         public:
 
@@ -142,6 +138,9 @@ public:
             typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::reference          reference;
             typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::difference_type    difference_type;
             iterator() : _ptr(NULL) {};
+            // iterator(const iterator & it) {
+            //     *this = it;
+            // };
             iterator(Node* ptr, RedBlackTree * parent) : _ptr(ptr), _parent(parent) {};
             iterator &operator=(iterator const &other) {
                 _ptr = other._ptr;
@@ -150,7 +149,7 @@ public:
             }
 
 
-            // Node* get_node() { return (_ptr); };
+            Node* get_node() { return (_ptr); };
 
             reference   operator*() { return _ptr->item; };
             pointer     operator->() { return &_ptr->item; };
@@ -379,29 +378,6 @@ public:
             printTree(root->left, trunk, false);
     }
 
-    // Node* insert(Node* root, const value_type& value)
-    // {
-    //     if (!root) 
-    //     {
-    //         ++_size;
-    //         return new Node(value);
-    //     }
-    
-    //     if (_value_comp(root->item, value)) 
-    //     {
-    //         root->right = insert(root->right, value);
-    //         root->right->parent = root;
-    //         balance(root->right);
-    //     }
-    //     else if (_value_comp(value, root->item))
-    //     {
-    //         root->left = insert(root->left, value);
-    //         root->left->parent = root;
-    //         balance(root->left);
-    //     }
-    //     return root;
-    // }
-
     void    printOrder() {
         Node* start = _root->leftMost();
         while (start) {
@@ -457,34 +433,35 @@ public:
     //         normal insertion // return
     // Else
     //     return iterator of pos
+
     iterator    insert(iterator pos, const value_type& val) {
-        if (pos._ptr == _end) {
+        if (pos.get_node() == _end) {
             if (_size > 0 && _value_comp(_root->rightMost()->item, val))
                 return insert(_root->rightMost(), val);
             else{
                 return insert(val).first;
             }
-        } else if (_value_comp(val, pos._ptr->item)) {
+        } else if (_value_comp(val, pos.get_node()->item)) {
             iterator    before = pos;
-            if (pos._ptr == _root->leftMost())
+            if (pos.get_node() == _root->leftMost())
                 return insert(_root->leftMost(), val);
-            else if (_value_comp((--before)._ptr->item, val)) {
-                if (before._ptr->right == NULL)
-                    return insert(before._ptr, val);
+            else if (_value_comp((--before).get_node()->item, val)) {
+                if (before.get_node()->right == NULL)
+                    return insert(before.get_node(), val);
                 else
-                    return insert(pos._ptr, val);
+                    return insert(pos.get_node(), val);
             } else {
                 return insert(val).first;
             }
-        } else if (_value_comp(pos._ptr->item, val)) {
+        } else if (_value_comp(pos.get_node()->item, val)) {
             iterator    after = pos;
-            if (pos._ptr == _root->rightMost())
+            if (pos.get_node() == _root->rightMost())
                 return insert(_root->rightMost(), val);
-            else if (_value_comp(val, (++after)._ptr->item)) {
-                if (pos._ptr->right == NULL)
-                    return insert(pos._ptr, val);
+            else if (_value_comp(val, (++after).get_node()->item)) {
+                if (pos.get_node()->right == NULL)
+                    return insert(pos.get_node(), val);
                 else
-                    return insert(after._ptr, val);
+                    return insert(after.get_node(), val);
             } else {
                 return insert(val).first;
             }
@@ -514,7 +491,7 @@ public:
 
 
     size_t    erase(iterator pos, const value_type & delete_item) {
-        Node* tmp = pos._ptr;
+        Node* tmp = pos.get_node();
         size_t  size = 0;
         while (tmp)
         {
@@ -533,10 +510,51 @@ public:
                         succ = succ->left;
                     }
                     value_type val = succ->item;
-                    size += erase(succ->item);
+                    // size += erase(succ->item);
+                    if (succ->parent->right == succ)
+                        succ->parent->right = succ->right;
+                    else
+                        succ->parent->left = succ->right;
+                    if (succ->right)
+                        succ->right->parent = succ->parent;
+                    if (tmp != _root) {
+                        if (tmp->parent->left == tmp)
+                            tmp->parent->left = succ;
+                        else 
+                            tmp->parent->right = succ;
+                    } else {
+                        _root = succ;
+                    }
+                    replace = succ;
+                    replacedColor = succ->color;
+                    succ->parent = tmp->parent;
+                    succ->left = tmp->left;
+                    if (tmp->left)
+                        tmp->left->parent = succ;
+                    if (tmp->left)
+                        tmp->left->parent = succ;
+                    if (tmp->right)
+                        tmp->right->parent = succ;
+                    if (tmp->right != succ)
+                        succ->right = tmp->right;
+                    succ->color = tmp->color;
+                    // if (tmp != _root) {
+                    //     if (p->right == tmp)
+                    //         p->right = succ;
+                    //     else
+                    //         p->left = succ;
+                    //     c->parent = p;
+                    //     replacedColor = c->color;
+                    //     replace = c;
+                    // } else {
+                    //     _root = c;
+                    //     c->parent = NULL;
+                    // }
+                    // c->color = BLACK;
+                    delete tmp;
                     // replacedColor = succ->color;
-                    tmp->item = val;
-                    break;
+                    // tmp->item = val;
+                    // break;
                 } else if (tmp->left || tmp->right) {
                     Node* c = tmp->left ? tmp->left : tmp->right;
                     if (tmp != _root) {

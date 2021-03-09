@@ -1,0 +1,31 @@
+
+══════════════════════════════════════════════════════════════
+Vectors attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 4611686018427387903
+Capacity    : 5
+Content     : [74, 569, -8822, 8515, 5]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 4611686018427387903
+Capacity [✔]: 5
+Content  [✔]: [74, 569, -8822, 8515, 5]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = { 74, 569, -8822, 8515, 5 };
+ft::Vector<int>::iterator ft_iterator(&(range_array[0]));
+ft::Vector<int> ft_range_vector(ft_iterator, ft_iterator + 5);
+ft::Vector<int> ft_assign_vector = ft_range_vector;
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = { 74, 569, -8822, 8515, 5 };
+std::vector<int>::iterator stl_iterator(&(range_array[0]));
+std::vector<int> stl_range_vector(stl_iterator, stl_iterator + 5);
+std::vector<int> stl_assign_vector = stl_range_vector;

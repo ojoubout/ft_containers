@@ -1,0 +1,23 @@
+
+══════════════════════════════════════════════════════════════
+queues attributes : 
+STL : 
+Empty       : false
+Size        : 1
+Content     : [42]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 1
+Content  [✔]: [42]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+ft::Queue<int> ft_queue;
+ft_queue.push(42);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+std::queue<int> stl_queue;
+stl_queue.push(42);

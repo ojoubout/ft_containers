@@ -11,13 +11,13 @@
 /* ************************************************************************** */
 
 #include "tester.hpp"
-#include "../containers/queue.hpp"
+#include "../Queue/Queue.hpp"
 #include <queue>
 
 template <class T>
 std::string equalContent(
     std::queue<T> stl_queue,
-    ft::queue<T> ft_queue
+    ft::Queue<T> ft_queue
 )
 {
     while (42)
@@ -37,7 +37,7 @@ template <class T>
 bool printQueueAttributes(
     std::fstream& fs,
     std::queue<T> stl_queue,
-    ft::queue<T> ft_queue
+    ft::Queue<T> ft_queue
 )
 {
     /* STL Values */
@@ -117,14 +117,14 @@ void test_queue()
     /* Default constructor */
     {
         std::queue<int> stl_queue;
-        ft::queue<int> ft_queue;
+        ft::Queue<int> ft_queue;
 
         fs.open("./tester/queues_output/constructor_default", std::fstream::in | std::fstream::out | std::fstream::trunc);
         std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? "[OK]" : "[NOP]");
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_queue;\n";
+        fs << "ft::Queue<int> ft_queue;\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "std::queue<int> stl_queue;\n";
@@ -134,14 +134,14 @@ void test_queue()
     /* Empty true */
     {
         std::queue<int> stl_queue;
-        ft::queue<int> ft_queue;
+        ft::Queue<int> ft_queue;
 
         fs.open("./tester/queues_output/empty_true", std::fstream::in | std::fstream::out | std::fstream::trunc);
         std::cout << ((printQueueAttributes(fs, stl_queue, ft_queue) == true) ? "[OK]" : "[NOP]");
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_queue;\n";
+        fs << "ft::Queue<int> ft_queue;\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "std::queue<int> stl_queue;\n";
@@ -151,7 +151,7 @@ void test_queue()
     /* Empty false */
     {
         std::queue<int> stl_queue;
-        ft::queue<int> ft_queue;
+        ft::Queue<int> ft_queue;
 
         stl_queue.push(42);
         ft_queue.push(42);
@@ -161,7 +161,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_queue;\n";
+        fs << "ft::Queue<int> ft_queue;\n";
         fs << "ft_queue.push(42);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -173,7 +173,7 @@ void test_queue()
     /* Size */
     {
         std::queue<int> stl_queue;
-        ft::queue<int> ft_queue;
+        ft::Queue<int> ft_queue;
 
         for (int i = 0; i < 42; i++)
         {
@@ -186,7 +186,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_queue;\n";
+        fs << "ft::Queue<int> ft_queue;\n";
         fs << "ft_queue.push(42);\n";
         fs << "\nCompared with:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -198,7 +198,7 @@ void test_queue()
     /* Front */
     {
         std::queue<int> stl_queue;
-        ft::queue<int> ft_queue;
+        ft::Queue<int> ft_queue;
 
         for (int i = 0; i < 42; i++)
         {
@@ -218,7 +218,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_queue;\n";
+        fs << "ft::Queue<int> ft_queue;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << " ft_queue.push(i);\n";
         fs << "Output...\n";
@@ -236,7 +236,7 @@ void test_queue()
     /* Back */
     {
         std::queue<int> stl_queue;
-        ft::queue<int> ft_queue;
+        ft::Queue<int> ft_queue;
 
         for (int i = 0; i < 42; i++)
         {
@@ -251,7 +251,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_queue;\n";
+        fs << "ft::Queue<int> ft_queue;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << " ft_queue.push(i);\n";
         fs << "\nCompared with:\n";
@@ -265,7 +265,7 @@ void test_queue()
     /* Push */
     {
         std::queue<int> stl_queue;
-        ft::queue<int> ft_queue;
+        ft::Queue<int> ft_queue;
 
         stl_queue.push(42);
         ft_queue.push(42);
@@ -280,7 +280,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_queue;\n";
+        fs << "ft::Queue<int> ft_queue;\n";
         fs << "ft_queue.push(42);\n";
         fs << "Output...\n";
         fs << "ft_queue.push(19);\n";
@@ -296,7 +296,7 @@ void test_queue()
     /* Pop */
     {
         std::queue<int> stl_queue;
-        ft::queue<int> ft_queue;
+        ft::Queue<int> ft_queue;
 
         stl_queue.push(42);
         ft_queue.push(42);
@@ -311,7 +311,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_queue;\n";
+        fs << "ft::Queue<int> ft_queue;\n";
         fs << "ft_queue.push(42);\n";
         fs << "Output...\n";
         fs << "ft_queue.pop();\n";
@@ -333,8 +333,8 @@ void test_queue()
     {
         std::queue<int> stl_pop_one;
         std::queue<int> stl_pop_two;
-        ft::queue<int> ft_pop_one;
-        ft::queue<int> ft_pop_two;
+        ft::Queue<int> ft_pop_one;
+        ft::Queue<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -352,7 +352,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_pop;\n";
+        fs << "ft::Queue<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -373,8 +373,8 @@ void test_queue()
     {
         std::queue<int> stl_pop_one;
         std::queue<int> stl_pop_two;
-        ft::queue<int> ft_pop_one;
-        ft::queue<int> ft_pop_two;
+        ft::Queue<int> ft_pop_one;
+        ft::Queue<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -392,7 +392,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_pop;\n";
+        fs << "ft::Queue<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -413,8 +413,8 @@ void test_queue()
     {
         std::queue<int> stl_pop_one;
         std::queue<int> stl_pop_two;
-        ft::queue<int> ft_pop_one;
-        ft::queue<int> ft_pop_two;
+        ft::Queue<int> ft_pop_one;
+        ft::Queue<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -432,7 +432,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_pop;\n";
+        fs << "ft::Queue<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -453,8 +453,8 @@ void test_queue()
     {
         std::queue<int> stl_pop_one;
         std::queue<int> stl_pop_two;
-        ft::queue<int> ft_pop_one;
-        ft::queue<int> ft_pop_two;
+        ft::Queue<int> ft_pop_one;
+        ft::Queue<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -472,7 +472,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_pop;\n";
+        fs << "ft::Queue<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -493,8 +493,8 @@ void test_queue()
     {
         std::queue<int> stl_pop_one;
         std::queue<int> stl_pop_two;
-        ft::queue<int> ft_pop_one;
-        ft::queue<int> ft_pop_two;
+        ft::Queue<int> ft_pop_one;
+        ft::Queue<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -520,7 +520,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_pop;\n";
+        fs << "ft::Queue<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -547,8 +547,8 @@ void test_queue()
     {
         std::queue<int> stl_pop_one;
         std::queue<int> stl_pop_two;
-        ft::queue<int> ft_pop_one;
-        ft::queue<int> ft_pop_two;
+        ft::Queue<int> ft_pop_one;
+        ft::Queue<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -574,7 +574,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_pop;\n";
+        fs << "ft::Queue<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_two.push(i);\n";
@@ -601,8 +601,8 @@ void test_queue()
     {
         std::queue<int> stl_pop_one;
         std::queue<int> stl_pop_two;
-        ft::queue<int> ft_pop_one;
-        ft::queue<int> ft_pop_two;
+        ft::Queue<int> ft_pop_one;
+        ft::Queue<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -620,7 +620,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_pop;\n";
+        fs << "ft::Queue<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -641,8 +641,8 @@ void test_queue()
     {
         std::queue<int> stl_pop_one;
         std::queue<int> stl_pop_two;
-        ft::queue<int> ft_pop_one;
-        ft::queue<int> ft_pop_two;
+        ft::Queue<int> ft_pop_one;
+        ft::Queue<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -660,7 +660,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_pop;\n";
+        fs << "ft::Queue<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -681,8 +681,8 @@ void test_queue()
     {
         std::queue<int> stl_pop_one;
         std::queue<int> stl_pop_two;
-        ft::queue<int> ft_pop_one;
-        ft::queue<int> ft_pop_two;
+        ft::Queue<int> ft_pop_one;
+        ft::Queue<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -700,7 +700,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_pop;\n";
+        fs << "ft::Queue<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i * 2);\n";
@@ -721,8 +721,8 @@ void test_queue()
     {
         std::queue<int> stl_pop_one;
         std::queue<int> stl_pop_two;
-        ft::queue<int> ft_pop_one;
-        ft::queue<int> ft_pop_two;
+        ft::Queue<int> ft_pop_one;
+        ft::Queue<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -740,7 +740,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_pop;\n";
+        fs << "ft::Queue<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i * 2);\n";
@@ -761,8 +761,8 @@ void test_queue()
     {
         std::queue<int> stl_pop_one;
         std::queue<int> stl_pop_two;
-        ft::queue<int> ft_pop_one;
-        ft::queue<int> ft_pop_two;
+        ft::Queue<int> ft_pop_one;
+        ft::Queue<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -780,7 +780,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_pop;\n";
+        fs << "ft::Queue<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -801,8 +801,8 @@ void test_queue()
     {
         std::queue<int> stl_pop_one;
         std::queue<int> stl_pop_two;
-        ft::queue<int> ft_pop_one;
-        ft::queue<int> ft_pop_two;
+        ft::Queue<int> ft_pop_one;
+        ft::Queue<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -820,7 +820,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_pop;\n";
+        fs << "ft::Queue<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";
@@ -841,8 +841,8 @@ void test_queue()
     {
         std::queue<int> stl_pop_one;
         std::queue<int> stl_pop_two;
-        ft::queue<int> ft_pop_one;
-        ft::queue<int> ft_pop_two;
+        ft::Queue<int> ft_pop_one;
+        ft::Queue<int> ft_pop_two;
 
         for (int i = 0; i < 42; i++)
         {
@@ -868,7 +868,7 @@ void test_queue()
 
         fs << "\nCode executed:\n";
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
-        fs << "ft::queue<int> ft_pop;\n";
+        fs << "ft::Queue<int> ft_pop;\n";
         fs << "for (int i = 0; i < 42; i++)\n";
         fs << "{\n";
         fs << "    ft_pop_one.push(i);\n";

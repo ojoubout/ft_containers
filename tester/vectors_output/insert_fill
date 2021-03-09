@@ -1,0 +1,29 @@
+
+══════════════════════════════════════════════════════════════
+Vectors attributes : 
+STL : 
+Empty       : false
+Size        : 11
+Max size    : 4611686018427387903
+Capacity    : 11
+Content     : [47, 152, 4269, 4269, 4269, 4269, 4269, 4269, -325, 9, 14444]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 11
+Max size [✔]: 4611686018427387903
+Capacity [✔]: 11
+Content  [✔]: [47, 152, 4269, 4269, 4269, 4269, 4269, 4269, -325, 9, 14444]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {47, 152, -325, 9, 14444};
+ft::Vector<int> ft_insert(ft_iterator_beg, ft_iterator_beg + 5);
+ft_insert.insert(ft_insert.begin() + 2, 6, 4269);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {47, 152, -325, 9, 14444};
+std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+stl_insert.insert(stl_insert.begin() + 2, 6, 4269);

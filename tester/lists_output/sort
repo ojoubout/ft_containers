@@ -1,0 +1,48 @@
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 768614336404564650
+Content     : [88, 44, -3, 867, 442, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 768614336404564650
+Content  [✔]: [88, 44, -3, 867, 442, ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 768614336404564650
+Content     : [-3, 44, 88, 442, 867, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 768614336404564650
+Content  [✔]: [-3, 44, 88, 442, 867, ]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {88, 44, -3, 867, 442};
+ft::List<int> ft_list;
+for (int i = 0; i < 5; i++)
+    ft_list.push_back(range[i]);
+Sending Output...
+ft_list.sort();
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {88, 44, -3, 867, 442};
+std::list<int> stl_list;
+for (int i = 0; i < 5; i++)
+    stl_list.push_back(range[i]);
+Sending Output...
+stl_list.sort();

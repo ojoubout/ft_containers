@@ -1,0 +1,31 @@
+
+══════════════════════════════════════════════════════════════
+deques attributes : 
+STL : 
+Empty       : false
+Size        : 3
+Max size    : 4611686018427387903
+Content     : [147, 8, 9]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 3
+Max size [✔]: 4611686018427387903
+Content  [✔]: [147, 8, 9]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {147, -985, 666, 8, 9};
+ft::Deque<int> ft_range;
+for (int i = 0; i < 5; i++)
+    ft_range.push_back(range_array[i]);
+ft_range.erase(ft_range.begin() + 2);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {147, -985, 666, 8, 9};
+std::deque<int> stl_range;
+for (int i = 0; i < 5; i++)
+    stl_range.push_back(range_array[i]);
+stl_range.erase(stl_range.begin() + 2);

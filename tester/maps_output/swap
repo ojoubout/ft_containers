@@ -1,0 +1,88 @@
+
+══════════════════════════════════════════════════════════════
+maps attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 288230376151711743
+Content     : [[-98, Four], [8, Five], [32, Three], [489, One], [851, Two], ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 288230376151711743
+Content  [✔]: [[-98, Four], [8, Five], [32, Three], [489, One], [851, Two], ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+maps attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 288230376151711743
+Content     : [[22, Four], [128, Five], [152, Three], [609, One], [971, Two], ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 288230376151711743
+Content  [✔]: [[22, Four], [128, Five], [152, Three], [609, One], [971, Two], ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+maps attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 288230376151711743
+Content     : [[22, Four], [128, Five], [152, Three], [609, One], [971, Two], ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 288230376151711743
+Content  [✔]: [[22, Four], [128, Five], [152, Three], [609, One], [971, Two], ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+maps attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 288230376151711743
+Content     : [[-98, Four], [8, Five], [32, Three], [489, One], [851, Two], ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 288230376151711743
+Content  [✔]: [[-98, Four], [8, Five], [32, Three], [489, One], [851, Two], ]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+const int range_int[] = {489, 851, 32, -98, 8};
+const std::string range_str[] = {"One", "Two", "Three", "Four", "Five"};
+ft::Map<int, std::string> ft_map_one;
+ft::Map<int, std::string> ft_map_two;
+for (int i = 0; i < 5; i++)
+{
+		ft_map_one.insert(ft::make_pair(range_int[i], range_str[i]));
+		ft_map_two.insert(ft::make_pair(range_int[i] + 120, range_str[i]));
+}
+Sending Output...
+ft_map_one.swap(ft_map_two);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+const int range_int[] = {489, 851, 32, -98, 8};
+const std::string range_str[] = {"One", "Two", "Three", "Four", "Five"};
+std::map<int, std::string> stl_map_one;
+std::map<int, std::string> stl_map_two;
+for (int i = 0; i < 5; i++)
+{
+		stl_map_one.insert(std::make_pair(range_int[i], range_str[i]));
+		stl_map_two.insert(std::make_pair(range_int[i] + 120, range_str[i]));
+}
+Sending Output...
+stl_map_one.swap(stl_map_two);

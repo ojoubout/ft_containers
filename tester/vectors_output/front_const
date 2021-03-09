@@ -1,0 +1,20 @@
+
+══════════════════════════════════════════════════════════════
+Value from :
+STL    : 5589
+FT  [✔]: 5589
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {5589, -97, -98, -63, 8};
+ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
+ft::Vector<int> ft_front(ft_iterator_beg, ft_iterator_beg + 5);
+const int ft_const = ft_front.front();
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {5589, -97, -98, -63, 8};
+std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+std::vector<int> stl_front(std::begin(range_array), std::end(range_array));
+const int stl_const = stl_front.front();

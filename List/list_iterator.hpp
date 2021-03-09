@@ -1,15 +1,15 @@
 #ifndef LIST_ITERATOR_HPP
 # define LIST_ITERATOR_HPP
 
-#include "../iterator_traits.hpp"
+#include "../utils/iterator_traits.hpp"
+
 // #include "List.hpp"
 namespace ft {
-    
+
 template <typename T> class List;
 
 template <typename T, typename node_pointer>
 class list_iterator : public ft::iterator<std::bidirectional_iterator_tag, T> {
-    friend class List<T>;
     public:
 
         typedef typename ft::iterator<std::bidirectional_iterator_tag, T>::iterator_category  iterator_category;
@@ -24,6 +24,10 @@ class list_iterator : public ft::iterator<std::bidirectional_iterator_tag, T> {
         list_iterator &operator=(list_iterator const &other) {
             _ptr = other._ptr;
             return (*this);
+        }
+
+        const node_pointer get_node() const {
+            return _ptr;
         }
 
         reference   operator*() { return _ptr->content; };

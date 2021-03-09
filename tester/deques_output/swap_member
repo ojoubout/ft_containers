@@ -1,0 +1,56 @@
+
+══════════════════════════════════════════════════════════════
+deques attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 4611686018427387903
+Content     : [478, 87, -15, 44, 7]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 4611686018427387903
+Content  [✔]: [478, 87, -15, 44, 7]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+deques attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 4611686018427387903
+Content     : [1458, -98, 745, 62, 9]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 4611686018427387903
+Content  [✔]: [1458, -98, 745, 62, 9]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array_one[] = {1458, -98, 745, 62, 9};
+int range_array_two[] = {478, 87, -15, 44, 7};
+ft::Deque<int> ft_deque_one;
+ft::Deque<int> ft_deque_two;
+for (int i = 0; i < 5; i++)
+{
+    ft_deque_one.push_back(range_array_one[i]);
+    ft_deque_two.push_back(range_array_two[i]);
+}
+ft_deque_one.swap(ft_deque_two);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array_one[] = {1458, -98, 745, 62, 9};
+int range_array_two[] = {478, 87, -15, 44, 7};
+std::deque<int> stl_deque_one;
+std::deque<int> stl_deque_two;
+for (int i = 0; i < 5; i++)
+{
+    stl_deque_one.push_back(range_array_one[i]);
+    stl_deque_two.push_back(range_array_two[i]);
+}
+stl_deque_one.swap(stl_deque_two);

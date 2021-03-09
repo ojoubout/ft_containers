@@ -1,0 +1,22 @@
+
+══════════════════════════════════════════════════════════════
+Value from :
+STL    : 87
+FT  [✔]: 87
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {2, 0, 982, -9, 87};
+ft::Deque<int>::iterator ft_iterator;
+for (int i = 0; i < 5; i++)
+    ft_iterator.push_back(range_array[i]);
+int from_ft = ft_iterator.back();
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {2, 0, 982, -9, 87};
+std::deque<int>::iterator stl_iterator;
+for (int i = 0; i < 5; i++)
+    stl_iterator.push_back(range_array[i]);
+int from_stl = stl_iterator.back();

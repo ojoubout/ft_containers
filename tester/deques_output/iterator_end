@@ -1,0 +1,22 @@
+
+══════════════════════════════════════════════════════════════
+Value from :
+STL    : 5
+FT  [✔]: 5
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+/* Checked at end() - 1 */
+int range_array[] = {95, 89, -6121, 48, 5 };
+ft::Deque<int>::iterator ft_iterator;
+for (int i = 0; i < 5; i++)
+    ft_iterator.push_back(range_array[i]);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+/* Checked at end() - 1 */
+int range_array[] = {95, 89, -6121, 48, 5 };
+std::deque<int>::iterator stl_iterator;
+for (int i = 0; i < 5; i++)
+    stl_iterator.push_back(range_array[i]);

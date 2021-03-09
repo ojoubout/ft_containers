@@ -3,8 +3,8 @@
 
 #include <limits>
 #include <cstddef>
-#include "../iterator_traits.hpp"
-#include "../utils.hpp"
+#include "../utils/iterator_traits.hpp"
+#include "../utils/utils.hpp"
 #include "list_iterator.hpp"
 
 namespace ft {
@@ -44,7 +44,6 @@ public:
         init();
     }
 
-
     List(const List & copy) {
         init();
         *this = copy;
@@ -61,8 +60,6 @@ public:
         init();
         insert(begin(), first, last);
     }
-
-
 
     ~List() { // TODO: clear()
         clear();
@@ -139,6 +136,7 @@ public:
     }
 
     // Modifiers:
+
     template <typename InputIterator>
     void assign (InputIterator first, InputIterator last,
     typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type = 0) {
@@ -151,19 +149,19 @@ public:
     }
 
     void push_front (const value_type& val) {
-        _begin = insert(iterator(_begin), val)._ptr;
+        _begin = insert(iterator(_begin), val).get_node();
     }
 
     void pop_front() {
         if (_size) {
-            _begin = erase(begin())._ptr;
+            _begin = erase(begin()).get_node();
         }
     }
 
     void push_back (const value_type& val) {
         iterator it = insert(end(), val);
         if (_size == 1) {
-            _begin = it._ptr;
+            _begin = it.get_node();
         }
     }
 
@@ -174,7 +172,7 @@ public:
     }
     
     iterator insert (iterator position, const value_type& val) {
-        node_pointer node_pos = position._ptr;
+        node_pointer node_pos = position.get_node();
         node_pointer tmp = new node(val);
 
         if (node_pos->prev) {
@@ -204,7 +202,7 @@ public:
     }
 
     iterator erase (iterator position) {
-        node_pointer node_pos = position._ptr;
+        node_pointer node_pos = position.get_node();
         if (node_pos == _end)
             return (_end);
         iterator ret = ++position;
@@ -261,8 +259,8 @@ public:
     }
 
     void splice (iterator position, List& x, iterator i) {
-        node_pointer node_pos = position._ptr;
-        node_pointer x_pos = i._ptr;
+        node_pointer node_pos = position.get_node();
+        node_pointer x_pos = i.get_node();
         if (x_pos == x._end) {
             return ;
         }
@@ -298,7 +296,7 @@ public:
         node_pointer tmp = _begin;
         while (tmp != _end) {
             if (tmp->content == val) {
-                tmp = erase(tmp)._ptr;
+                tmp = erase(tmp).get_node();
             } else {
                 tmp = tmp->next;
             }
@@ -310,7 +308,7 @@ public:
         node_pointer tmp = _begin;
         while (tmp != _end) {
             if (pred(tmp->content)) {
-                tmp = erase(tmp)._ptr;
+                tmp = erase(tmp).get_node();
             } else {
                 tmp = tmp->next;
             }
@@ -321,7 +319,7 @@ public:
         node_pointer tmp = _begin;
         while (tmp != _end) {
             if (tmp->prev && tmp->content == tmp->prev->content) {
-                tmp = erase(tmp)._ptr;
+                tmp = erase(tmp).get_node();
             } else {
                 tmp = tmp->next;
             }
@@ -333,7 +331,7 @@ public:
         node_pointer tmp = _begin;
         while (tmp != _end) {
             if (tmp->prev && binary_pred(tmp->prev->content, tmp->content)) {
-                tmp = erase(tmp)._ptr;
+                tmp = erase(tmp).get_node();
             } else {
                 tmp = tmp->next;
             }
@@ -341,19 +339,11 @@ public:
     }
 
     void merge (List& x) {
-        // splice(begin(), x);
         merge(x, less_comp);
     }
 
     template <typename Compare>
     void merge (List& x, Compare comp) {
-        // iterator it = begin();
-        // value_type item = x._begin->content;
-        // while (it != end() && !comp(item, *it))
-        // {
-        //     ++it;
-        // }
-        // splice(it, x);
         if (this != &x) {
             iterator first1 = begin();
             iterator last1 = end();
@@ -373,15 +363,6 @@ public:
        }
     }
 
-    void print_list() {
-        const_iterator it = begin();
-        const_iterator ite = end();
-        while (it != ite) {
-            std::cout << "value: " << *it << " ";
-            it++;
-        }
-        std::cout << std::endl;
-    }
     template <typename Compare>
     void sort (Compare comp) {
         int count = _size;
@@ -394,8 +375,8 @@ public:
             ++next_it;
             while (it != ite && next_it != ite) {
                 if (!comp(*it, *next_it)) {
-                    node_pointer first = it._ptr;
-                    node_pointer second = next_it._ptr;
+                    node_pointer first = it.get_node();
+                    node_pointer second = next_it.get_node();
                     node_pointer first_prev = first->prev;
                     node_pointer second_next = second->next;
                     if (first == _begin) {
@@ -457,12 +438,11 @@ private:
         _begin = _end;
         _end->prev = _end->next = NULL;
         _size = 0;
-        free(val);
+        operator delete(val);
     }
 
     void swap_pos(node_pointer first, node_pointer second) {
         if (first == second || first == _end || second == _end) {
-            std::cout << "WAHT\n";
             return ;
         }
         node_pointer first_prev = first->prev;

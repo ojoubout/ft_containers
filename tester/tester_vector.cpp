@@ -17,7 +17,7 @@
 # include "../Vector/Vector.hpp"
 // # include "../containers/utils/random_access_iterator.hpp"
 # include "tester.hpp"
-# include "../Pair.hpp"
+# include "../utils/Pair.hpp"
 
 template <class T>
 std::string equalContent(
@@ -219,12 +219,12 @@ void test_vector()
     {
         int range_array[] = { 45, 87846, 12, 965, 5 };
 
-        std::vector<int>::iterator stl_iterator(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator(&(range_array[0]));
 
         fs.open("./tester/vectors_output/constructor_range", std::fstream::in | std::fstream::out | std::fstream::trunc);
 
-        std::vector<int> stl_range_vector(stl_iterator, stl_iterator + 5);
+        std::vector<int> stl_range_vector(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_range_vector(ft_iterator, ft_iterator + 5);
 
         std::cout << ((printVectorAttributes(fs, stl_range_vector, ft_range_vector) == true) ? "[OK]" : "[NOP]");
@@ -246,10 +246,10 @@ void test_vector()
     {
         int range_array[] = { -89, 561, 874, 7777 , 987, -6 };
         
-        std::vector<int>::iterator stl_iterator(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator(&(range_array[0]));
 
-        std::vector<int> stl_range_vector(stl_iterator, stl_iterator + 6);
+        std::vector<int> stl_range_vector(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_range_vector(ft_iterator, ft_iterator + 6);
 
         fs.open("./tester/vectors_output/constructor_copy", std::fstream::in | std::fstream::out | std::fstream::trunc);
@@ -280,10 +280,10 @@ void test_vector()
     {
         int range_array[] = { 74, 569, -8822, 8515, 5 };
 
-        std::vector<int>::iterator stl_iterator(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator(&(range_array[0]));
 
-        std::vector<int> stl_range_vector(stl_iterator, stl_iterator + 5);
+        std::vector<int> stl_range_vector(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_range_vector(ft_iterator, ft_iterator + 5);
 
         fs.open("./tester/vectors_output/operator_assign", std::fstream::in | std::fstream::out | std::fstream::trunc);
@@ -314,10 +314,10 @@ void test_vector()
     {
         int range_array[] = { 87, 92, -5, 8984, 96 };
 
-        std::vector<int>::iterator stl_iterator(range_array);
+        // std::vector<int>::iterator stl_iterator(range_array);
         ft::Vector<int>::iterator ft_iterator(range_array);
 
-        std::vector<int> stl_range_vector(stl_iterator, stl_iterator + 5);
+        std::vector<int> stl_range_vector(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_range_vector(ft_iterator, ft_iterator + 5);
     
         fs.open("./tester/vectors_output/iterator_begin", std::fstream::in | std::fstream::out | std::fstream::trunc);
@@ -349,10 +349,10 @@ void test_vector()
     {
         int range_array[] = { 87, 92, -5, 8984, 96 };
 
-        std::vector<int>::const_iterator stl_iterator(&(range_array[0]));
+        // std::vector<int>::const_iterator stl_iterator(&(range_array[0]));
         ft::Vector<int>::const_iterator ft_iterator(&(range_array[0]));
 
-        std::vector<int> stl_range_vector(stl_iterator, stl_iterator + 5);
+        std::vector<int> stl_range_vector(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_range_vector(ft_iterator, ft_iterator + 5);
     
         fs.open("./tester/vectors_output/iterator_const_begin", std::fstream::in | std::fstream::out | std::fstream::trunc);
@@ -388,10 +388,10 @@ void test_vector()
     {
         int range_array[] = { 48, 967, 52, -45, -9, 956551, 44};
 
-        std::vector<int>::iterator stl_iterator(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator(&(range_array[0]));
 
-        std::vector<int> stl_range_vector(stl_iterator, stl_iterator + 7);
+        std::vector<int> stl_range_vector(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_range_vector(ft_iterator, ft_iterator + 7);
     
         fs.open("./tester/vectors_output/iterator_end", std::fstream::in | std::fstream::out | std::fstream::trunc);
@@ -423,10 +423,10 @@ void test_vector()
     {
         int range_array[] = { 95, 89, -6121, 48, 5 };
 
-        std::vector<int>::const_iterator stl_iterator(&(range_array[0]));
+        // std::vector<int>::const_iterator stl_iterator(&(range_array[0]));
         ft::Vector<int>::const_iterator ft_iterator(&(range_array[0]));
 
-        std::vector<int> stl_range_vector(stl_iterator, stl_iterator + 5);
+        std::vector<int> stl_range_vector(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_range_vector(ft_iterator, ft_iterator + 5);
     
         fs.open("./tester/vectors_output/iterator_const_end", std::fstream::in | std::fstream::out | std::fstream::trunc);
@@ -462,10 +462,10 @@ void test_vector()
     {
         int range_array[] = {250, -1200, -98657, 2, 34};
 
-        std::vector<int>::iterator stl_iterator(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator(&(range_array[0]));
 
-        std::vector<int> stl_range_vector(stl_iterator, stl_iterator + 5);
+        std::vector<int> stl_range_vector(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_range_vector(ft_iterator, ft_iterator + 5);
     
         fs.open("./tester/vectors_output/iterator_reverse_begin", std::fstream::in | std::fstream::out | std::fstream::trunc);
@@ -497,10 +497,10 @@ void test_vector()
     {
         int range_array[] = { 958, -561, 54, 789, -8};
 
-        std::vector<int>::const_iterator stl_iterator(&(range_array[0]));
+        // std::vector<int>::const_iterator stl_iterator(&(range_array[0]));
         ft::Vector<int>::const_iterator ft_iterator(&(range_array[0]));
 
-        std::vector<int> stl_range_vector(stl_iterator, stl_iterator + 5);
+        std::vector<int> stl_range_vector(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_range_vector(ft_iterator, ft_iterator + 5);
     
         fs.open("./tester/vectors_output/iterator_const_reverse_begin", std::fstream::in | std::fstream::out | std::fstream::trunc);
@@ -536,10 +536,10 @@ void test_vector()
     {
         int range_array[] = {78, -951, 562, 8, 745, 51236, 6987};
 
-        std::vector<int>::iterator stl_iterator(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator(&(range_array[0]));
 
-        std::vector<int> stl_range_vector(stl_iterator, stl_iterator + 7);
+        std::vector<int> stl_range_vector(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_range_vector(ft_iterator, ft_iterator + 7);
     
         fs.open("./tester/vectors_output/iterator_reverse_end", std::fstream::in | std::fstream::out | std::fstream::trunc);
@@ -571,10 +571,10 @@ void test_vector()
     {
         int range_array[] = { 8, -5615, 412, 89, 475};
 
-        std::vector<int>::const_iterator stl_iterator(&(range_array[0]));
+        // std::vector<int>::const_iterator stl_iterator(&(range_array[0]));
         ft::Vector<int>::const_iterator ft_iterator(&(range_array[0]));
 
-        std::vector<int> stl_range_vector(stl_iterator, stl_iterator + 5);
+        std::vector<int> stl_range_vector(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_range_vector(ft_iterator, ft_iterator + 5);
     
         fs.open("./tester/vectors_output/iterator_const_reverse_end", std::fstream::in | std::fstream::out | std::fstream::trunc);
@@ -825,10 +825,10 @@ void test_vector()
     {
         int range_array[] = { 8, -5615, 412, 89, 475};
 
-        std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
 
-        std::vector<int> stl_operator(stl_iterator_beg, stl_iterator_beg + 5);
+        std::vector<int> stl_operator(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_operator(ft_iterator_beg, ft_iterator_beg + 5);
 
         fs.open("./tester/vectors_output/operator_at", std::fstream::in | std::fstream::out | std::fstream::trunc);
@@ -842,7 +842,7 @@ void test_vector()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = { 8, -5615, 412, 89, 475};\n";
         fs << "std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));\n";
-        fs << "std::vector<int> stl_operator(stl_iterator_beg, stl_iterator_beg + 5);\n";
+        fs << "std::vector<int> stl_operator(std::begin(range_array), std::end(range_array));\n";
         fs.close();
     }
 
@@ -850,10 +850,10 @@ void test_vector()
     {
         int range_array[] = {8, -98, 541, 53361, 9};
 
-        std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
 
-        std::vector<int> stl_operator(stl_iterator_beg, stl_iterator_beg + 5);
+        std::vector<int> stl_operator(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_operator(ft_iterator_beg, ft_iterator_beg + 5);
 
         const int stl_const = stl_operator[1];
@@ -871,7 +871,7 @@ void test_vector()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {8, -98, 541, 53361, 9};\n";
         fs << "std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));\n";
-        fs << "std::vector<int> stl_operator(stl_iterator_beg, stl_iterator_beg + 5);\n";
+        fs << "std::vector<int> stl_operator(std::begin(range_array), std::end(range_array));\n";
         fs << "const int stl_const = stl_operator[1];\n";
         fs.close();
     }
@@ -880,10 +880,10 @@ void test_vector()
     {
         int range_array[] = {8, -986, -8, 66, 7};
 
-        std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
 
-        std::vector<int> stl_at(stl_iterator_beg, stl_iterator_beg + 5);
+        std::vector<int> stl_at(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_at(ft_iterator_beg, ft_iterator_beg + 5);
 
         fs.open("./tester/vectors_output/at", std::fstream::in | std::fstream::out | std::fstream::trunc);
@@ -897,7 +897,7 @@ void test_vector()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {8, -986, -8, 66, 7};\n";
         fs << "std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));\n";
-        fs << "std::vector<int> stl_at(stl_iterator_beg, stl_iterator_beg + 5);\n";
+        fs << "std::vector<int> stl_at(std::begin(range_array), std::end(range_array));\n";
         fs.close();
     }    
 
@@ -905,10 +905,10 @@ void test_vector()
     {
         int range_array[] = {845, -9, 47, 4, -825};
 
-        std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
 
-        std::vector<int> stl_at(stl_iterator_beg, stl_iterator_beg + 5);
+        std::vector<int> stl_at(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_at(ft_iterator_beg, ft_iterator_beg + 5);
 
         const int stl_const = stl_at.at(4);
@@ -926,7 +926,7 @@ void test_vector()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {845, -9, 47, 4, -825};\n";
         fs << "std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));\n";
-        fs << "std::vector<int> stl_at(stl_iterator_beg, stl_iterator_beg + 5);\n";
+        fs << "std::vector<int> stl_at(std::begin(range_array), std::end(range_array));\n";
         fs << "const int ft_const = ft_at.at(4);\n";
         fs.close();
     }
@@ -935,10 +935,10 @@ void test_vector()
     {
         int range_array[] = {2, 0, 982, -9, 87};
 
-        std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
 
-        std::vector<int> stl_front(stl_iterator_beg, stl_iterator_beg + 5);
+        std::vector<int> stl_front(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_front(ft_iterator_beg, ft_iterator_beg + 5);
 
         fs.open("./tester/vectors_output/front", std::fstream::in | std::fstream::out | std::fstream::trunc);
@@ -952,7 +952,7 @@ void test_vector()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {2, 0, 982, -9, 87};\n";
         fs << "std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));\n";
-        fs << "std::vector<int> stl_front(stl_iterator_beg, stl_iterator_beg + 5);\n";
+        fs << "std::vector<int> stl_front(std::begin(range_array), std::end(range_array));\n";
         fs.close();
     }
 
@@ -960,10 +960,10 @@ void test_vector()
     {
         int range_array[] = {5589, -97, -98, -63, 8};
 
-        std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
 
-        std::vector<int> stl_front(stl_iterator_beg, stl_iterator_beg + 5);
+        std::vector<int> stl_front(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_front(ft_iterator_beg, ft_iterator_beg + 5);
 
         const int stl_const = stl_front.front();
@@ -981,7 +981,7 @@ void test_vector()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {5589, -97, -98, -63, 8};\n";
         fs << "std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));\n";
-        fs << "std::vector<int> stl_front(stl_iterator_beg, stl_iterator_beg + 5);\n";
+        fs << "std::vector<int> stl_front(std::begin(range_array), std::end(range_array));\n";
         fs << "const int stl_const = stl_front.front();\n";
         fs.close();
     }
@@ -990,10 +990,10 @@ void test_vector()
     {
         int range_array[] = {2, 0, 982, -9, 87};
 
-        std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
 
-        std::vector<int> stl_back(stl_iterator_beg, stl_iterator_beg + 5);
+        std::vector<int> stl_back(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_back(ft_iterator_beg, ft_iterator_beg + 5);
 
         fs.open("./tester/vectors_output/back", std::fstream::in | std::fstream::out | std::fstream::trunc);
@@ -1007,7 +1007,7 @@ void test_vector()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {2, 0, 982, -9, 87};\n";
         fs << "std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));\n";
-        fs << "std::vector<int> stl_back(stl_iterator_beg, stl_iterator_beg + 5);\n";
+        fs << "std::vector<int> stl_back(std::begin(range_array), std::end(range_array));\n";
         fs.close();
     }
 
@@ -1015,10 +1015,10 @@ void test_vector()
     {
         int range_array[] = {5589, -97, -98, -63, 8};
 
-        std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
 
-        std::vector<int> stl_back(stl_iterator_beg, stl_iterator_beg + 5);
+        std::vector<int> stl_back(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_back(ft_iterator_beg, ft_iterator_beg + 5);
 
         const int stl_const = stl_back.back();
@@ -1036,7 +1036,7 @@ void test_vector()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {5589, -97, -98, -63, 8};\n";
         fs << "std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));\n";
-        fs << "std::vector<int> stl_back(stl_iterator_beg, stl_iterator_beg + 5);\n";
+        fs << "std::vector<int> stl_back(std::begin(range_array), std::end(range_array));\n";
         fs << "const int stl_const = stl_back.back();\n";
         fs.close();
     }
@@ -1048,13 +1048,13 @@ void test_vector()
     {
         int range_array[] = {84, 522, -654, -7623, 4};
 
-        std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
 
         std::vector<int> stl_assign;
         ft::Vector<int> ft_assign;
 
-        stl_assign.assign(stl_iterator_beg, stl_iterator_beg + 5);
+        stl_assign.assign(std::begin(range_array), std::end(range_array));
         ft_assign.assign(ft_iterator_beg, ft_iterator_beg + 5);
 
         fs.open("./tester/vectors_output/assign_range", std::fstream::in | std::fstream::out | std::fstream::trunc);
@@ -1070,7 +1070,7 @@ void test_vector()
         fs << "int range_array[] = {84, 522, -654, -7623, 4};\n";
         fs << "std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));\n";
         fs << "std::vector<int> stl_assign;\n";
-        fs << "stl_assign.assign(stl_iterator_beg, stl_iterator_beg + 5);\n";
+        fs << "stl_assign.assign(std::begin(range_array), std::end(range_array));\n";
         fs.close();
     }
 
@@ -1078,13 +1078,13 @@ void test_vector()
     {
         int range_array[] = {547, 98, -6, 0, 47};
 
-        std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
 
         std::vector<int> stl_assign(42);
         ft::Vector<int> ft_assign(42);
 
-        stl_assign.assign(stl_iterator_beg, stl_iterator_beg + 5);
+        stl_assign.assign(std::begin(range_array), std::end(range_array));
         ft_assign.assign(ft_iterator_beg, ft_iterator_beg + 5);
 
         fs.open("./tester/vectors_output/assign_range_replace", std::fstream::in | std::fstream::out | std::fstream::trunc);
@@ -1100,7 +1100,7 @@ void test_vector()
         fs << "int range_array[] = {547, 98, -6, 0, 47};\n";
         fs << "std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));\n";
         fs << "std::vector<int> stl_assign;\n";
-        fs << "stl_assign.assign(stl_iterator_beg, stl_iterator_beg + 5);\n";
+        fs << "stl_assign.assign(std::begin(range_array), std::end(range_array));\n";
         fs.close();
     }
 
@@ -1192,10 +1192,10 @@ void test_vector()
     {
         int range_array[] = {547, 98, -6, 0, 47};
 
-        std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
 
-        std::vector<int> stl_popback(stl_iterator_beg, stl_iterator_beg + 5);
+        std::vector<int> stl_popback(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_popback(ft_iterator_beg, ft_iterator_beg + 5);
 
         stl_popback.pop_back();
@@ -1220,10 +1220,10 @@ void test_vector()
     {
         int range_array[] = {478, 87, -85, 44, 7};
 
-        std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
 
-        std::vector<int> stl_insert(stl_iterator_beg, stl_iterator_beg + 5);
+        std::vector<int> stl_insert(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_insert(ft_iterator_beg, ft_iterator_beg + 5);
 
         stl_insert.insert(stl_insert.begin() + 2, 9999);
@@ -1249,10 +1249,10 @@ void test_vector()
     {
         int range_array[] = {47, 152, -325, 9, 14444};
 
-        std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
 
-        std::vector<int> stl_insert(stl_iterator_beg, stl_iterator_beg + 5);
+        std::vector<int> stl_insert(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_insert(ft_iterator_beg, ft_iterator_beg + 5);
 
         stl_insert.insert(stl_insert.begin() + 2, 6, 4269);
@@ -1277,13 +1277,13 @@ void test_vector()
     {
         int range_array[] = {47, 152, -325, 9, 14444};
         
-        std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
 
         std::vector<int> stl_insert(4);
         ft::Vector<int> ft_insert(4);
 
-        stl_insert.insert(stl_insert.end(), stl_iterator_beg, stl_iterator_beg + 5);
+        stl_insert.insert(stl_insert.end(), std::begin(range_array), std::end(range_array));
         ft_insert.insert(ft_insert.end(), ft_iterator_beg, ft_iterator_beg + 5);
 
         fs.open("./tester/vectors_output/insert_range", std::fstream::in | std::fstream::out | std::fstream::trunc);
@@ -1307,10 +1307,10 @@ void test_vector()
     {
         int range_array[] = {47, 152, -325, 9, 14444};
 
-        std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
 
-        std::vector<int> stl_erase(stl_iterator_beg, stl_iterator_beg + 5);
+        std::vector<int> stl_erase(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_erase(ft_iterator_beg, ft_iterator_beg + 5);
 
         stl_erase.erase(stl_erase.begin() + 2);
@@ -1328,7 +1328,7 @@ void test_vector()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {47, 152, -325, 9, 14444};\n";
         fs << "std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));\n";
-        fs << "std::vector<int> stl_erase(stl_iterator_beg, stl_iterator_beg + 5);\n";
+        fs << "std::vector<int> stl_erase(std::begin(range_array), std::end(range_array));\n";
         fs << "stl_erase.erase(stl_erase.begin());\n";
         fs.close();
     }
@@ -1337,10 +1337,10 @@ void test_vector()
     {
         int range_array[] = {1458, -98, 745, 62, 9};
 
-        std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
 
-        std::vector<int> stl_erase(stl_iterator_beg, stl_iterator_beg + 5);
+        std::vector<int> stl_erase(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_erase(ft_iterator_beg, ft_iterator_beg + 5);
 
         stl_erase.erase(stl_erase.begin() + 1, stl_erase.end() - 2);
@@ -1358,7 +1358,7 @@ void test_vector()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {1458, -98, 745, 62, 9};\n";
         fs << "std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));\n";
-        fs << "std::vector<int> stl_erase(stl_iterator_beg, stl_iterator_beg + 5);\n";
+        fs << "std::vector<int> stl_erase(std::begin(range_array), std::end(range_array));\n";
         fs << "stl_erase.erase(stl_erase.begin() + 1, stl_erase.end() - 2);\n";
         fs.close();
     }
@@ -1368,13 +1368,13 @@ void test_vector()
         int range_array_one[] = {1458, -98, 745, 62, 9};
         int range_array_two[] = {478, 87, -15, 44, 7};
 
-        std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
-        std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
+        // std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
+        // std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
         ft::Vector<int>::iterator ft_iterator_beg_one(&(range_array_one[0]));
         ft::Vector<int>::iterator ft_iterator_beg_two(&(range_array_two[0]));
 
-        std::vector<int> stl_swap_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
-        std::vector<int> stl_swap_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
+        std::vector<int> stl_swap_one(std::begin(range_array_one), std::end(range_array_one));
+        std::vector<int> stl_swap_two(std::begin(range_array_two), std::end(range_array_two));
         ft::Vector<int> ft_swap_one(ft_iterator_beg_one, ft_iterator_beg_one + 5);
         ft::Vector<int> ft_swap_two(ft_iterator_beg_two, ft_iterator_beg_two + 5);
 
@@ -1411,10 +1411,10 @@ void test_vector()
     {
         int range_array[] = {-455, 2, 1347, 75, 945};
 
-        std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+        // std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
         ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
 
-        std::vector<int> stl_clear(stl_iterator_beg, stl_iterator_beg + 5);
+        std::vector<int> stl_clear(std::begin(range_array), std::end(range_array));
         ft::Vector<int> ft_clear(ft_iterator_beg, ft_iterator_beg + 5);
 
         stl_clear.clear();
@@ -1432,7 +1432,7 @@ void test_vector()
         fs << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         fs << "int range_array[] = {-455, 2, 1347, 75, 945};\n";
         fs << "std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));\n";
-        fs << "std::vector<int> stl_clear(stl_iterator_beg, stl_iterator_beg + 5);\n";
+        fs << "std::vector<int> stl_clear(std::begin(range_array), std::end(range_array));\n";
         fs << "stl_clear.clear();\n";
         fs.close();
     }
@@ -1447,13 +1447,16 @@ void test_vector()
         int range_array_one[] = {1458, -98, 745, 62, 9};
         int range_array_two[] = {1458, -98, 745, 62, 9};
 
-        std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
-        std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
+        // std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
+        // std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
         ft::Vector<int>::iterator ft_iterator_beg_one(&(range_array_one[0]));
         ft::Vector<int>::iterator ft_iterator_beg_two(&(range_array_two[0]));
 
-        std::vector<int> stl_equal_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
-        std::vector<int> stl_equal_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
+        std::vector<int> stl_equal_one(std::begin(range_array_one), std::end(range_array_one));
+        std::vector<int> stl_equal_two(std::begin(range_array_two), std::end(range_array_two));
+
+        // std::vector<int> stl_equal_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
+        // std::vector<int> stl_equal_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
         ft::Vector<int> ft_equal_one(ft_iterator_beg_one, ft_iterator_beg_one + 5);
         ft::Vector<int> ft_equal_two(ft_iterator_beg_two, ft_iterator_beg_two + 5);
 
@@ -1488,13 +1491,16 @@ void test_vector()
         int range_array_one[] = {144, 335, 5, 0, -54};
         int range_array_two[] = {1458, -98, 745, 62, 9};
 
-        std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
-        std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
+        // std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
+        // std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
         ft::Vector<int>::iterator ft_iterator_beg_one(&(range_array_one[0]));
         ft::Vector<int>::iterator ft_iterator_beg_two(&(range_array_two[0]));
 
-        std::vector<int> stl_equal_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
-        std::vector<int> stl_equal_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
+        std::vector<int> stl_equal_one(std::begin(range_array_one), std::end(range_array_one));
+        std::vector<int> stl_equal_two(std::begin(range_array_two), std::end(range_array_two));
+
+        // std::vector<int> stl_equal_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
+        // std::vector<int> stl_equal_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
         ft::Vector<int> ft_equal_one(ft_iterator_beg_one, ft_iterator_beg_one + 5);
         ft::Vector<int> ft_equal_two(ft_iterator_beg_two, ft_iterator_beg_two + 5);
 
@@ -1529,13 +1535,16 @@ void test_vector()
         int range_array_one[] = {144, 335, 5, 0, -54};
         int range_array_two[] = {1458, -98, 745, 62, 9};
 
-        std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
-        std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
+        // std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
+        // std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
         ft::Vector<int>::iterator ft_iterator_beg_one(&(range_array_one[0]));
         ft::Vector<int>::iterator ft_iterator_beg_two(&(range_array_two[0]));
 
-        std::vector<int> stl_operator_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
-        std::vector<int> stl_operator_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
+        std::vector<int> stl_operator_one(std::begin(range_array_one), std::end(range_array_one));
+        std::vector<int> stl_operator_two(std::begin(range_array_two), std::end(range_array_two));
+
+        // std::vector<int> stl_operator_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
+        // std::vector<int> stl_operator_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
         ft::Vector<int> ft_operator_one(ft_iterator_beg_one, ft_iterator_beg_one + 5);
         ft::Vector<int> ft_operator_two(ft_iterator_beg_two, ft_iterator_beg_two + 5);
 
@@ -1570,13 +1579,16 @@ void test_vector()
         int range_array_one[] = {144, 335, 5, 0, -54};
         int range_array_two[] = {144, 335, 5, 0, -54};
 
-        std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
-        std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
+        // std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
+        // std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
         ft::Vector<int>::iterator ft_iterator_beg_one(&(range_array_one[0]));
         ft::Vector<int>::iterator ft_iterator_beg_two(&(range_array_two[0]));
 
-        std::vector<int> stl_operator_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
-        std::vector<int> stl_operator_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
+        std::vector<int> stl_operator_one(std::begin(range_array_one), std::end(range_array_one));
+        std::vector<int> stl_operator_two(std::begin(range_array_two), std::end(range_array_two));
+
+        // std::vector<int> stl_operator_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
+        // std::vector<int> stl_operator_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
         ft::Vector<int> ft_operator_one(ft_iterator_beg_one, ft_iterator_beg_one + 5);
         ft::Vector<int> ft_operator_two(ft_iterator_beg_two, ft_iterator_beg_two + 5);
 
@@ -1611,13 +1623,16 @@ void test_vector()
         int range_array_one[] = {144, 335, 1, -98, 5};
         int range_array_two[] = {144, 335, 5, 0, -54};
 
-        std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
-        std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
+        // std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
+        // std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
         ft::Vector<int>::iterator ft_iterator_beg_one(&(range_array_one[0]));
         ft::Vector<int>::iterator ft_iterator_beg_two(&(range_array_two[0]));
 
-        std::vector<int> stl_operator_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
-        std::vector<int> stl_operator_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
+        std::vector<int> stl_operator_one(std::begin(range_array_one), std::end(range_array_one));
+        std::vector<int> stl_operator_two(std::begin(range_array_two), std::end(range_array_two));
+
+        // std::vector<int> stl_operator_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
+        // std::vector<int> stl_operator_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
         ft::Vector<int> ft_operator_one(ft_iterator_beg_one, ft_iterator_beg_one + 5);
         ft::Vector<int> ft_operator_two(ft_iterator_beg_two, ft_iterator_beg_two + 5);
 
@@ -1652,13 +1667,16 @@ void test_vector()
         int range_array_one[] = {6780, 335, 1, -98, 5};
         int range_array_two[] = {144, 335, 5, 0, -54};
 
-        std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
-        std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
+        // std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
+        // std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
         ft::Vector<int>::iterator ft_iterator_beg_one(&(range_array_one[0]));
         ft::Vector<int>::iterator ft_iterator_beg_two(&(range_array_two[0]));
 
-        std::vector<int> stl_operator_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
-        std::vector<int> stl_operator_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
+        std::vector<int> stl_operator_one(std::begin(range_array_one), std::end(range_array_one));
+        std::vector<int> stl_operator_two(std::begin(range_array_two), std::end(range_array_two));
+
+        // std::vector<int> stl_operator_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
+        // std::vector<int> stl_operator_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
         ft::Vector<int> ft_operator_one(ft_iterator_beg_one, ft_iterator_beg_one + 5);
         ft::Vector<int> ft_operator_two(ft_iterator_beg_two, ft_iterator_beg_two + 5);
 
@@ -1693,13 +1711,16 @@ void test_vector()
         int range_array_one[] = {144, 335, 1, -98, 5};
         int range_array_two[] = {144, 335, 5, 0, -54};
 
-        std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
-        std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
+        // std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
+        // std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
         ft::Vector<int>::iterator ft_iterator_beg_one(&(range_array_one[0]));
         ft::Vector<int>::iterator ft_iterator_beg_two(&(range_array_two[0]));
 
-        std::vector<int> stl_operator_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
-        std::vector<int> stl_operator_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
+        std::vector<int> stl_operator_one(std::begin(range_array_one), std::end(range_array_one));
+        std::vector<int> stl_operator_two(std::begin(range_array_two), std::end(range_array_two));
+
+        // std::vector<int> stl_operator_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
+        // std::vector<int> stl_operator_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
         ft::Vector<int> ft_operator_one(ft_iterator_beg_one, ft_iterator_beg_one + 5);
         ft::Vector<int> ft_operator_two(ft_iterator_beg_two, ft_iterator_beg_two + 5);
 
@@ -1734,13 +1755,16 @@ void test_vector()
         int range_array_one[] = {144, 335, 5, 0, -54};
         int range_array_two[] = {144, 335, 5, 0, -54};
 
-        std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
-        std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
+        // std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
+        // std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
         ft::Vector<int>::iterator ft_iterator_beg_one(&(range_array_one[0]));
         ft::Vector<int>::iterator ft_iterator_beg_two(&(range_array_two[0]));
 
-        std::vector<int> stl_operator_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
-        std::vector<int> stl_operator_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
+        std::vector<int> stl_operator_one(std::begin(range_array_one), std::end(range_array_one));
+        std::vector<int> stl_operator_two(std::begin(range_array_two), std::end(range_array_two));
+
+        // std::vector<int> stl_operator_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
+        // std::vector<int> stl_operator_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
         ft::Vector<int> ft_operator_one(ft_iterator_beg_one, ft_iterator_beg_one + 5);
         ft::Vector<int> ft_operator_two(ft_iterator_beg_two, ft_iterator_beg_two + 5);
 
@@ -1775,13 +1799,13 @@ void test_vector()
         int range_array_one[] = {144, 9999, 5, 0, -54};
         int range_array_two[] = {144, 335, 5, 0, -54};
 
-        std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
-        std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
+        // std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
+        // std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
         ft::Vector<int>::iterator ft_iterator_beg_one(&(range_array_one[0]));
         ft::Vector<int>::iterator ft_iterator_beg_two(&(range_array_two[0]));
 
-        std::vector<int> stl_operator_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
-        std::vector<int> stl_operator_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
+        std::vector<int> stl_operator_one(std::begin(range_array_one), std::end(range_array_one));
+        std::vector<int> stl_operator_two(std::begin(range_array_two), std::end(range_array_two));
         ft::Vector<int> ft_operator_one(ft_iterator_beg_one, ft_iterator_beg_one + 5);
         ft::Vector<int> ft_operator_two(ft_iterator_beg_two, ft_iterator_beg_two + 5);
 
@@ -1816,13 +1840,13 @@ void test_vector()
         int range_array_one[] = {144, 9999, 5, 0, -54};
         int range_array_two[] = {144, 335, 5, 0, -54};
 
-        std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
-        std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
+        // std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
+        // std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
         ft::Vector<int>::iterator ft_iterator_beg_one(&(range_array_one[0]));
         ft::Vector<int>::iterator ft_iterator_beg_two(&(range_array_two[0]));
 
-        std::vector<int> stl_operator_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
-        std::vector<int> stl_operator_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
+        std::vector<int> stl_operator_one(std::begin(range_array_one), std::end(range_array_one));
+        std::vector<int> stl_operator_two(std::begin(range_array_two), std::end(range_array_two));
         ft::Vector<int> ft_operator_one(ft_iterator_beg_one, ft_iterator_beg_one + 5);
         ft::Vector<int> ft_operator_two(ft_iterator_beg_two, ft_iterator_beg_two + 5);
 
@@ -1857,13 +1881,13 @@ void test_vector()
         int range_array_one[] = {144, 335, 5, 0, -54};
         int range_array_two[] = {144, 335, 77, 0, -54};
 
-        std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
-        std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
+        // std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
+        // std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
         ft::Vector<int>::iterator ft_iterator_beg_one(&(range_array_one[0]));
         ft::Vector<int>::iterator ft_iterator_beg_two(&(range_array_two[0]));
 
-        std::vector<int> stl_operator_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
-        std::vector<int> stl_operator_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
+        std::vector<int> stl_operator_one(std::begin(range_array_one), std::end(range_array_one));
+        std::vector<int> stl_operator_two(std::begin(range_array_two), std::end(range_array_two));
         ft::Vector<int> ft_operator_one(ft_iterator_beg_one, ft_iterator_beg_one + 5);
         ft::Vector<int> ft_operator_two(ft_iterator_beg_two, ft_iterator_beg_two + 5);
 
@@ -1898,13 +1922,13 @@ void test_vector()
         int range_array_one[] = {144, 335, 78, 0, -54};
         int range_array_two[] = {144, 335, 77, 0, -54};
 
-        std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
-        std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
+        // std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
+        // std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
         ft::Vector<int>::iterator ft_iterator_beg_one(&(range_array_one[0]));
         ft::Vector<int>::iterator ft_iterator_beg_two(&(range_array_two[0]));
 
-        std::vector<int> stl_operator_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
-        std::vector<int> stl_operator_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
+        std::vector<int> stl_operator_one(std::begin(range_array_one), std::end(range_array_one));
+        std::vector<int> stl_operator_two(std::begin(range_array_two), std::end(range_array_two));
         ft::Vector<int> ft_operator_one(ft_iterator_beg_one, ft_iterator_beg_one + 5);
         ft::Vector<int> ft_operator_two(ft_iterator_beg_two, ft_iterator_beg_two + 5);
 
@@ -1939,13 +1963,13 @@ void test_vector()
         int range_array_one[] = {144, 335, 5, 0, -54};
         int range_array_two[] = {144, 335, 77, 0, -54};
 
-        std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
-        std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
+        // std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
+        // std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
         ft::Vector<int>::iterator ft_iterator_beg_one(&(range_array_one[0]));
         ft::Vector<int>::iterator ft_iterator_beg_two(&(range_array_two[0]));
 
-        std::vector<int> stl_operator_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
-        std::vector<int> stl_operator_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
+        std::vector<int> stl_operator_one(std::begin(range_array_one), std::end(range_array_one));
+        std::vector<int> stl_operator_two(std::begin(range_array_two), std::end(range_array_two));
         ft::Vector<int> ft_operator_one(ft_iterator_beg_one, ft_iterator_beg_one + 5);
         ft::Vector<int> ft_operator_two(ft_iterator_beg_two, ft_iterator_beg_two + 5);
 
@@ -1980,13 +2004,16 @@ void test_vector()
         int range_array_one[] = {144, 335, 5, 0, -54};
         int range_array_two[] = {47, -98, 58, 611, -4};
 
-        std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
-        std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
+        // std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
+        // std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
         ft::Vector<int>::iterator ft_iterator_beg_one(&(range_array_one[0]));
         ft::Vector<int>::iterator ft_iterator_beg_two(&(range_array_two[0]));
 
-        std::vector<int> stl_swap_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
-        std::vector<int> stl_swap_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
+        std::vector<int> stl_swap_one(std::begin(range_array_one), std::end(range_array_one));
+        std::vector<int> stl_swap_two(std::begin(range_array_two), std::end(range_array_two));
+
+        // std::vector<int> stl_swap_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
+        // std::vector<int> stl_swap_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);
         ft::Vector<int> ft_swap_one(ft_iterator_beg_one, ft_iterator_beg_one + 5);
         ft::Vector<int> ft_swap_two(ft_iterator_beg_two, ft_iterator_beg_two + 5);
 

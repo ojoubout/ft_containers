@@ -1,0 +1,20 @@
+
+══════════════════════════════════════════════════════════════
+Value from :
+STL    : -825
+FT  [✔]: -825
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {845, -9, 47, 4, -825};
+ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
+ft::Vector<int> ft_at(ft_iterator_beg, ft_iterator_beg + 5);
+const int stl_const = stl_at.at(4);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {845, -9, 47, 4, -825};
+std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+std::vector<int> stl_at(std::begin(range_array), std::end(range_array));
+const int ft_const = ft_at.at(4);

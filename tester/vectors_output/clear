@@ -1,0 +1,31 @@
+
+══════════════════════════════════════════════════════════════
+Vectors attributes : 
+STL : 
+Empty       : true
+Size        : 0
+Max size    : 4611686018427387903
+Capacity    : 5
+Content     : []
+
+FT : 
+Empty    [✔]: true
+Size     [✔]: 0
+Max size [✔]: 4611686018427387903
+Capacity [✔]: 5
+Content  [✔]: []
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {-455, 2, 1347, 75, 945};
+ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
+ft::Vector<int> ft_clear(ft_iterator_beg, ft_iterator_beg + 5);
+ft_clear.clear();
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {-455, 2, 1347, 75, 945};
+std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+std::vector<int> stl_clear(std::begin(range_array), std::end(range_array));
+stl_clear.clear();

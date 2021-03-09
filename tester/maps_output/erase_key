@@ -1,0 +1,48 @@
+
+══════════════════════════════════════════════════════════════
+maps attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 288230376151711743
+Content     : [[-98, Three], [84, Four], [899, Five], [1452, One], [3651, Two], ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 288230376151711743
+Content  [✔]: [[-98, Three], [84, Four], [899, Five], [1452, One], [3651, Two], ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+maps attributes : 
+STL : 
+Empty       : false
+Size        : 4
+Max size    : 288230376151711743
+Content     : [[84, Four], [899, Five], [1452, One], [3651, Two], ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 4
+Max size [✔]: 288230376151711743
+Content  [✔]: [[84, Four], [899, Five], [1452, One], [3651, Two], ]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+const int range_int[] = {1452, 3651, -98, 84, 899};
+const std::string range_str[] = {"One", "Two", "Three", "Four", "Five"};
+ft::Map<int, std::string> ft_map;
+for (int i = 0; i < 5; i++)
+    ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
+ft_map.erase(-98);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+const int range_int[] = {1452, 3651, -98, 84, 899};
+const std::string range_str[] = {"One", "Two", "Three", "Four", "Five"};
+std::map<int, std::string> stl_map;
+for (int i = 0; i < 5; i++)
+    stl_map.insert(std::make_pair(range_int[i], range_str[i]));
+stl_map.erase(-98);

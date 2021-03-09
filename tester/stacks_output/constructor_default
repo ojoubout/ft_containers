@@ -1,0 +1,21 @@
+
+══════════════════════════════════════════════════════════════
+stacks attributes : 
+STL : 
+Empty       : true
+Size        : 0
+Content     : []
+
+FT : 
+Empty    [✔]: true
+Size     [✔]: 0
+Content  [✔]: []
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+ft::Stack<int> ft_default;
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+std::stack<int> stl_default;

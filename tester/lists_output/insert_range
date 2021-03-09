@@ -1,0 +1,33 @@
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 768614336404564650
+Content     : [147, 852, -369, 45, 98, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 768614336404564650
+Content  [✔]: [147, 852, -369, 45, 98, ]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {147, 852, -369, 45, 98};
+ft::List<int> ft_list;
+for (int i = 0; i < 5; i++)
+    ft_list.push_back(range[i]);
+ft::List<int> ft_test;
+ft_test.insert(ft_test.begin(), ft_list.begin(), ft_list.end());
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {147, 852, -369, 45, 98};
+std::list<int> stl_list;
+for (int i = 0; i < 5; i++)
+    stl_list.push_back(range[i]);
+std::list<int> stl_test;
+stl_test.insert(stl_test.begin(), stl_list.begin(), stl_list.end());

@@ -1,0 +1,46 @@
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 9
+Max size    : 768614336404564650
+Content     : [12, 52, 52, 52, 48, 52, 996, 996, 7, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 9
+Max size [✔]: 768614336404564650
+Content  [✔]: [12, 52, 52, 52, 48, 52, 996, 996, 7, ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 6
+Max size    : 768614336404564650
+Content     : [12, 52, 48, 52, 996, 7, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 6
+Max size [✔]: 768614336404564650
+Content  [✔]: [12, 52, 48, 52, 996, 7, ]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {12, 52, 52, 52, 48, 52, 996, 996, 7};
+ft::List<int> ft_list;
+for (int i = 0; i < 9; i++)
+    ft_list.push_back(range[i]);
+ft_list.unique();
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {12, 52, 52, 52, 48, 52, 996, 996, 7};
+std::list<int> stl_list;
+for (int i = 0; i < 9; i++)
+    stl_list.push_back(range[i]);
+stl_list.unique();

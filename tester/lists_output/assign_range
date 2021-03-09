@@ -1,0 +1,48 @@
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 40
+Max size    : 768614336404564650
+Content     : [22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 40
+Max size [✔]: 768614336404564650
+Content  [✔]: [22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 768614336404564650
+Content     : [65, 423, -874, 57, 963, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 768614336404564650
+Content  [✔]: [65, 423, -874, 57, 963, ]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {65, 423, -874, 57, 963};
+ft::List<int> ft_list;
+for (int i = 0; i < 5; i++)
+    ft_range.push_back(range[i]);
+Sending output...
+ft_list.assign(ft_range.begin(), ft_range.end());
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {65, 423, -874, 57, 963};
+std::list<int> stl_list;
+for (int i = 0; i < 5; i++)
+    stl_range.push_back(range[i]);
+Sending output...
+stl_list.assign(stl_range.begin(), stl_range.end());

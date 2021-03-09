@@ -1,0 +1,58 @@
+
+══════════════════════════════════════════════════════════════
+maps attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 288230376151711743
+Content     : [[-854, One], [-9, Four], [1, Two], [755, Five], [965, Three], ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 288230376151711743
+Content  [✔]: [[-854, One], [-9, Four], [1, Two], [755, Five], [965, Three], ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+maps attributes : 
+STL : 
+Empty       : false
+Size        : 3
+Max size    : 288230376151711743
+Content     : [[-854, One], [-9, Four], [965, Three], ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 3
+Max size [✔]: 288230376151711743
+Content  [✔]: [[-854, One], [-9, Four], [965, Three], ]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+const int range_int[] = {-854, 1, 965, -9, 755};
+const std::string range_str[] = {"One", "Two", "Three", "Four", "Five"};
+ft::Map<int, std::string> ft_map;
+for (int i = 0; i < 5; i++)
+    ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
+ft::Map<int, std::string>::iterator ft_it_beg = ft_map.begin();
+ft::Map<int, std::string>::iterator ft_it_end = ft_map.end();
+for (int i = 0; i < 2; i++)
+	ft_it_beg++;
+ft_it_end--;
+ft_map.erase(ft_it_beg, ft_it_end);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+const int range_int[] = {-854, 1, 965, -9, 755};
+const std::string range_str[] = {"One", "Two", "Three", "Four", "Five"};
+std::map<int, std::string> stl_map;
+for (int i = 0; i < 5; i++)
+    stl_map.insert(std::make_pair(range_int[i], range_str[i]));
+std::map<int, std::string>::iterator stl_it_beg = stl_map.begin();
+std::map<int, std::string>::iterator stl_it_end = stl_map.end();
+for (int i = 0; i < 2; i++)
+	stl_it_beg++;
+stl_it_end--;
+stl_map.erase(stl_it_beg, stl_it_end);

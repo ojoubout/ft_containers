@@ -1,0 +1,42 @@
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 10
+Max size    : 768614336404564650
+Content     : [42, 42, 42, 42, 42, 42, 42, 42, 42, 42, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 10
+Max size [✔]: 768614336404564650
+Content  [✔]: [42, 42, 42, 42, 42, 42, 42, 42, 42, 42, ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : true
+Size        : 0
+Max size    : 768614336404564650
+Content     : []
+
+FT : 
+Empty    [✔]: true
+Size     [✔]: 0
+Max size [✔]: 768614336404564650
+Content  [✔]: []
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+ft::List<int> ft_fill_list;
+Sending output...
+ft_fill_list.clear();
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+std::list<int> stl_fill_list;
+Sending output...
+stl_fill_list.clear();

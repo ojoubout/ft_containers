@@ -1,0 +1,75 @@
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 7
+Max size    : 768614336404564650
+Content     : [8, 12, 42, 45, 46, 58, 99, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 7
+Max size [✔]: 768614336404564650
+Content  [✔]: [8, 12, 42, 45, 46, 58, 99, ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 7
+Max size    : 768614336404564650
+Content     : [50, 54, 84, 87, 88, 100, 141, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 7
+Max size [✔]: 768614336404564650
+Content  [✔]: [50, 54, 84, 87, 88, 100, 141, ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 14
+Max size    : 768614336404564650
+Content     : [8, 12, 42, 45, 46, 50, 54, 58, 84, 87, 88, 99, 100, 141, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 14
+Max size [✔]: 768614336404564650
+Content  [✔]: [8, 12, 42, 45, 46, 50, 54, 58, 84, 87, 88, 99, 100, 141, ]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {8, 12, 58, 42, 45, 46, 99};
+ft::List<int> ft_list;
+ft::List<int> ft_list_two;
+for (int i = 0; i < 7; i++)
+{
+    ft_list.push_back(range[i]);
+    ft_list_two.push_back(range[i] + 42);
+}
+ft_list.sort();
+ft_list_two.sort();
+Sending output...
+ft_list.merge(ft_list_two);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {8, 12, 58, 42, 45, 46, 99};
+std::list<int> stl_list;
+std::list<int> stl_list_two;
+for (int i = 0; i < 7; i++)
+{
+    stl_list.push_back(range[i]);
+    stl_list_two.push_back(range[i] + 42);
+}
+stl_list.sort();
+stl_list_two.sort();
+Sending output...
+stl_list.merge(stl_list_two);

@@ -1,0 +1,81 @@
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 768614336404564650
+Content     : [251, -955, 5742, 3, -64, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 768614336404564650
+Content  [✔]: [251, -955, 5742, 3, -64, ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 6
+Max size    : 768614336404564650
+Content     : [251, -955, 5742, 917, 3, -64, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 6
+Max size [✔]: 768614336404564650
+Content  [✔]: [251, -955, 5742, 917, 3, -64, ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 4
+Max size    : 768614336404564650
+Content     : [-289, 6408, 669, 602, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 4
+Max size [✔]: 768614336404564650
+Content  [✔]: [-289, 6408, 669, 602, ]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {251, -955, 5742, 3, -64};
+ft::List<int> ft_list;
+ft::List<int> ft_list_sec;
+for (int i = 0; i < 5; i++)
+{
+    ft_list.push_back(range[i]);
+    ft_list_sec.push_back(range[i] + 666);
+}
+Sending Output ft_list...
+ft::List<int>::iterator ft_list_it = ft_list.begin();
+for (int i = 0; i < 3; i++)
+    ft_list_it++;
+ft_list.splice(ft_list_it, ft_list_sec, ft_list_sec.begin());
+Sending Output ft_list...
+Sending Output ft_list_sec...
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {251, -955, 5742, 3, -64};
+std::list<int> stl_list;
+std::list<int> stl_list_sec;
+for (int i = 0; i < 5; i++)
+{
+    stl_list.push_back(range[i]);
+    stl_list_sec.push_back(range[i] + 666);
+}
+Sending Output stl_list...
+std::list<int>::iterator stl_list_it = stl_list.begin();
+for (int i = 0; i < 3; i++)
+    stl_list_it++;
+stl_list.splice(stl_list_it, stl_list_sec, stl_list_sec.begin());
+Sending Output stl_list...
+Sending Output stl_list_sec...

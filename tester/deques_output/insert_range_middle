@@ -1,0 +1,33 @@
+
+══════════════════════════════════════════════════════════════
+deques attributes : 
+STL : 
+Empty       : false
+Size        : 15
+Max size    : 4611686018427387903
+Content     : [0, 0, 147, 985, -9, -9965, 4, 0, 0, 0, 0, 0, 0, 0, 0]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 15
+Max size [✔]: 4611686018427387903
+Content  [✔]: [0, 0, 147, 985, -9, -9965, 4, 0, 0, 0, 0, 0, 0, 0, 0]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {147, 985, -9, -9965, 4};
+ft::Deque<int> ft_range;
+for (int i = 0; i < 5; i++)
+    ft_range.push_back(range_array[i]);
+ft::Deque<int> ft_insert(10);
+ft_insert.insert(ft_insert.begin() + 2, ft_range.begin(), ft_range.end());
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {147, 985, -9, -9965, 4};
+std::deque<int> stl_range;
+for (int i = 0; i < 5; i++)
+    stl_range.push_back(range_array[i]);
+std::deque<int> stl_insert(10);
+stl_insert.insert(stl_insert.begin() + 2, stl_range.begin(), stl_range.end());

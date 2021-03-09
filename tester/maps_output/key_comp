@@ -1,0 +1,14 @@
+
+Bool result : 
+ - STL : true
+ - FT  : true
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+ft::Map<int, std::string>::key_compare ft_key = ft::Map<int, std::string>().key_comp();
+bool ft_res = ft_key(42, 99);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+std::map<int, std::string>::key_compare stl_key = std::map<int, std::string>().key_comp();
+bool stl_res = stl_key(42, 99);

@@ -1,0 +1,40 @@
+
+══════════════════════════════════════════════════════════════
+queues attributes : 
+STL : 
+Empty       : false
+Size        : 1
+Content     : [42]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 1
+Content  [✔]: [42]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+queues attributes : 
+STL : 
+Empty       : true
+Size        : 0
+Content     : []
+
+FT : 
+Empty    [✔]: true
+Size     [✔]: 0
+Content  [✔]: []
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+ft::Queue<int> ft_queue;
+ft_queue.push(42);
+Output...
+ft_queue.pop();
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+std::queue<int> stl_queue;
+stl_queue.push(42);
+Output...
+ft_queue.pop();

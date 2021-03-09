@@ -1,0 +1,56 @@
+
+══════════════════════════════════════════════════════════════
+Vectors attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 4611686018427387903
+Capacity    : 5
+Content     : [144, 335, 5, 0, -54]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 4611686018427387903
+Capacity [✔]: 5
+Content  [✔]: [144, 335, 5, 0, -54]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+Vectors attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 4611686018427387903
+Capacity    : 5
+Content     : [1458, -98, 745, 62, 9]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 4611686018427387903
+Capacity [✔]: 5
+Content  [✔]: [1458, -98, 745, 62, 9]
+══════════════════════════════════════════════════════════════
+
+Bool result : 
+ - STL : false
+ - FT  : false
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array_one[] = {144, 335, 5, 0, -54};
+int range_array_two[] = {1458, -98, 745, 62, 9};       
+ft::Vector<int>::iterator ft_iterator_beg_one(&(range_array_one[0]));
+ft::Vector<int>::iterator ft_iterator_beg_two(&(range_array_two[0]));
+ft::Vector<int> ft_equal_one(ft_iterator_beg_one, ft_iterator_beg_one + 5);
+ft::Vector<int> ft_equal_two(ft_iterator_beg_two, ft_iterator_beg_two + 5);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array_one[] = {144, 335, 5, 0, -54};
+int range_array_two[] = {1458, -98, 745, 62, 9};
+std::vector<int>::iterator stl_iterator_beg_one(&(range_array_one[0]));
+std::vector<int>::iterator stl_iterator_beg_two(&(range_array_two[0]));
+std::vector<int> stl_equal_one(stl_iterator_beg_one, stl_iterator_beg_one + 5);
+std::vector<int> stl_equal_two(stl_iterator_beg_two, stl_iterator_beg_two + 5);

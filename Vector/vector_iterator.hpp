@@ -1,7 +1,7 @@
 #ifndef VECTOR_ITERATOR_HPP
 # define VECTOR_ITERATOR_HPP
 
-#include "../iterator_traits.hpp"
+#include "../utils/iterator_traits.hpp"
 
 namespace ft {
 
@@ -41,9 +41,17 @@ public:
     vector_iterator   operator-(int rhs) {return vector_iterator(_ptr - rhs);}
     vector_iterator   operator+(int rhs) {return vector_iterator(_ptr + rhs);}
 
+    bool    operator<(const vector_iterator & it) { return (_ptr < it._ptr); }
+    bool    operator>(const vector_iterator & it) { return (_ptr > it._ptr); }
+    bool    operator<=(const vector_iterator & it) { return (_ptr <= it._ptr); }
+    bool    operator>=(const vector_iterator & it) { return (_ptr >= it._ptr); }
+
+    vector_iterator   operator+=(int rhs) {return (*this = *this + rhs);};
+    vector_iterator   operator-=(int rhs) {return (*this = *this - rhs);};
+
+    reference   operator[](int n) { return _ptr[n]; };
 
     operator vector_iterator<const value_type> () const { return vector_iterator<const value_type>(_ptr) ; }
-    // operator const_iterator () const { return const_iterator(_ptr) ; }
 
 private:
     pointer _ptr;
@@ -78,9 +86,17 @@ class vector_reverse_iterator : public ft::iterator<std::random_access_iterator_
             vector_reverse_iterator   operator-(int rhs) {return vector_reverse_iterator(_ptr + rhs);}
             vector_reverse_iterator   operator+(int rhs) {return vector_reverse_iterator(_ptr - rhs);}
 
-            // operator const_reverse_iterator  () const { return const_reverse_iterator (_ptr) ; }
-            operator vector_reverse_iterator<const value_type> () const { return vector_reverse_iterator<const value_type>(_ptr) ; }
+            bool    operator<(const vector_reverse_iterator & it) { return (_ptr > it._ptr); }
+            bool    operator>(const vector_reverse_iterator & it) { return (_ptr < it._ptr); }
+            bool    operator<=(const vector_reverse_iterator & it) { return (_ptr >= it._ptr); }
+            bool    operator>=(const vector_reverse_iterator & it) { return (_ptr <= it._ptr); }
 
+            vector_reverse_iterator   operator+=(int rhs) {return (*this = *this + rhs);};
+            vector_reverse_iterator   operator-=(int rhs) {return (*this = *this - rhs);};
+
+            reference   operator[](int n) { return *(*this + n); };
+
+            operator vector_reverse_iterator<const value_type> () const { return vector_reverse_iterator<const value_type>(_ptr) ; }
 
         private:
             pointer _ptr;

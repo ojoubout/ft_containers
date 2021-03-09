@@ -1,0 +1,25 @@
+
+══════════════════════════════════════════════════════════════
+Value from :
+STL    : 87
+FT  [✔]: 87
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = { 87, 92, -5, 8984, 96 };
+ft::Vector<int>::const_iterator ft_iterator(&(range_array[0]));
+ft::Vector<int> ft_range_vector(ft_iterator, ft_iterator + 5);
+ft::Vector<int>::const_iterator ft_const_it = ft_range_vector.begin();
+int from_ft = *(ft_const_it);
+    ^^^^^^^
+    Compared value
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = { 87, 92, -5, 8984, 96 };
+std::vector<int>::const_iterator stl_iterator(&(range_array[0]));
+std::vector<int> stl_range_vector(stl_iterator, stl_iterator + 5);
+std::vector<int>::const_iterator stl_const_it = stl_range_vector.begin();
+int from_stl = *(stl_const_it);
+    ^^^^^^^^
+    Compared value

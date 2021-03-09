@@ -1,0 +1,31 @@
+
+══════════════════════════════════════════════════════════════
+Vectors attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 4611686018427387903
+Capacity    : 5
+Content     : [84, 522, -654, -7623, 4]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 4611686018427387903
+Capacity [✔]: 5
+Content  [✔]: [84, 522, -654, -7623, 4]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {84, 522, -654, -7623, 4};
+ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
+ft::Vector<int> ft_assign;
+ft_assign.assign(ft_iterator_beg, ft_iterator_beg + 5);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {84, 522, -654, -7623, 4};
+std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+std::vector<int> stl_assign;
+stl_assign.assign(std::begin(range_array), std::end(range_array));

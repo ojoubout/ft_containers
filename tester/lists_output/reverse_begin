@@ -1,0 +1,37 @@
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 768614336404564650
+Content     : [147, 842, -364, 84, 5, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 768614336404564650
+Content  [✔]: [147, 842, -364, 84, 5, ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+Value from :
+STL    : 5
+FT  [✔]: 5
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {147, 842, -364, 84, 5};
+ft::List<int> ft_list;
+for (int i = 0; i < 5; i++)
+    ft_list.push_back(range[i]);
+int ft_test = *ft_list.rbegin();
+
+Compared with:
+int range[] = {147, 842, -364, 84, 5};
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+std::list<int> stl_list;
+for (int i = 0; i < 5; i++)
+    stl_list.push_back(range[i]);
+int stl_test = *stl_list.rbegin();

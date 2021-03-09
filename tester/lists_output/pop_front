@@ -1,0 +1,48 @@
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 768614336404564650
+Content     : [24, 9855, -321, 65, 49, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 768614336404564650
+Content  [✔]: [24, 9855, -321, 65, 49, ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 4
+Max size    : 768614336404564650
+Content     : [9855, -321, 65, 49, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 4
+Max size [✔]: 768614336404564650
+Content  [✔]: [9855, -321, 65, 49, ]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {24, 9855, -321, 65, 49};
+ft::List<int> ft_list;
+for (int i = 0; i < 5; i++)
+    ft_list.push_back(range[i]);
+Sending output...
+ft_list.pop_front();
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {24, 9855, -321, 65, 49};
+std::list<int> stl_list;
+for (int i = 0; i < 5; i++)
+    stl_list.push_back(range[i]);
+Sending output...
+stl_list.pop_front();

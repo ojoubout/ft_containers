@@ -1,0 +1,20 @@
+
+══════════════════════════════════════════════════════════════
+Value from :
+STL    : -98
+FT  [✔]: -98
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {8, -98, 541, 53361, 9};
+ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
+ft::Vector<int> ft_operator(ft_iterator_beg, ft_iterator_beg + 5);
+const int stl_const = stl_operator[1];
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {8, -98, 541, 53361, 9};
+std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+std::vector<int> stl_operator(std::begin(range_array), std::end(range_array));
+const int stl_const = stl_operator[1];

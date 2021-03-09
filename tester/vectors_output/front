@@ -1,0 +1,18 @@
+
+══════════════════════════════════════════════════════════════
+Value from :
+STL    : 2
+FT  [✔]: 2
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {2, 0, 982, -9, 87};
+ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
+ft::Vector<int> ft_front(ft_iterator_beg, ft_iterator_beg + 5);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {2, 0, 982, -9, 87};
+std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+std::vector<int> stl_front(std::begin(range_array), std::end(range_array));

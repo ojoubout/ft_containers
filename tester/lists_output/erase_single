@@ -1,0 +1,37 @@
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 4
+Max size    : 768614336404564650
+Content     : [147, 951, -675, -316, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 4
+Max size [✔]: 768614336404564650
+Content  [✔]: [147, 951, -675, -316, ]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {147, 951, 753, -675, -316};
+ft::List<int> ft_list;
+for (int i = 0; i < 5; i++)
+    ft_list.push_back(range[i]);
+ft::List<int>::iterator ft_it = ft_list.begin();
+for (int i = 0; i < 2; i++)
+    ft_it++;
+ft_list.erase(ft_it);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {147, 951, 753, -675, -316};
+std::list<int> stl_list;
+for (int i = 0; i < 5; i++)
+    stl_list.push_back(range[i]);
+std::list<int>::iterator stl_it = stl_list.begin();
+for (int i = 0; i < 2; i++)
+    stl_it++;
+stl_list.erase(stl_it);

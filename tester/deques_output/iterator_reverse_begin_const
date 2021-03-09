@@ -1,0 +1,24 @@
+
+══════════════════════════════════════════════════════════════
+Value from :
+STL    : 44
+FT  [✔]: 44
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = { 52, -45, -9, 956551, 44};
+ft::Deque<int>::iterator ft_iterator;
+for (int i = 0; i < 5; i++)
+    ft_iterator.push_back(range_array[i]);
+ft::Deque<int>::const_iterator ft_const_it = ft_iterator.rbegin();
+const int from_ft = *(ft_const_it);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = { 52, -45, -9, 956551, 44};
+std::deque<int>::iterator stl_iterator;
+for (int i = 0; i < 5; i++)
+    stl_iterator.push_back(range_array[i]);
+std::deque<int>::const_iterator stl_const_it = stl_iterator.rbegin();
+const int from_stl = *(stl_const_it);

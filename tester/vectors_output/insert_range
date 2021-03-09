@@ -1,0 +1,31 @@
+
+══════════════════════════════════════════════════════════════
+Vectors attributes : 
+STL : 
+Empty       : false
+Size        : 9
+Max size    : 4611686018427387903
+Capacity    : 9
+Content     : [0, 0, 0, 0, 47, 152, -325, 9, 14444]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 9
+Max size [✔]: 4611686018427387903
+Capacity [✔]: 9
+Content  [✔]: [0, 0, 0, 0, 47, 152, -325, 9, 14444]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {47, 152, -325, 9, 14444};
+ft::Vector<int>::iterator ft_iterator_beg(&(range_array[0]));
+ft::Vector<int> ft_insert(4);
+ft_insert.insert(ft_insert.end(), ft_iterator_beg, ft_iterator_beg + 5);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {47, 152, -325, 9, 14444};
+std::vector<int>::iterator stl_iterator_beg(&(range_array[0]));
+std::vector<int> stl_insert(4);
+stl_insert.insert(stl_insert.end(), stl_iterator_beg, stl_iterator_beg + 5);

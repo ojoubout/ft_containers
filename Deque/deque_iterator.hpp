@@ -1,7 +1,7 @@
 #ifndef DEQUE_ITERATOR_HPP
 # define DEQUE_ITERATOR_HPP
 
-#include "../iterator_traits.hpp"
+#include "../utils/iterator_traits.hpp"
 
 namespace ft {
 
@@ -24,32 +24,33 @@ class deque_iterator : public ft::iterator<std::random_access_iterator_tag, T> {
         deque_iterator() {};
         deque_iterator(map_pointer map, size_type index = 0) {
             if (map) {
-                set_node(map);
-                _curr = _first + index;
+                _node = map;
+                _index = index;
             }
         };
 
         deque_iterator &operator=(const deque_iterator &other) {
-            set_node(other._node);
-            _curr = other._curr;
+            _node = other._node;
+            _index = other._index;
+
             return (*this);
         }
 
-        void    set_node(map_pointer map) {
-            _node = map;
-            _first = *map;
-            _last = _first + BUFF_SIZE;
-        }
+        // void    set_node(map_pointer map) {
+        //     _node = map;
+        //     _first = *map;
+        //     _last = _first + BUFF_SIZE;
+        // }
 
 
-        reference   operator*() { return *_curr; };
-        pointer     operator->() { return _curr; };
+        reference   operator*() { return *curr(); };
+        pointer     operator->() { return curr(); };
         // Prefix increment
         deque_iterator& operator++() {
-            ++_curr;
-            if (_curr == _last) {
-                set_node(_node + 1);
-                _curr = _first;
+            ++_index;
+            if (_index == BUFF_SIZE) {
+                ++_node;
+                _index = 0;
             } 
             return *this;
         }
@@ -57,31 +58,31 @@ class deque_iterator : public ft::iterator<std::random_access_iterator_tag, T> {
         deque_iterator operator++(int) { deque_iterator tmp = *this; ++(*this); return tmp; }
         // Prefix decrement
         deque_iterator& operator--() {
-            if (_curr == _first) {
-                set_node(_node - 1);
-                _curr = _last;
+            if (_index == 0) {
+                --_node;
+                _index = BUFF_SIZE;
             }
-            --_curr;
+            --_index;
             return *this;
         }  
         // Postfix decrement
         deque_iterator operator--(int) { deque_iterator tmp = *this; --(*this); return tmp; }
 
-        bool    operator!=(const deque_iterator & it) { return (_curr != it._curr); }
-        bool    operator==(const deque_iterator & it) { return (_curr == it._curr); }
+        bool    operator!=(const deque_iterator & it) { return (curr() != it.curr()); }
+        bool    operator==(const deque_iterator & it) { return (curr() == it.curr()); }
 
         size_t   operator-(deque_iterator rhs) {
             size_t map_size = (_node - rhs._node) * BUFF_SIZE;
-            size_t size = map_size + (_curr - _first) - (rhs._curr - rhs._first);
+            size_t size = map_size + _index - rhs._index;
             return (size);
         }
 
         deque_iterator   operator+(int rhs) {
-            size_t n = rhs + (_curr - _first);
+            size_t n = rhs + _index;
             return deque_iterator(_node + n / BUFF_SIZE, n % BUFF_SIZE);
         }
         deque_iterator   operator-(int rhs) {
-            int n = (_curr - _first) - rhs;
+            int n = _index - rhs;
             if (n < 0) {
                 n = -n;
                 size_type   last_chunk_size = ((n % BUFF_SIZE) == 0 && n != 0) ? BUFF_SIZE : n % BUFF_SIZE ;
@@ -91,14 +92,13 @@ class deque_iterator : public ft::iterator<std::random_access_iterator_tag, T> {
                 return deque_iterator(_node - map_size, BUFF_SIZE -  last_chunk_size);
             } else {
                 return deque_iterator(_node, n);
-
             }
         }
         
-        bool    operator<(const deque_iterator & it) { return (_curr < it._curr); }
-        bool    operator>(const deque_iterator & it) { return (_curr > it._curr); }
-        bool    operator<=(const deque_iterator & it) { return (_curr <= it._curr); }
-        bool    operator>=(const deque_iterator & it) { return (_curr >= it._curr); }
+        bool    operator<(const deque_iterator & it) { return (curr() < it.curr()); }
+        bool    operator>(const deque_iterator & it) { return (curr() > it.curr()); }
+        bool    operator<=(const deque_iterator & it) { return (curr() <= it.curr()); }
+        bool    operator>=(const deque_iterator & it) { return (curr() >= it.curr()); }
 
         deque_iterator   operator+=(int rhs) {return (*this = *this + rhs);};
         deque_iterator   operator-=(int rhs) {return (*this = *this - rhs);};
@@ -106,14 +106,15 @@ class deque_iterator : public ft::iterator<std::random_access_iterator_tag, T> {
         reference   operator[](int n) { return *(*this + n); };
 
         operator deque_iterator<const value_type> () const {
-            return deque_iterator<const value_type>(const_cast<const value_type **>(_node), _curr - _first) ; }
+            return deque_iterator<const value_type>(const_cast<const value_type **>(_node), _index) ; }
 
     private:
-        pointer _curr;       
-        pointer _first;     // the begin of the chunk
-        pointer _last;      // the end of the chunk
+        size_t _index;
         map_pointer _node;
-        friend class Deque<T>;
+
+        pointer curr() const {
+            return (*_node + _index);
+        }
 
 };
 
@@ -132,64 +133,67 @@ class deque_reverse_iterator : public ft::iterator<std::random_access_iterator_t
 
         deque_reverse_iterator() {};
         deque_reverse_iterator(map_pointer map, size_type index) {
-            set_node(map);
-            _curr = _first + index;
+            _node = map;
+            _index = index;
         };
 
         deque_reverse_iterator &operator=(const deque_reverse_iterator &other) {
-            set_node(other._node);
-            _curr = other._curr;
+            _node = other._node;
+            _index = other._index;
             return (*this);
         }
 
-        void    set_node(map_pointer map) {
-            _node = map;
-            _first = *map;
-            _last = _first + BUFF_SIZE;
-        }
+        // void    set_node(map_pointer map) {
+        //     _node = map;
+        //     _first = *map;
+        //     _last = _first + BUFF_SIZE;
+        // }
 
+        reference   operator*() { return *(curr() - 1); };
+        pointer     operator->() { return (curr() - 1); };
 
-        reference   operator*() { return *(_curr - 1); };
-        pointer     operator->() { return (_curr - 1); };
         // Prefix increment
         deque_reverse_iterator& operator++() {
-            --_curr;
-            if (_curr == _first) {
-                set_node(_node - 1);
-                _curr = _last;
+            --_index;
+            if (_index == 0) {
+                --_node;
+                _index = BUFF_SIZE;
             }
             return *this;
         }
+    
         // Postfix increment
         deque_reverse_iterator operator++(int) { deque_reverse_iterator tmp = *this; ++(*this); return tmp; }
+    
         // Prefix decrement
         deque_reverse_iterator& operator--() {
-            if (_curr == _last) {
-                set_node(_node + 1);
-                _curr = _first;
+            if (_index == 0) {
+                ++_node;
+                _index = 0;
             } 
-            ++_curr;
+            ++_index;
             return *this;
-        }  
+        }
+
         // Postfix decrement
         deque_reverse_iterator operator--(int) { deque_reverse_iterator tmp = *this; --(*this); return tmp; }
 
-        bool    operator!=(const deque_reverse_iterator & it) { return (_curr != it._curr); }
-        bool    operator==(const deque_reverse_iterator & it) { return (_curr == it._curr); }
+        bool    operator!=(const deque_reverse_iterator & it) { return (curr() != it.curr()); }
+        bool    operator==(const deque_reverse_iterator & it) { return (curr() == it.curr()); }
 
         size_t   operator-(deque_reverse_iterator rhs) {
             size_t map_size = (_node - rhs._node) * BUFF_SIZE;
-            size_t size = map_size + (_curr - _first) - (rhs._curr - rhs._first);
+            size_t size = map_size + _index - rhs._index;
             return (size);
         }
 
         deque_reverse_iterator   operator-(int rhs) {
-            size_t n = rhs + (_curr - _first);
+            size_t n = rhs + _index;
             return deque_reverse_iterator(_node + n / BUFF_SIZE, n % BUFF_SIZE);
         }
 
         deque_reverse_iterator   operator+(int rhs) {
-            int n = (_curr - _first) - rhs;
+            int n = _index - rhs;
             if (n < 0) {
                 n = -n;
                 size_type   last_chunk_size = ((n % BUFF_SIZE) == 0 && n != 0) ? BUFF_SIZE : n % BUFF_SIZE ;
@@ -203,33 +207,26 @@ class deque_reverse_iterator : public ft::iterator<std::random_access_iterator_t
             }
         }
         
-        bool    operator<(const deque_reverse_iterator & it) { return (_curr < it._curr); }
-        bool    operator>(const deque_reverse_iterator & it) { return (_curr > it._curr); }
-        bool    operator<=(const deque_reverse_iterator & it) { return (_curr <= it._curr); }
-        bool    operator>=(const deque_reverse_iterator & it) { return (_curr >= it._curr); }
+        bool    operator<(const deque_reverse_iterator & it) { return (curr() > it.curr()); }
+        bool    operator>(const deque_reverse_iterator & it) { return (curr() < it.curr()); }
+        bool    operator<=(const deque_reverse_iterator & it) { return (curr() >= it.curr()); }
+        bool    operator>=(const deque_reverse_iterator & it) { return (curr() <= it.curr()); }
 
         deque_reverse_iterator   operator+=(int rhs) {return (*this = *this + rhs);};
         deque_reverse_iterator   operator-=(int rhs) {return (*this = *this - rhs);};
 
         reference   operator[](int n) { return *(*this + n); };
 
-        // size_type   operator-(iterator rhs) {return (_ptr - rhs._ptr);}
-
-        // iterator   operator-(int rhs) {return iterator(_ptr - rhs);}
-        // iterator   operator+(int rhs) {return iterator(_ptr + rhs);}
-
         operator    deque_reverse_iterator<const value_type> () const {
-        return deque_reverse_iterator<const value_type>(const_cast<const value_type **>(_node), _curr - _first) ; }
-
-        // operator const_iterator () const { return const_iterator(_node, _curr - _first) ; }
+        return deque_reverse_iterator<const value_type>(const_cast<const value_type **>(_node), _index) ; }
 
     private:
-        pointer _curr;       
-        pointer _first;     // the begin of the chunk
-        pointer _last;      // the end of the chunk
+        size_t _index;
         map_pointer _node;
-        friend class Deque<T>;
 
+        pointer curr() const {
+            return (*_node + _index);
+        }
 };
 }
 

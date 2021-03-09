@@ -1,0 +1,58 @@
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 768614336404564650
+Content     : [144, 9999, 5, 0, -54, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 768614336404564650
+Content  [✔]: [144, 9999, 5, 0, -54, ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 768614336404564650
+Content     : [144, 335, 5, 0, -54, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 768614336404564650
+Content  [✔]: [144, 335, 5, 0, -54, ]
+══════════════════════════════════════════════════════════════
+
+Bool result : 
+ - STL : true
+ - FT  : true
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array_one[] = {144, 9999, 5, 0, -54};
+int range_array_two[] = {144, 335, 5, 0, -54};
+ft::List<int> ft_list_one;
+ft::List<int> ft_list_two;
+for (int i = 0; i < 5; i++)
+{
+    ft_list_one.push_back(range_array_one[i]);
+    ft_list_two.push_back(range_array_two[i]);
+}
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array_one[] = {144, 9999, 5, 0, -54};
+int range_array_two[] = {144, 335, 5, 0, -54};
+std::list<int> stl_list_one;
+std::list<int> stl_list_two;
+for (int i = 0; i < 5; i++)
+{
+    stl_list_one.push_back(range_array_one[i]);
+    stl_list_two.push_back(range_array_two[i]);
+}

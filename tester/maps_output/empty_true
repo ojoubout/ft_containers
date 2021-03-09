@@ -1,0 +1,27 @@
+
+══════════════════════════════════════════════════════════════
+maps attributes : 
+STL : 
+Empty       : true
+Size        : 0
+Max size    : 288230376151711743
+Content     : []
+
+FT : 
+Empty    [✔]: true
+Size     [✔]: 0
+Max size [✔]: 288230376151711743
+Content  [✔]: []
+══════════════════════════════════════════════════════════════
+
+Bool result : 
+ - STL : true
+ - FT  : true
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+ft::Map<int, std::string> ft_default_map;
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+std::map<int, std::string> stl_default_map;

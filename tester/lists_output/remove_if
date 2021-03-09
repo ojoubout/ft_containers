@@ -1,0 +1,46 @@
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 768614336404564650
+Content     : [147, -985, 854, 96, -2, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 768614336404564650
+Content  [✔]: [147, -985, 854, 96, -2, ]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 3
+Max size    : 768614336404564650
+Content     : [147, 854, 96, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 3
+Max size [✔]: 768614336404564650
+Content  [✔]: [147, 854, 96, ]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {147, -985, 854, 96, -2};
+ft::List<int> ft_list;
+for (int i = 0; i < 5; i++)
+    ft_list.push_back(range[i]);
+ft_list.remove_if(is_negative);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {147, -985, 854, 96, -2};
+std::list<int> stl_list;
+for (int i = 0; i < 5; i++)
+    stl_list.push_back(range[i]);
+stl_list.remove_if(is_negative);

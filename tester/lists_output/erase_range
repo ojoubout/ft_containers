@@ -1,0 +1,39 @@
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 10
+Max size    : 768614336404564650
+Content     : [42, 42, 42, 42, 42, 42, 42, 42, 42, 42, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 10
+Max size [✔]: 768614336404564650
+Content  [✔]: [42, 42, 42, 42, 42, 42, 42, 42, 42, 42, ]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+ft::List<int> ft_list(20, 42);
+ft::List<int>::iterator ft_it_beg = ft_list.begin();
+ft::List<int>::iterator ft_it_end = ft_list.end();
+for (int i = 0; i < 5; i++);
+{
+    ft_it_beg++;
+    ft_it_end--;
+}
+ft_list.erase(ft_it_beg, ft_it_end);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+std::list<int> stl_list(20, 42);
+std::list<int>::iterator stl_it_beg = stl_list.begin();
+std::list<int>::iterator stl_it_end = stl_list.end();
+for (int i = 0; i < 5; i++);
+{
+    stl_it_beg++;
+    stl_it_end--;
+}
+ft_list.erase(ft_it_beg, ft_it_end);

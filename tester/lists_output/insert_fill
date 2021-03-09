@@ -1,0 +1,37 @@
+
+══════════════════════════════════════════════════════════════
+lists attributes : 
+STL : 
+Empty       : false
+Size        : 15
+Max size    : 768614336404564650
+Content     : [426, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 351, -957, 684, -852465173, ]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 15
+Max size [✔]: 768614336404564650
+Content  [✔]: [426, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 351, -957, 684, -852465173, ]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {426, 351, -957, 684, -852465173};
+ft::List<int> ft_list;
+for (int i = 0; i < 5; i++)
+    ft_list.push_back(range[i]);
+ft::List<int>::iterator ft_it = ft_list.begin();
+for (int i = 0; i < 1; i++)
+    ft_it++;
+ft_list.insert(ft_it, 10, 42);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range[] = {426, 351, -957, 684, -852465173};
+std::list<int> stl_list;
+for (int i = 0; i < 5; i++)
+    stl_list.push_back(range[i]);
+std::list<int>::iterator stl_it = stl_list.begin();
+for (int i = 0; i < 1; i++)
+    stl_it++;
+stl_list.insert(stl_it, 10, 42);

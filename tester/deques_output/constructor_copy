@@ -1,0 +1,33 @@
+
+══════════════════════════════════════════════════════════════
+deques attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 4611686018427387903
+Content     : [58, 963, -478, 61, 25]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 4611686018427387903
+Content  [✔]: [58, 963, -478, 61, 25]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = { 58, 963, -478, 61, 25};
+ft::Deque<int>::iterator ft_iterator;
+for (int i = 0; i < 5; i++)
+    ft_iterator.push_back(range_array[i]);
+ft::Deque<int> ft_range_deque(ft_iterator.begin(), ft_iterator.end());
+ft::Deque<int> ft_copy_deque(ft_range_deque);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = { 58, 963, -478, 61, 25};
+std::deque<int>::iterator stl_iterator;
+for (int i = 0; i < 5; i++)
+    stl_iterator.push_back(range_array[i]);
+std::deque<int> stl_range_deque(stl_iterator.begin(), stl_iterator.end());
+std::deque<int> stl_copy_deque(stl_range_deque);

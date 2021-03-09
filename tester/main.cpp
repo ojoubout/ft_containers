@@ -27,4 +27,6 @@ int main()
     test_stack();
     std::cout << "\n";
     test_queue();
+
+    // while(1);
 }

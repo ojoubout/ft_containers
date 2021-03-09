@@ -1,0 +1,56 @@
+
+══════════════════════════════════════════════════════════════
+deques attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 4611686018427387903
+Content     : [1458, -98, 745, 62, 9]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 4611686018427387903
+Content  [✔]: [1458, -98, 745, 62, 9]
+══════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════
+deques attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 4611686018427387903
+Content     : [1458, -98, 745, 62, 9]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 4611686018427387903
+Content  [✔]: [1458, -98, 745, 62, 9]
+══════════════════════════════════════════════════════════════
+
+Bool result : 
+ - STL : false
+ - FT  : false
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {1458, -98, 745, 62, 9};
+ft::Deque<int> ft_deque_one;
+ft::Deque<int> ft_deque_two;
+for (int i = 0; i < 5; i++)
+{
+    ft_deque_one.push_back(range_array[i]);
+    ft_deque_two.push_back(range_array[i]);
+}
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = {1458, -98, 745, 62, 9};
+std::deque<int> stl_deque_one;
+std::deque<int> stl_deque_two;
+for (int i = 0; i < 5; i++)
+{
+    stl_deque_one.push_back(range_array[i]);
+    stl_deque_two.push_back(range_array[i]);
+}

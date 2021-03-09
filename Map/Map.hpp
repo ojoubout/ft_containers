@@ -1,8 +1,7 @@
-#pragma once
 #ifndef MAP_HPP
 # define MAP_HPP
 
-#include "../Pair.hpp"
+#include "../utils/Pair.hpp"
 #include "RedBlackTree.hpp"
 
 namespace ft
@@ -37,117 +36,6 @@ public:
     typedef typename RedBlackTree<value_type, value_compare>::const_iterator            const_iterator;
     typedef typename RedBlackTree<value_type, value_compare>::reverse_iterator          reverse_iterator;
     typedef typename RedBlackTree<value_type, value_compare>::const_reverse_iterator    const_reverse_iterator;
-    // Iterators
-
-    // struct const_iterator : public iterator_traits<T> {
-    //     public:    
-    //         const_iterator() : _ptr(NULL) {};
-    //         const_iterator(node_pointer ptr) : _ptr(ptr) {};
-    //         const_iterator &operator=(const_iterator const &other) {
-    //             _ptr = other._ptr;
-    //             return (*this);
-    //         }
-
-
-    //         reference   operator*() { return _ptr->item; };
-    //         pointer     operator->() { return &_ptr->item; };
-    //         // Prefix increment
-    //         const_iterator& operator++() { _ptr = _ptr->getNext(); return *this; }  
-    //         // Postfix increment
-    //         const_iterator operator++(int) { const_iterator tmp = *this; ++(*this); return tmp; }
-    //         // Prefix decrement
-    //         const_iterator& operator--() { _ptr = _ptr->getPrevious(); return *this; }  
-    //         // Postfix decrement
-    //         const_iterator operator--(int) { const_iterator tmp = *this; --(*this); return tmp; }
-
-
-    //         bool    operator!=(const_iterator & it) { return (_ptr != it._ptr); }
-    //         bool    operator==(const_iterator & it) { return (_ptr == it._ptr); }
-
-
-    //     protected:
-    //         node_pointer _ptr;
-    // };
-    // struct iterator : public iterator_traits<T> {
-    //     public:
-    //         iterator() : _ptr(NULL) {};
-    //         iterator(node_pointer ptr) : _ptr(ptr) {};
-    //         iterator &operator=(iterator const &other) {
-    //             _ptr = other._ptr;
-    //             return (*this);
-    //         }
-
-
-    //         node_pointer get_node() { return (_ptr); };
-
-    //         reference   operator*() { return _ptr->item; };
-    //         pointer     operator->() { return &_ptr->item; };
-    //         // Prefix increment
-    //         iterator& operator++() { _ptr = _ptr->getNext(); return *this; }  
-    //         // Postfix increment
-    //         iterator operator++(int) { iterator tmp = *this; ++(*this); return tmp; }
-    //         // Prefix decrement
-    //         iterator& operator--() { _ptr = _ptr->getPrevious(); return *this; }  
-    //         // Postfix decrement
-    //         iterator operator--(int) { iterator tmp = *this; --(*this); return tmp; }
-
-    //         bool    operator!=(iterator const & it) { return (_ptr != it._ptr); }
-    //         bool    operator==(iterator const & it) { return (_ptr == it._ptr); }
-
-    //         operator const_iterator () const { return const_iterator(_ptr) ; }
-
-    //     private:
-    //         node_pointer _ptr;
-    // };
-
-    // struct const_reverse_iterator : public iterator_traits<T> {
-    //     public:    
-    //         const_reverse_iterator (node_pointer ptr) : _ptr(ptr) {};
-
-    //         reference   operator*() { return _ptr->item; };
-    //         pointer     operator->() { return &_ptr->item; };
-    //         // Prefix increment
-    //         const_reverse_iterator & operator++() { _ptr = _ptr->getPrevious(); return *this; }  
-    //         // Postfix increment
-    //         const_reverse_iterator  operator++(int) { const_reverse_iterator  tmp = *this; ++(*this); return tmp; }
-    //         // Prefix decrement
-    //         const_reverse_iterator & operator--() { _ptr = _ptr->getNext(); return *this; }  
-    //         // Postfix decrement
-    //         const_reverse_iterator  operator--(int) { const_reverse_iterator  tmp = *this; --(*this); return tmp; }
-
-    //         bool    operator!=(const_reverse_iterator & it) { return (_ptr != it._ptr); }
-    //         bool    operator==(const_reverse_iterator & it) { return (_ptr == it._ptr); }
-
-
-    //     private:
-    //         node_pointer _ptr;
-    // };
-
-    // struct reverse_iterator : public iterator_traits<T> {
-    //     public:    
-    //         reverse_iterator(node_pointer ptr) : _ptr(ptr) {};
-
-    //         reference   operator*() { return _ptr->prev->item; };
-    //         pointer     operator->() { return &_ptr->prev->item; };
-    //         // Prefix increment
-    //         reverse_iterator& operator++() { _ptr = _ptr->getPrevious(); return *this; }  
-    //         // Postfix increment
-    //         reverse_iterator operator++(int) { reverse_iterator tmp = *this; ++(*this); return tmp; }
-    //         // Prefix decrement
-    //         reverse_iterator& operator--() { _ptr = _ptr->getNext(); return *this; }  
-    //         // Postfix decrement
-    //         reverse_iterator operator--(int) { reverse_iterator tmp = *this; --(*this); return tmp; }
-
-    //         operator const_reverse_iterator  () const { return const_reverse_iterator (_ptr) ; }
-
-    //         bool    operator!=(reverse_iterator & it) { return (_ptr != it._ptr); }
-    //         bool    operator==(reverse_iterator & it) { return (_ptr == it._ptr); }
-
-
-    //     private:
-    //         node_pointer _ptr;
-    // };
-
     explicit Map (const key_compare& comp = key_compare()) : _key_comp(comp) {} ;
 
     template <class InputIterator>
@@ -190,6 +78,11 @@ public:
         return (_map.rend());
     }
 
+    void print() {
+        _map.printTree(NULL, NULL, false);
+    }
+
+
     // Capacity
 
     bool empty() const {
@@ -214,19 +107,6 @@ public:
         return ((*insert(x).first).second);
     }
 
-
-    // const_iterator begin() const;
-
-    void print() {
-        _map.printTree(NULL, NULL, false);
-    }
-    void printOrder() {
-        _map.printOrder();
-    }
-    void printReverseOrder() {
-        _map.printReverseOrder();
-    }
-
     // Modifiers
 
     Pair<iterator, bool> insert (const value_type& val) {
@@ -236,8 +116,6 @@ public:
     iterator insert (iterator pos, const value_type& val) {
         return _map.insert(pos, val);
     }
-
-    // iterator insert (iterator position, const value_type& val);
 
     template <class InputIterator>
     void insert (InputIterator first, InputIterator last) {
@@ -255,6 +133,10 @@ public:
     }
     void erase (iterator first, iterator last) {
         while (first != last) {
+            // print();
+            // iterator tmp = first;
+            // tmp = ++tmp;
+
             _map.erase(*(first++));
         }
 
@@ -263,7 +145,6 @@ public:
     void swap (Map& x) {
         _map.swap(x._map);
     }
-
 
     void    clear() {
         _map.clear();

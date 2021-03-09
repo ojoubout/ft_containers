@@ -1,0 +1,29 @@
+
+══════════════════════════════════════════════════════════════
+Vectors attributes : 
+STL : 
+Empty       : false
+Size        : 5
+Max size    : 4611686018427387903
+Capacity    : 5
+Content     : [45, 87846, 12, 965, 5]
+
+FT : 
+Empty    [✔]: false
+Size     [✔]: 5
+Max size [✔]: 4611686018427387903
+Capacity [✔]: 5
+Content  [✔]: [45, 87846, 12, 965, 5]
+══════════════════════════════════════════════════════════════
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = { 45, 87846, 12, 965, 5 };
+ft::Vector<int>::iterator ft_iterator(&(range_array[0]));
+ft::Vector<int> ft_range_vector(ft_iterator, ft_iterator + 5);
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+int range_array[] = { 45, 87846, 12, 965, 5 };
+std::vector<int>::iterator stl_iterator(&(range_array[0]));
+std::vector<int> stl_range_vector(stl_iterator, stl_iterator + 5);

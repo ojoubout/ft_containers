@@ -1,0 +1,14 @@
+
+Bool result : 
+ - STL : false
+ - FT  : false
+
+Code executed:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+ft::Map<int, std::string>::value_compare ft_key = ft::Map<int, std::string>().value_comp();
+bool ft_res = ft_key(ft::make_pair(99, "End"), ft::make_pair(42, "Noice"));
+
+Compared with:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+std::map<int, std::string>::value_compare stl_key = std::map<int, std::string>().value_comp();
+bool stl_res = stl_key(std::make_pair(99, "End"), std::make_pair(42, "Noice"));
